@@ -1,0 +1,22 @@
+@import "globals";
+
+aside{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min-max(10vw, 40vw);
+    .sidenav{
+        padding: 2em;
+        
+        ul{
+            li{
+                list-style: none;
+                padding: 1em;
+                gap: 5px;
+                svg{
+                    color: rgb(99, 178, 205);
+                }
+            }
+        }
+    }
+}

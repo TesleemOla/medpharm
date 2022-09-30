@@ -1,0 +1,83 @@
+@import "globals";
+.login{
+    background: url("./images/login-bg.png");
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Verdana;
+    padding: 1em;
+    line-height: 2em;
+
+    .header{
+        margin: 1.5em;
+        span {
+            color: white;
+            font-size: 0.8em;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+    }
+    .form-div{
+        width: min-max(45vw, 50vw);
+        height: 70vh;
+        background:  white;
+        border: 1px solid white;
+        border-radius: 1em;
+        padding: 1em;
+        .heading{
+            font-size: 0.9rem;
+            font-weight: bolder;
+            p{
+            color: grey;
+            }
+            h2{
+                color: black;
+            }
+        }
+        .input-grp{
+        display: flex;
+        flex-direction: column;
+        width: min-max(13vw,20vw);
+        margin: 10px auto;
+           label{
+                margin: 0.7em auto;
+            }
+        .input-item{
+            border: 1px solid black;
+            border-radius: 10px;
+        input{
+            height: 3em;
+            border-radius: 5px;
+            margin: 0 auto;
+            text-align: center;
+            outline: none;
+            border: none;
+        }
+        
+    }
+   
+}
+
+}
+
+    .forgot{
+        font-size: 0.5em;
+        text-align: left;
+    }
+ .submit-btn{
+            padding: 1em;
+            width: 10em;
+            background: rgb(96, 209, 247);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            &:hover{
+                transform: scale(0.8)
+            }
+        }
+}
