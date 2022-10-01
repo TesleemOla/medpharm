@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import logo from "./images/logo.svg"
+import logo from "./images/logo-black.png"
 import { AiOutlineSearch, AiOutlineBell  } from "react-icons/ai"
 import { BsFillPersonFill } from "react-icons/bs"
 import { CgArrowRight } from "react-icons/cg";
@@ -11,11 +11,6 @@ const Searchbar = () => {
     <nav className="searchnav">
       <div className="logo">
         <img src={logo} alt="logo" />
-        <span>
-          Medipharm
-          <br />
-          Assistant
-        </span>
       </div>
       <div className="box">
         <input

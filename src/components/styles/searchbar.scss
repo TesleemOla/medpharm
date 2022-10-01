@@ -5,16 +5,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-      .logo{
-        display: flex;
-        align-items: center;
-        margin-top: 0.7em;
-        span{
-            text-transform: uppercase;
-            font-size: 0.8em;
-            font-weight: 600;
-        }
-    }
     .box{
         background: grey;
         z-index: 2;

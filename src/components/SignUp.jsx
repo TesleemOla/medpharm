@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import "./styles/signup.scss"
-import vector from "./images/Vector.svg"
+import vector from "./images/logo.svg"
 
 const SignUp = () => {
     const [formvalues, setFormValues] = useState({
@@ -18,7 +18,7 @@ const SignUp = () => {
   return (
     <div className="create-acct">
       <img src={vector} alt="vector" className="imgv" />
-      <form className="signup-form d-flex jcc-aic">
+      <form className="signup-form d-flex fd jcc-aic">
         <div className="top">
         <h3>Sign Up</h3>
         <p> Sign up as a Super Admin and create other accounts</p>

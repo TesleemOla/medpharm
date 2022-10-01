@@ -2,13 +2,11 @@
 
 .create-acct{
     height: 200vh;
-    line-height: 2em;
+    line-height: 1.5em;
     font-family: Sans-Serif;
     font-size: 1.2rem;
     .imgv{
-        color: white;
-        background: white;
-        margin: 2em;
+        margin: 1em;
     }
 &::after{
     content: "";
@@ -23,8 +21,8 @@
     z-index: -1;
 }
 .top{
-    margin: 2em;
-    padding: 1em;
+    margin: 1em;
+    padding: 0.5em;
     border-bottom: 1px solid black;
 }
     .signup-form{
@@ -34,19 +32,19 @@
     position: relative;
     top: 1em;
     margin: 0 auto;
-    height: 120vh;
+    height: max-content;
     width: 60vw;
     .d-flex{
         display: flex;
         justify-content: center;
-        margin: 2em;
+        margin: 1em;
         .div-2{
             .input-item{
                 border: 1px solid black;
-                border-radius: 1em;
+                border-radius: 0.2em;
                 margin: 1em;
             input{
-            height: 3.5em;
+            height: 3em;
             width: 17em;
             border: none;
             text-align: center;
