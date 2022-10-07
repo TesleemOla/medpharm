@@ -1,8 +1,11 @@
+import React from "react";
+import "./styles/personaldetails.scss";
+
 const PersonalDetails=({formvalues, setFormvalues})=>{
 return (<form>
-          <div className="input-div">
+          <div className="input-grp">
             <label>FirstName</label>
-            <div className="input-div">
+            <div className="input-item">
               <input
                 type="text"
                 placeholder="Enter your chosen name"
@@ -12,9 +15,9 @@ return (<form>
               />
             </div>
           </div>
-          <div className="input-div">
+          <div className="input-grp">
             <label>LastName</label>
-            <div className="input-div">
+            <div className="input-item">
               <input
                 type="text"
                 placeholder="Enter your last name"
@@ -27,9 +30,9 @@ return (<form>
               />
             </div>
           </div>
-          <div className="input-div">
+          <div className="input-grp">
             <label>Email Address</label>
-            <div className="input-div">
+            <div className="input-item">
               <input
                 type="email"
                 placeholder="Enter your email address"
@@ -39,9 +42,9 @@ return (<form>
               />
             </div>
           </div>
-          <div className="input-div">
+          <div className="input-grp">
             <label>Gender</label>
-            <div className="input-div">
+            <div className="input-item">
               <input
                 type="text"
                 placeholder="Gender"
@@ -51,9 +54,9 @@ return (<form>
               />
             </div>
           </div>
-          <div className="input-div">
+          <div className="input-grp">
             <label>Phone number</label>
-            <div className="input-div">
+            <div className="input-item">
               <input
                 type="text"
                 placeholder="Enter your phone number"
@@ -63,9 +66,9 @@ return (<form>
               />
             </div>
           </div>
-          <div className="input-div">
+          <div className="input-grp">
             <label>Designation</label>
-            <div className="input-div">
+            <div className="input-item">
               <input
                 type="text"
                 placeholder="Enter your Designation"
@@ -75,15 +78,24 @@ return (<form>
               />
             </div>
           </div>
-          <div className="input-div">
+          <div className="input-grp">
                     {/* <label>Email Address</label> */}
-                    <div className="input-div">
-                        <input type="file" 
-                        placeholder="Enter your chosen name"
-                        onChange={(e)=> setFormvalues({...formvalues, email: e.target.value})}
+                
+                        <input type="file"
+                        accept="image/*"
+                        onChange={(e)=> {
+                          
+                          let reader = new FileReader()
+                          reader.readAsDataURL(e.target.files[0])
+
+                          reader.onload=(e)=>{
+                            console.log("imgfile",e.target.result)
+                            setFormvalues({...formvalues, img: e.target.result})
+                          }
+                        }}
                         />
                     </div>
-                </div>
+                
         </form>
 )
             }

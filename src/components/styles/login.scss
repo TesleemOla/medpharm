@@ -1,83 +1,126 @@
 @import "globals";
-.login{
+// for small screens
+
+    .login{
     background: url("./images/login-bg.png");
-    width: 100vw;
+    background-repeat: no-repeat;
     height: 100vh;
-    background-size: cover;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: Verdana;
-    padding: 1em;
-    line-height: 2em;
-
-    .header{
-        margin: 1.5em;
-        span {
-            color: white;
-            font-size: 0.8em;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-    }
+    border: 0;
     .form-div{
-        width: min-max(45vw, 50vw);
+        background: $white;
+        width: 100vw;
         height: 70vh;
-        background:  white;
-        border: 1px solid white;
-        border-radius: 1em;
+        margin: 2em auto;
         padding: 1em;
-        .heading{
-            font-size: 0.9rem;
-            font-weight: bolder;
-            p{
-            color: grey;
-            }
-            h2{
-                color: black;
-            }
-        }
-        .input-grp{
         display: flex;
+        border-radius: 20px;
         flex-direction: column;
-        width: min-max(13vw,20vw);
-        margin: 10px auto;
-           label{
-                margin: 0.7em auto;
-            }
-        .input-item{
-            border: 1px solid black;
-            border-radius: 10px;
-        input{
-            height: 3em;
-            border-radius: 5px;
-            margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        // .logo{
+            
+        //     font-size: 1.6em;
+        // }
+        .welcome{
+            font-weight: 600;
+            font-size: 1.1em;
+            font-family: Poppins;
+            line-height: 30px;
+            letter-spacing: 0.3px;
             text-align: center;
-            outline: none;
-            border: none;
+            color: $rare;
+            font-style: normal;
+            margin-bottom: 1em;
+            margin-top: 2em;
+        }
+        .login-txt{
+            font-weight: 600;
+            font-size: 1.3em;
+            text-align: center;
+            line-height: 2.3em;
+            letter-spacing:0.2px;
+            color: #333;
         }
         
-    }
-   
-}
-
-}
-
-    .forgot{
-        font-size: 0.5em;
-        text-align: left;
-    }
- .submit-btn{
-            padding: 1em;
-            width: 10em;
-            background: rgb(96, 209, 247);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            text-align: center;
-            &:hover{
-                transform: scale(0.8)
+        .input-grp{
+            .input-item{
+                width: 80vw;
+                display: flex;
+                align-items: center;
+                margin: 1em auto;
+            input{
+                height: 50px;
+                width: 70vw;
+                border: 0;
+                outline: 0;
+                background: $lightblue;
+                border-radius: 5px;
+                padding-left: 10px;
+                &:focus{
+                    border:2px solid $blue;
+                    background: $lightblue;
+                }
+            }
+            .eye{
+                cursor: pointer;
+                position:relative;
+                color: $lightblack;
+                right:2em;
             }
         }
+        
+        }
+        .forgot{
+        margin: 2em auto;
+        font-size: 0.8em;
+        color: $blue;
+        width:  80vw;
+    }
+    }
+    
+    .submit-btn{
+            width: 180px;
+            height: 50px;
+            color: $white;
+            border-radius: 5px;
+            background: $blue;
+            border: 0;
+            &:hover{
+                transform: scale(0.9)
+            }
+        }
+
+    .foot{
+        color: $line-color;
+        margin: 2em;
+    }
+} 
+
+// for larger screens
+@media screen and (min-width: 550px){
+.login{
+    height: 110vh;
+    .form-div{
+        width: 37em;
+        height: 90vh;
+        margin: 2em;
+        
+        .input-grp{
+            .input-item{
+                width: 490px;
+               
+            input{
+                width: 470px;
+            }
+        }
+        
+        }
+        .forgot{
+        width:35vw;
+    }
+    }
+} 
 }

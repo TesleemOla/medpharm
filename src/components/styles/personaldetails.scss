@@ -1,0 +1,26 @@
+form{
+    box-shadow: 3px grey;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .input-grp{
+        display: flex;
+        flex-direction: column;
+        margin: 10px auto;
+           label{
+                margin: 0.2em;
+            }
+        .input-item{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 3px;
+        input{
+            height: 1.5em;
+            padding: 0.5em;
+            width: max-width;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+        }
+    }
+    }
+}

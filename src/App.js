@@ -1,11 +1,11 @@
 import React from 'react';
-import Onboarding from "./components/Onboarding"
+import Login  from "./components/Login"
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-     <Onboarding membership="Staff" />
+      <Login/>
     </div>
   );
 }

@@ -1,12 +1,28 @@
+$blue: #00b5ff;
+$white: #ffffff;
+$black: #333333;
+$rare: #666;
+$lightblack: #666666;
+$line-color: #D0D0D0;
+$lightblue: rgb(232, 240, 254);
+$unreal: rgba(70, 90, 126, 0.4);
+
+
 .d-flex{
     display: flex;
-}
-.fd{
+
+&_fd{
         flex-direction: column;
     }
- .jcc-aic{
+ &_jcc-aic{
+    display: flex;
         justify-content: center;
         align-items: center;
     }
-
     
+}
+
+a, a:active, a:hover, a:visited{
+    text-decoration: none;
+    color: $black;
+}

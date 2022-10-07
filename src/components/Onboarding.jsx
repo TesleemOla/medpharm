@@ -6,7 +6,7 @@ const Onboarding=({membership})=>{
     if(membership === "Staff"){
     return (
       <div className="onboard">
-        <nav className="staff-nav">
+        <nav className="reg-nav">
           <ul>
             <li>
               <span className="number">1.</span>

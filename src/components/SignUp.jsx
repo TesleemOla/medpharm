@@ -3,7 +3,7 @@ import "./styles/signup.scss"
 import vector from "./images/logo.svg"
 
 const SignUp = () => {
-    const [formvalues, setFormValues] = useState({
+    const [formvalues, setFormvalues] = useState({
         firstname:"",
         lastname: "",
         email: "",
@@ -20,10 +20,10 @@ const SignUp = () => {
       <img src={vector} alt="vector" className="imgv" />
       <form className="signup-form d-flex fd jcc-aic">
         <div className="top">
-        <h3>Sign Up</h3>
-        <p> Sign up as a Super Admin and create other accounts</p>
+          <h3>Sign Up</h3>
+          <p> Sign up as a Super Admin and create other accounts</p>
         </div>
-        
+
         <div className="d-flex">
           <div className="div-2">
             <label htmlFor="first-name">First Name</label>
@@ -33,7 +33,7 @@ const SignUp = () => {
                 placeholder="Enter your chosen Name"
                 className="inputbox"
                 onChange={(e) => {
-                  setFormValues({ ...formvalues, firstname: e.target.value });
+                  setFormvalues({ ...formvalues, firstname: e.target.value });
                 }}
               />
             </div>
@@ -46,7 +46,7 @@ const SignUp = () => {
                 placeholder="Enter your chosen Name"
                 className="inputbox"
                 onChange={(e) => {
-                  setFormValues({ ...formvalues, lastname: e.target.value });
+                  setFormvalues({ ...formvalues, lastname: e.target.value });
                 }}
               />
             </div>
@@ -60,7 +60,7 @@ const SignUp = () => {
               placeholder="Enter your Email Address"
               className="inputbox"
               onChange={(e) => {
-                setFormValues({ ...formvalues, email: e.target.value });
+                setFormvalues({ ...formvalues, email: e.target.value });
               }}
             />
           </div>
@@ -73,7 +73,7 @@ const SignUp = () => {
               placeholder="Enter Phone number"
               className="inputbox"
               onChange={(e) => {
-                setFormValues({ ...formvalues, phone: e.target.value });
+                setFormvalues({ ...formvalues, phone: e.target.value });
               }}
             />
           </div>
@@ -86,7 +86,7 @@ const SignUp = () => {
               placeholder="*****"
               className="inputbox"
               onChange={(e) => {
-                setFormValues({ ...formvalues, password: e.target.value });
+                setFormvalues({ ...formvalues, password: e.target.value });
               }}
             />
           </div>
@@ -97,7 +97,7 @@ const SignUp = () => {
               type="checkbox"
               className="checkbox"
               onChange={(e) =>
-                setFormValues({ ...formvalues, checkbox: !formvalues.checkbox })
+                setFormvalues({ ...formvalues, checkbox: !formvalues.checkbox })
               }
             />
           </div>
@@ -107,7 +107,18 @@ const SignUp = () => {
           </label>
         </div>
         <div className="submit-grp">
-          <button className="submit-btn" onClick={(e) => handleSubmit(e)}>
+          <button
+            className="submit-btn"
+            onClick={(e) => handleSubmit(e)}
+            disabled={
+              formvalues.firstname === "" ||
+              formvalues.lastname === ""||
+              formvalues.email === ""||
+              formvalues.phone === "" ||
+              formvalues.password === "" ||
+              formvalues.checkbox === ""
+            }
+          >
             Create Account
           </button>
           <label htmlFor="first-name">

@@ -1,55 +1,60 @@
 import React, {useState} from "react";
+import { FaRegEye } from "react-icons/fa"
 import "./styles/login.scss"
-import logo from "./images/logo.svg"
+import logo from "./images/logo-blue.svg"
 
 const Login =()=>{
     const [formvalues, setFormvalues] = useState({
         email: "",
         password: ""
     })
+    const [showPassword, setShowPassword] = useState(false)
     return (
       <main className="login">
-        <div className="header d-flex jcc-aic">
-          <img src={logo} alt="logo"/>
-          <span>Medipharm assistant</span>
-        </div>
         <section className="form-div">
-          <div className="heading">
-            <p>Welcome back!</p>
-            <h2>Login to your account</h2>
-          </div>
-          <form>
+          {/* <div className="logo">
+            <img src={logo} alt="logo"/>
+          </div> */}
+            <p className="welcome">Welcome Back!</p>
+            <h2 className="login-txt">Login to your account</h2>
+          <form className="d-flex_jcc-aic d-flex_fd">
             <div className="input-grp">
               <label htmlFor="email">Email Address</label>
-              <div className="input-item">
+                <div className="input-item">
                 <input
                   type="text"
-                  placeholder="Please enter your email"
+                  placeholder="Enter your email address"
+                  
                   onChange={(e) =>
                     setFormvalues({ ...formvalues, email: e.target.value })
                   }
                 />
-              </div>
+                </div>
             </div>
             <div className="input-grp">
               <label htmlFor="password">Password</label>
-              <div className="input-item">
+                <div className="input-item">
                 <input
-                  type="password"
+                  type={!showPassword?"password":"text"}
                   placeholder="*********"
+                  
                   onChange={(e) =>
                     setFormvalues({ ...formvalues, email: e.target.value })
                   }
                 />
-              </div>
-            </div>
-            <div className="forgot">
-              <a>Forgot password?</a>
-            </div>
-            <button className="submit-btn">Login</button>
+                <FaRegEye className="eye" 
+                onClick={()=> setShowPassword(!showPassword)}/>
+                </div>
 
+            </div>
+            
+              <a className="forgot">Forgot password?</a>
+            
+            <div className="d-flex_jcc-aic">
+              <button className="submit-btn">Login</button>
+            </div>
           </form>
-          <p> Medipharm Assistant 2022</p>
+          <p className="foot"> &copy; Drug Monitoring 2021</p>
         </section>
       </main>
     );
