@@ -1,0 +1,79 @@
+@import "../globals";
+.form-field{
+    padding: 1em;
+    border: 1px solid white;
+    height: max-height;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .back-div{
+        svg{
+            color: orange;
+            font-weight: bold;
+            font-size: 3em;
+        }
+    }
+    .top{
+        display: grid;
+        grid-template-columns: 0.4fr 1fr;
+        div{
+            text-align: center;
+        }
+    }
+    
+    .side2{
+        .headlabel{
+            display: flex;
+            flex-direction: column;
+            div{
+                display: flex;
+                justify-content: space-around;
+                p{
+                    cursor: pointer;
+                }
+            }
+        }
+        .major-line{
+            width: 50vw;
+            background: $rare;
+            height: 0.3em;
+            border-radius: 20px;
+            position: relative;
+            margin: 1em;
+                .toleft{
+                    width: 25vw;
+                    height: 0.3em;
+                    border-radius: 20px;
+                    background: $blue;
+                    position: absolute;
+                    left: 0;
+              
+                }
+                .toright{
+                    width: 25vw;
+                    height: 0.3em;
+                    border-radius: 20px;
+                    background: $blue;
+                    position: absolute;
+                    right: 0;
+                   
+                }
+            
+        }
+
+    }
+    .next-btn, .preview-btn{
+        background: $blue;
+        color: $white;
+        height: 50px;
+        width: 274px;
+        left: 809px;
+        top: 805px;
+        border: 0;
+        border-radius: 5px;
+        padding: 10px 17px 10px 17px;
+
+    }
+}

@@ -1,8 +1,8 @@
-@import "globals";
+@import "../globals";
 // for small screens
 
     .login{
-    background: url("./images/login-bg.png");
+    background: url("../images/login-bg.png");
     background-repeat: no-repeat;
     height: 100vh;
     display: flex;

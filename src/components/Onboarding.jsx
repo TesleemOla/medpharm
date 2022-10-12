@@ -1,34 +1,45 @@
 import React from "react";
-import Staffform from "./Staffform";
-import "./styles/onboarding.scss"
+import Clientform from "./Clientform";
+import Orgform from "./Orgform"
+import "./styles/OnboardingPage/onboarding.scss"
+import logo from "./images/logo-blue.svg";
+// import Diag from "./images/Group 11504.svg";
+import Regnav from "./Regnav";
 
-const Onboarding=({membership})=>{
-    if(membership === "Staff"){
+const Onboarding=({membership, setMembership})=>{
+  const clientnav = [{name:"PersonalDetails",id:1},
+  {name:"More details", id: 2},{name: "Preview", id: 3}]
+  const orgnav=[{name: "Company details", id:1},
+{name:"Subscription", id: 2}, {name:"More details", id:3},
+{name:"Preview", id:4}]
+    if(membership === "Client"){
     return (
       <div className="onboard">
-        <nav className="reg-nav">
-          <ul>
-            <li>
-              <span className="number">1.</span>
-              Personal Details
-            </li>
-            <li>
-              <span className="number">2.</span>
-              Email Setup
-            </li>
-            <li>
-              <span className="number">3.</span>
-              Roles and Privileges
-            </li>
-          </ul>
-        </nav>
-       <Staffform />
+        <Regnav
+        navlist={clientnav}
+        navclass="reg-nav"
+        logo={logo}
+        logo-class="logo"
+        // Diag={Diag}
+        // DiagClass="logo-bg"
+        />
+        
+          <Clientform membership={membership} setMembership={setMembership}/>
+       
       </div>
     );
-    }else if( membership==="Client"){
+    }else if( membership==="Organisation"){
         return (
           <section className="onboard">
-            
+            <Regnav
+            navlist={orgnav}
+            navclass="reg-nav"
+            logo={logo}
+            logo-class="logo"
+            // Diag={Diag}
+            // DiagClass="logo-bg"
+            />
+            <Orgform membership={membership} setMembership={setMembership}/>
           </section>
         );
     }

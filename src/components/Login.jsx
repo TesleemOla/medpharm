@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { FaRegEye } from "react-icons/fa"
-import "./styles/login.scss"
-import logo from "./images/logo-blue.svg"
+import "./styles/Loginpage/login.scss"
+// import logo from "./images/logo-blue.svg"
 
 const Login =()=>{
     const [formvalues, setFormvalues] = useState({
@@ -12,9 +12,9 @@ const Login =()=>{
     return (
       <main className="login">
         <section className="form-div">
-          {/* <div className="logo">
+          <div className="logo">
             <img src={logo} alt="logo"/>
-          </div> */}
+          </div>
             <p className="welcome">Welcome Back!</p>
             <h2 className="login-txt">Login to your account</h2>
           <form className="d-flex_jcc-aic d-flex_fd">

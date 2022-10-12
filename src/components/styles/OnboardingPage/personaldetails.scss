@@ -1,0 +1,36 @@
+@import "../globals";
+.form{
+    box-shadow: 3px grey;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .input-grp{
+        display: flex;
+        flex-direction: column;
+        margin: 10px auto;
+      
+           label{
+                margin: 0 1em;
+            }
+        .input-item{
+            border: 1px solid $rare;
+            border-radius: 10px;
+            margin: 0 1em;
+            height: 3em;
+            width: 21em;
+            border-radius: 6px;
+
+        input{
+            height: 3em;
+            padding: 0.5em;
+            width: 20em;
+            border-radius: 6px;
+            outline: none;
+            border: none;
+        }
+        .camera{
+            border: 0.8px solid black;
+            border-radius: 50%;
+        }
+    }
+    }
+}

@@ -1,51 +1,36 @@
-import React from "react";
-import "./styles/OnboardingPage/personaldetails.scss";
-// import { AiOutlineCamera } from "react-icons/ai"
+import React from 'react'
 
-const PersonalDetails=({formvalues, setFormvalues})=>{
-return (<div className="form">
+const CompanyDetails = ({formvalues, setFormvalues}) => {
+  return (
+    <div className="form">
           <div className="input-grp">
-            <label>FirstName</label>
+            <label>Company name</label>
             <div className="input-item">
               <input
                 type="text"
-                placeholder="Enter your chosen name"
+                placeholder="Enter your company name"
                 onChange={(e) =>
-                  setFormvalues({ ...formvalues, firstName: e.target.value })
+                  setFormvalues({ ...formvalues, CompanyName: e.target.value })
                 }
               />
             </div>
           </div>
           <div className="input-grp">
-            <label>LastName</label>
+            <label>Parent Organisation ID</label>
             <div className="input-item">
               <input
                 type="text"
-                placeholder="Enter your last name"
+                placeholder="Enter Parent Organisation ID"
                 onChange={(e) =>
                   setFormvalues({
                     ...formvalues,
-                    lastName: e.target.value,
+                    parentOrganisationId: e.target.value,
                   })
                 }
               />
             </div>
           </div>
-          <div className="input-grp">
-            <label>Other Name</label>
-            <div className="input-item">
-              <input
-                type="text"
-                placeholder="Enter your last name"
-                onChange={(e) =>
-                  setFormvalues({
-                    ...formvalues,
-                    otherName: e.target.value,
-                  })
-                }
-              />
-            </div>
-          </div>
+          
           <div className="input-grp">
             <label>Email Address</label>
             <div className="input-item">
@@ -53,7 +38,8 @@ return (<div className="form">
                 type="email"
                 placeholder="Enter your email address"
                 onChange={(e) =>
-                  setFormvalues({ ...formvalues, emailAddress: e.target.value })
+                  setFormvalues({ ...formvalues,
+                  contactEmailAddress: e.target.value })
                 }
               />
             </div>
@@ -66,28 +52,43 @@ return (<div className="form">
                 type="text"
                 placeholder="Enter your phone number"
                 onChange={(e) =>
-                  setFormvalues({ ...formvalues, phoneNumber: e.target.value })
+                  setFormvalues({ ...formvalues, 
+                    contactPhoneNumber: e.target.value })
                 }
               />
             </div>
           </div>
-
-           <div className="input-grp">
-            <label>Client ID</label>
+          
+          <div className="input-grp">
+            <label>Office Address</label>
             <div className="input-item">
               <input
                 type="text"
-                placeholder="Client ID"
+                placeholder="Enter your office Address"
                 onChange={(e) =>
-                  setFormvalues({ ...formvalues, clientId: e.target.value })
+                  setFormvalues({
+                    ...formvalues,
+                   officeAddress: e.target.value,
+                  })
                 }
               />
             </div>
           </div>
-         
-                
+           <div className="input-grp">
+            <label>City</label>
+            <div className="input-item">
+              <input
+                type="text"
+                placeholder="City"
+                onChange={(e) =>
+                  setFormvalues({ ...formvalues, city: e.target.value })
+                }
+              />
+            </div>
+          </div>
+           
         </div>
-)
-            }
+  )
+}
 
-        export default PersonalDetails;
+export default CompanyDetails

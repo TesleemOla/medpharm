@@ -1,11 +1,14 @@
-import React from 'react';
-import Login  from "./components/Login"
+import React, {useState} from 'react';
+import Onboarding  from "./components/Onboarding"
+// import Login from "./components/Login"
 import './App.css';
 
 function App() {
+  const [membership, setMembership] = useState("Client")
   return (
     <div className="App">
-      <Login/>
+      <Onboarding membership={membership} setMembership={setMembership}/>
+      {/* <Login /> */}
     </div>
   );
 }
