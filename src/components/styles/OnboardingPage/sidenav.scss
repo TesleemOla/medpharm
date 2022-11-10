@@ -1,10 +1,11 @@
-@import "globals";
+@import "../globals";
 
 aside{
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: min-max(10vw, 40vw);
+    margin-top: 5px;
     .sidenav{
         padding: 2em;
         
@@ -13,8 +14,10 @@ aside{
                 list-style: none;
                 padding: 1em;
                 gap: 5px;
+                font-size: 1em;
                 svg{
-                    color: rgb(99, 178, 205);
+                    color: rgb(59, 55, 55);
+                    font-size: 1.7em;
                 }
             }
         }

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { FaRegEye } from "react-icons/fa"
 import "./styles/Loginpage/login.scss"
-// import logo from "./images/logo-blue.svg"
+import logo from "./images/logo-blue.svg"
 
 const Login =()=>{
     const [formvalues, setFormvalues] = useState({

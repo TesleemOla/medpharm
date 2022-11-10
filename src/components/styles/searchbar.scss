@@ -1,12 +1,13 @@
 .searchnav{
-    padding: 1em;
+    margin-top: 1em;
+    padding: 0.4em;
     position: sticky;
     top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .box{
-        background: grey;
+        background: #f4f7f9;
         z-index: 2;
         border-radius: 5px;
         display: flex;
@@ -17,9 +18,11 @@
         input{
             border: none;
             outline: none;
-            background: grey;
+            background: #f4f7f9;
+            width: 30vw;
+            height: 2em;
             &::placeholder{
-                color: white;
+                color: black;
                 text-align: center;
             }
         }
@@ -30,8 +33,10 @@
         svg{
             margin-left: 1em;
             color: rgb(99, 178, 205);
+            background: #f4f7f9;
             border: 1px solid rgb(99, 178, 205);
             border-radius: 50%;
+            font-size: 3em;
         }
     }
 }

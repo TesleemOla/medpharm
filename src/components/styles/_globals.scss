@@ -15,11 +15,17 @@ $unreal: rgba(70, 90, 126, 0.4);
         flex-direction: column;
     }
  &_jcc-aic{
-    display: flex;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
     
+}
+
+.center{
+    position: absolute;
+    right: 5em;
+    bottom: 5em;
 }
 
 a, a:active, a:hover, a:visited{
