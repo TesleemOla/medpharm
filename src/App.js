@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Onboarding  from "./components/Onboarding"
-// import Login from "./components/Login"
+// import Onboarding  from "./components/Onboarding"
+import Login from "./components/Login"
 import './App.css';
 
 function App() {
