@@ -7,8 +7,8 @@ function App() {
   const [membership, setMembership] = useState("Client")
   return (
     <div className="App">
-      <Onboarding membership={membership} setMembership={setMembership}/>
-      {/* <Login /> */}
+      {/* <Onboarding membership={membership} setMembership={setMembership}/> */}
+      <Login />
     </div>
   );
 }
