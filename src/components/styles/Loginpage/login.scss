@@ -12,7 +12,7 @@
     .form-div{
         background: $white;
         width: 100vw;
-        height: 70vh;
+        height: 95vh;
         margin: 2em auto;
         padding: 1em;
         display: flex;
@@ -20,9 +20,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        // position: relative;
         .logo{
             margin: 1em;
-            font-size: 1.6em;
+            position: relative;
+            top: 4em;
         }
         .welcome{
             font-weight: 600;
@@ -51,9 +53,11 @@
                 display: flex;
                 align-items: center;
                 margin: 1em auto;
+                position: relative;
+                border: 0;
             input{
-                height: 50px;
-                width: 70vw;
+                height: 46px;
+                width: fill;
                 border: 0;
                 outline: 0;
                 background: $lightblue;
@@ -66,9 +70,9 @@
             }
             .eye{
                 cursor: pointer;
-                position:relative;
+                position:absolute;
                 color: $lightblack;
-                right:2em;
+                right:1em;
             }
         }
         
@@ -107,13 +111,17 @@
         width: 37em;
         height: 90vh;
         margin: 2em;
-        
+        .logo{
+            margin: 1em;
+            position: relative;
+            top: 2.5em;
+        }
         .input-grp{
             .input-item{
                 width: 490px;
                
             input{
-                width: 470px;
+                width: 490px;
             }
         }
         

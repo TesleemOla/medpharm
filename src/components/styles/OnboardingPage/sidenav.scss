@@ -1,8 +1,7 @@
 @import "../globals";
 
 aside{
-    position: fixed;
-    bottom: 0;
+    position: absolute;
     left: 0;
     width: min-max(10vw, 40vw);
     margin-top: 5px;
@@ -10,14 +9,24 @@ aside{
         padding: 2em;
         
         ul{
+            .nav-item{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
             li{
+                font-weight: 500;
+                line-height: 1.5em;
+                letter-spacing: 0em;
+                text-align: center;
                 list-style: none;
                 padding: 1em;
                 gap: 5px;
                 font-size: 1em;
                 svg{
                     color: rgb(59, 55, 55);
-                    font-size: 1.7em;
+                    font-size: 1em;
                 }
             }
         }

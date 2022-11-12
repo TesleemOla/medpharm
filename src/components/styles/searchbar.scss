@@ -1,11 +1,12 @@
 .searchnav{
-    margin-top: 1em;
-    padding: 0.4em;
+    padding: 0.8em;
     position: sticky;
     top: 0;
+    background: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 -3px 1px gray inset ;
     .box{
         background: #f4f7f9;
         z-index: 2;
@@ -36,7 +37,7 @@
             background: #f4f7f9;
             border: 1px solid rgb(99, 178, 205);
             border-radius: 50%;
-            font-size: 3em;
+            font-size: 2em;
         }
     }
 }

@@ -12,9 +12,7 @@ const Login =()=>{
     return (
       <main className="login">
         <section className="form-div">
-          <div className="logo">
-            <img src={logo} alt="logo"/>
-          </div>
+            <img src={logo} alt="logo" className="logo"/>
             <p className="welcome">Welcome Back!</p>
             <h2 className="login-txt">Login to your account</h2>
           <form className="d-flex_jcc-aic d-flex_fd">
@@ -45,7 +43,7 @@ const Login =()=>{
                 <FaRegEye className="eye" 
                 onClick={()=> setShowPassword(!showPassword)}/>
                 </div>
-
+                  
             </div>
             
               <a className="forgot">Forgot password?</a>
