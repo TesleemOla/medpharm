@@ -9,7 +9,7 @@ const Regnav = ({navlist,navclass, logo, logoclass, Diag, Diagclass}) => {
                 navlist.map((item)=>{
                     return(
                         <li key={item.id}>
-                            <span className="number">{item.id}</span>
+                            <span className={navlist[item.id] > 1?"number blue":"number white"}>{item.id}</span>
                             {item.name}
                         </li>
                     )

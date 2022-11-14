@@ -1,0 +1,45 @@
+.tablenav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    font-size: 14px;
+    .tablesearch{
+        height: 38px;
+        width: 374px;
+        border-radius: 20px;
+        border: 1px solid grey;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        input{
+           height: 35px;
+            width: 360px;
+            border: 0;
+            outline:0; 
+        }
+        svg{
+            position: absolute;
+            right: 0.5em;
+        }
+    }
+    button{
+        height: 50px;
+        width: 185px;
+        border-radius: 5px;
+        padding: 10px 17px 10px 17px;
+        font-weight: 500;
+        background: #00B5FF;
+        color: white;
+    }
+}
+.dash-table {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    font-size: 14px;
+    td{
+        border: 1px solid grey;
+        padding: 0.3em;
+    }
+}

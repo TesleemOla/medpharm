@@ -9,15 +9,16 @@ import { GoSettings } from "react-icons/go"
 const Sidenav=({selected, setSelected})=>{
   const [opendropdown, setOpendropdown]= useState(false)
     return (
-      <aside>
+      <aside className="side-aside">
+        
         <nav className="sidenav">
           <ul>
-            <li className="nav-item d-flex_jcc-aic" 
+            <li className="nav-item" 
             onClick={()=> setSelected("Dashboard")}>
               <RiDashboardFill />
               Dashboard
             </li>
-            <li className="nav-item d-flex_jcc-aic"
+            <li className="nav-item"
             onClick={()=> setSelected("Staff")}>
               <IoPeopleCircle />
               Staff
@@ -27,33 +28,33 @@ const Sidenav=({selected, setSelected})=>{
               <RiBuildingLine />Client{opendropdown?<BiCaretUp/>:<BiCaretDown/>}
             </li>
             {opendropdown && 
-            <li>
-                <p onClick={()=> setSelected("Hospital")}><BiCaretRight/>Hospital</p>
-                <p onClick={()=> setSelected("Pharmacy")}><BiCaretRight/>Pharmacy</p>
-                <p onClick={()=> setSelected("Others")}><BiCaretRight/>Others</p>
-              </li>}
+            <span>
+                <li onClick={()=> setSelected("Hospital")}><BiCaretRight/>Hospital</li>
+                <li onClick={()=> setSelected("Pharmacy")}><BiCaretRight/>Pharmacy</li>
+                <li onClick={()=> setSelected("Others")}><BiCaretRight/>Others</li>
+              </span>}
             
-            <li className="nav-item d-flex_jcc-aic"
+            <li className="nav-item"
             onClick={()=> setSelected("Drugs")}>
               <BiCapsule />
               Drugs
             </li>
-            <li className="nav-item d-flex_jcc-aic"
+            <li className="nav-item"
             onClick={()=> setSelected("Inventory")}>
               <FaRegNewspaper />
               Inventory
             </li>
-            <li className="nav-item d-flex_jcc-aic"
+            <li className="nav-item"
             onClick={()=> setSelected("Subscription")}>
               <FaBook />
               Subscription
             </li>
-            <li className="nav-item d-flex_jcc-aic"
+            <li className="nav-item"
             onClick={()=> setSelected("Message")}>
               <BiMessageAltDetail />
               Message
             </li>
-            <li className="nav-item d-flex_jcc-aic"
+            <li className="nav-item"
             onClick={()=> setSelected("Settings")}>
               <GoSettings />
               Settings

@@ -4,7 +4,7 @@
     .login{
     background: url("../images/login-bg.png");
     background-repeat: no-repeat;
-    height: 100vh;
+    height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,7 +106,7 @@
 // for larger screens
 @media screen and (min-width: 550px){
 .login{
-    height: 110vh;
+    height: fit-content;
     .form-div{
         width: 37em;
         height: 90vh;
@@ -119,7 +119,8 @@
         .input-grp{
             .input-item{
                 width: 490px;
-               
+                // display: flex;
+                // flex-direction: column;
             input{
                 width: 490px;
             }

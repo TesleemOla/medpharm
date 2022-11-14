@@ -35,7 +35,7 @@ const Staffform=({membership, setMembership})=>{
               </div>:
               <></>
               }
-            <div>
+            <div className="tx-right">
               <h3> {pages[page]}</h3>
               {
                 page < pages.length-1? 

@@ -12,10 +12,14 @@ $unreal: rgba(70, 90, 126, 0.4);
     display: flex;
 
 &_fd{
+    display: flex;
         flex-direction: column;
+        &_jcc-aic{
+        justify-content: center;
+        align-items: center;
+    }
     }
  &_jcc-aic{
-        display: flex;
         justify-content: center;
         align-items: center;
     }

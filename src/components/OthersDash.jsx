@@ -1,6 +1,6 @@
 import React from 'react'
 
-const OthersDash = () => {
+const OthersDash = ({selected, setSelected}) => {
   return (
     <div>OthersDash</div>
   )

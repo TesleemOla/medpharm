@@ -1,12 +1,24 @@
 .searchnav{
     padding: 0.8em;
-    position: sticky;
+    position: fixed;
     top: 0;
+    right: 1em;
+    z-index: 1;
+    width: 100vw;
+    height: 5em;
     background: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    box-shadow: 0 -3px 1px gray inset ;
+    border: 1px solid #F1F5F8;
+    box-shadow: 0px 21px 45px 0px #1E428A1A;
+    .logo{
+        width: 15.625em;
+        height: 5em;
+        padding: 1em;
+        margin: 0;
+        box-shadow: 0px 21px 45px 0px #1E428A1A;
+    }
     .box{
         background: #f4f7f9;
         z-index: 2;
@@ -14,14 +26,20 @@
         display: flex;
         align-items: center;
         padding: 0.3em;
-        color: white;
-        width: max-content;
+        margin: 0 4em;
+        color: #00b5ff;
+        width: 1em;
+        position: relative;
+        left: 5%;
         input{
             border: none;
             outline: none;
             background: #f4f7f9;
-            width: 30vw;
-            height: 2em;
+            height: 2.375em;
+            width: 1em;
+            border-radius: 5px;
+
+            
             &::placeholder{
                 color: black;
                 text-align: center;
@@ -32,12 +50,39 @@
     .nav-icons{
         display: flex;
         svg{
-            margin-left: 1em;
-            color: rgb(99, 178, 205);
+            color: #00B5FF;
             background: #f4f7f9;
-            border: 1px solid rgb(99, 178, 205);
+            border: 1px solid #00B5FF;
             border-radius: 50%;
-            font-size: 2em;
+            font-size: 1em;
         }
     }
+}
+
+@media screen and (min-width: 768px){
+    .searchnav{
+    padding: 1em;
+    top: 0;
+    justify-content: space-between;
+    .box{
+        width: 20em;
+    input{
+            border: none;
+            outline: none;
+            background: #f4f7f9;
+           width: 20em;
+            height: 2em;
+            color: #00b5ff;
+    }
+}
+     .nav-icons{
+        display: flex;
+        svg{
+            margin-left: 1em;
+            font-size: 2em;
+            
+        }
+    }
+    }
+    
 }

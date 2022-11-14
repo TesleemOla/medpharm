@@ -4,7 +4,7 @@ import "./styles/OnboardingPage/detailssetup.scss"
 const DetailsSetup=({formvalues, setFormvalues})=>{
     return (
        <div className="form">
-         <div className="input-grp">
+         {/* <div className="input-grp">
             <label>Role ID</label>
             <div className="input-item">
               <input
@@ -15,7 +15,7 @@ const DetailsSetup=({formvalues, setFormvalues})=>{
                 }
               />
             </div>
-          </div>
+          </div> */}
           <div className="input-grp">
                     <label>
                       Please upload an avatar   

@@ -20,8 +20,6 @@ const Onboarding=({membership, setMembership})=>{
         navclass="reg-nav"
         logo={logo}
         logo-class="logo"
-        // Diag={Diag}
-        // DiagClass="logo-bg"
         />
         
           <Clientform membership={membership} setMembership={setMembership}/>
