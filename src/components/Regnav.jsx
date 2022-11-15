@@ -1,22 +1,24 @@
 import React from 'react'
 
-const Regnav = ({navlist,navclass, logo, logoclass, Diag, Diagclass}) => {
+const Regnav = ({navlist,navclass, logo, logoclass, Diag, pgitem}) => {
   return (
     <nav className={navclass}>
           <img src={logo} alt="logo" className={logoclass}/>
+          
           <ul>
             {
                 navlist.map((item)=>{
                     return(
-                        <li key={item.id}>
-                            <span className={navlist[item.id] > 1?"number blue":"number white"}>{item.id}</span>
+                        <li key={item.id} 
+                        className={item.id <= pgitem?"blue":"white"}>
+                            <span className="number">{item.id}</span>
                             {item.name}
                         </li>
                     )
                 })
             }
           </ul>
-          {/* <img src={Diag} alt="Diagram" className="logo-bg"/> */}
+          <img src={Diag} alt="Diagram" className="logo-bg"/>
         </nav>
   )
 }

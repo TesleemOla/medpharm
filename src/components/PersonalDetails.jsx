@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/OnboardingPage/personaldetails.scss";
-// import { AiOutlineCamera } from "react-icons/ai"
+
 
 const PersonalDetails=({formvalues, setFormvalues})=>{
 return (<div className="form">
@@ -72,17 +72,42 @@ return (<div className="form">
             </div>
           </div>
 
-           <div className="input-grp">
+           <div className="input-id">
             <label>Client ID</label>
-            <div className="input-item">
-              <input
-                type="text"
-                placeholder="Client ID"
-                onChange={(e) =>
+              <select onChange={(e) =>
                   setFormvalues({ ...formvalues, clientId: e.target.value })
-                }
-              />
-            </div>
+                }>
+                <option/>
+              </select>
+                
+          </div>
+
+          <div className="input-grp">
+                <label>Upload Profile Image</label>
+                <div className="input-item">
+                  <input type="file"
+                  accept="image/*"
+                  onChange={(e)=>{
+                    let reader = new FileReader()
+                    reader.readAsDataURL(e.target.files[0])
+                    reader.onload=(e)=>{
+                  setFormvalues({ ...formvalues,
+                  adminUser: {...formvalues.adminUser, imageUrl: e.target.result}})}
+                  }
+                  }
+                  />
+                </div>
+          </div>
+          <div className="input-grp">
+                <label>Referral Code</label>
+                <div className="input-item">
+                  <input type="text"
+                  placeholder="referral code"
+                  onChange={(e)=>
+                  setFormvalues({ ...formvalues,
+                  adminUser: {...formvalues.adminUser, refferedReferralCode: e.target.value }})}
+                  />
+                </div>
           </div>
          
                 

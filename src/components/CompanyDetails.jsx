@@ -10,26 +10,23 @@ const CompanyDetails = ({formvalues, setFormvalues}) => {
                 type="text"
                 placeholder="Enter your company name"
                 onChange={(e) =>
-                  setFormvalues({ ...formvalues, CompanyName: e.target.value })
+                  setFormvalues({ ...formvalues, companyName: e.target.value })
                 }
               />
             </div>
           </div>
-          <div className="input-grp">
+          
+            
+            <div className="input-id">
             <label>Parent Organisation ID</label>
-            <div className="input-item">
-              <input
-                type="text"
-                placeholder="Enter Parent Organisation ID"
-                onChange={(e) =>
-                  setFormvalues({
-                    ...formvalues,
-                    parentOrganisationId: e.target.value,
-                  })
-                }
-              />
-            </div>
+              <select onChange={(e) =>
+                  setFormvalues({ ...formvalues, parentOrganisationId: e.target.value })
+                }>
+                <option/>
+              </select>
+                
           </div>
+          
           
           <div className="input-grp">
             <label>Email Address</label>
@@ -86,7 +83,22 @@ const CompanyDetails = ({formvalues, setFormvalues}) => {
               />
             </div>
           </div>
-           
+          <div className="input-grp">
+            <label>State</label>
+            <div className="input-item">
+              <input
+                type="text"
+                placeholder="Enter your last name"
+                onChange={(e) =>
+                  setFormvalues({
+                    ...formvalues,
+                    state: e.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+                     
         </div>
   )
 }

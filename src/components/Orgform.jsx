@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import CompanyDetails from "./CompanyDetails";
-import AdminUser from "./AdminUser";
 import Moredetails from "./Moredetails"
 import Preview from "./Preview"
 import { TbArrowNarrowLeft} from "react-icons/tb"
 
-const Orgform = ({membership, setMembership}) => {
+const Orgform = ({membership, setMembership, orgPage, setOrgPage}) => {
  const [formvalues, setFormvalues] = useState({
     companyName:'',
     parentOrganisationId: "",
@@ -26,25 +25,25 @@ const Orgform = ({membership, setMembership}) => {
     }
     })
     
-    const [page, setPage] = useState(0)
-    const pages =["Company Details", "Admin User Details","More details", "Preview"]
+    
+    const pages =["Company Details", "Admin User Details", "Preview"]
     return (
       <section className="form-field">
         
         
         <form>
           <div className="top">
-              { (page > 0 && page < pages.length)?
+              { (orgPage > 0 && orgPage < pages.length)?
               <div className="back-div" 
-              onClick={()=> setPage(page-1)}>
+              onClick={()=> setOrgPage(orgPage-1)}>
               <TbArrowNarrowLeft/>
               </div>:
               <></>
               }
             <div className="tx-right">
-              <h3> {pages[page]}</h3>
+              <h3> {pages[orgPage]}</h3>
               {
-                page < pages.length-1? 
+                orgPage < pages.length-1? 
                 <p>Create users and assign roles to them</p>:
                 <p>Staff Information Preview</p>
               }
@@ -64,11 +63,9 @@ const Orgform = ({membership, setMembership}) => {
               </div>
           </div>
           </div>
-        {page ===0?
+        {orgPage ===0?
             <CompanyDetails
-            formvalues={formvalues} setFormvalues={setFormvalues}/>: page ===1? 
-            <AdminUser
-            formvalues={formvalues} setFormvalues={setFormvalues}/> : page === 2?
+            formvalues={formvalues} setFormvalues={setFormvalues}/>: orgPage ===1? 
             <Moredetails 
             formvalues={formvalues} setFormvalues={setFormvalues} />:
             <Preview 
@@ -76,13 +73,13 @@ const Orgform = ({membership, setMembership}) => {
         }
         </form>
         {
-          page !== pages.length-2?
+          orgPage !== pages.length-2?
           <button className="next-btn"
-        onClick={()=> page< pages.length-1?setPage(page+1): page }
+        onClick={()=> orgPage< pages.length-1?setOrgPage(orgPage+1): orgPage }
         >Next
         </button>:
         <button className="preview-btn"
-        onClick={()=> setPage(page+1)}>
+        onClick={()=> setOrgPage(orgPage+1)}>
           Preview
         </button>
         }

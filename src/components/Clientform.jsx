@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import PersonalDetails from "./PersonalDetails"
-import DetailsSetup from "./DetailsSetup"
 import Preview from "./Preview"
 import { TbArrowNarrowLeft} from "react-icons/tb"
 import "./styles/OnboardingPage/clientform.scss"
 
-const Staffform=({membership, setMembership})=>{
+const Staffform=({membership, setMembership,page,setPage})=>{
     const [formvalues, setFormvalues] = useState({
         firstName: "",
         lastName: "",
@@ -20,8 +19,8 @@ const Staffform=({membership, setMembership})=>{
         acceptTermsandConditions: false
     })
     
-    const [page, setPage] = useState(0)
-    const pages =["Personal Details", "More Details", "Preview"]
+   
+    const pages =["Personal Details", "Preview"]
     return (
       <section className="form-field">
         
@@ -60,9 +59,8 @@ const Staffform=({membership, setMembership})=>{
           </div>
         {page ===0?
             <PersonalDetails
-            formvalues={formvalues} setFormvalues={setFormvalues}/>: page ===1? 
-            <DetailsSetup
-            formvalues={formvalues} setFormvalues={setFormvalues}/> :
+            formvalues={formvalues} setFormvalues={setFormvalues}/>
+            : page ===1 && 
             <Preview 
             formvalues={formvalues} />
         }
