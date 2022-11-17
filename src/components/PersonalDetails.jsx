@@ -72,7 +72,7 @@ return (<div className="form">
             </div>
           </div>
 
-           <div className="input-id">
+          <div className="input-id">
             <label>Client ID</label>
               <select onChange={(e) =>
                   setFormvalues({ ...formvalues, clientId: e.target.value })
@@ -81,7 +81,25 @@ return (<div className="form">
               </select>
                 
           </div>
-
+          
+          <div className="input-id">
+            <label>Role ID</label>
+              <select onChange={(e) =>
+                  setFormvalues({ ...formvalues, roleId: e.target.value })
+                }>
+                <option/>
+              </select>
+                
+          </div>
+          <div className="input-id">
+            <label>Organisation ID</label>
+              <select onChange={(e) =>
+                  setFormvalues({ ...formvalues, organisationId: e.target.value })
+                }>
+                <option/>
+              </select>
+                
+          </div>
           <div className="input-grp">
                 <label>Upload Profile Image</label>
                 <div className="input-item">

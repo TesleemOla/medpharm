@@ -1,6 +1,5 @@
-import React, {useState, useContext} from "react";
-import AuthContext from "../Context/AuthContext"
-
+import React, { useState } from "react";
+import Cookies from "universal-cookie";
 import { FaRegEye } from "react-icons/fa"
 import "./styles/Loginpage/login.scss"
 import logo from "./images/logo-blue.svg"
@@ -8,7 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login =()=>{
-  const {userAuth, setUserAuth} = useContext(AuthContext)
+  const cookies = new Cookies()
     const [formvalues, setFormvalues] = useState({
         username: "",
         password: ""
@@ -21,6 +20,7 @@ const Login =()=>{
         <section className="form-div">
             <img src={logo} alt="logo" className="logo"/>
             <p className="welcome">Welcome Back!</p>
+            <p className="error">{errors.final}</p>
             <h2 className="login-txt">Login to your account</h2>
           <form className="d-flex_jcc-aic d-flex_fd">
             <div className="input-grp">
@@ -68,18 +68,22 @@ const Login =()=>{
                 }else if(!formvalues.password) {
                   setErrors({password: "Please enter a password"})
                 }else{
-                  try{
                   setErrors({})
                   axios.post('https://medipharm-test.herokuapp.com/api/login',
                   {...formvalues})
                   .then(res=> {
-                    setUserAuth({res})})
-                    console.log(userAuth)
+                    let token = res.headers.authorization;
+                    cookies.set("TOKEN", token, {
+                      path:"/"
+                    })
+                    window.location.href = "/dashboard"
+                    setSuccess(!success)
                     setFormvalues({username:'', password:''})
-                }catch(err){
-                  console.log(err)
-                }
-              }
+                  })
+                  .catch(err=>{
+                    setErrors({final: "Please sign up before trying to login"})
+                  })
+                  }
               }}>Login</button>
             </div>
           </form>

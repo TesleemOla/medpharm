@@ -25,9 +25,9 @@ const Table = ({ name, id, mobile, email, address, status, actions,array}) => {
           </tr>
         </thead>
         <tbody>
-          {array.map(i=>{
+          {array.map((i,index)=>{
             return (
-              <tr>
+              <tr  className={index%2? "grayback": "whiteback"}>
                 <td>
                   <input type="checkbox"/>
                 </td>

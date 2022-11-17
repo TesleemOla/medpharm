@@ -9,6 +9,7 @@
         width: 374px;
         border-radius: 20px;
         border: 1px solid grey;
+        background: #F4F7F9;
         position: relative;
         display: flex;
         align-items: center;
@@ -17,6 +18,8 @@
            height: 35px;
             width: 360px;
             border: 0;
+            border-radius: 20px;
+            background: #F4F7F9;
             outline:0; 
         }
         svg{
@@ -41,5 +44,13 @@
     td{
         border: 1px solid grey;
         padding: 0.3em;
+    }
+    .grayback{
+        background: linear-gradient(0deg, #E2E3EB, #E2E3EB),
+linear-gradient(0deg, #F7F7FA, #F7F7FA);
+
+    }
+    .whiteback{
+        background: white;
     }
 }

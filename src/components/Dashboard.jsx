@@ -19,7 +19,7 @@ const OthersDash =lazy(()=>import("./OthersDash"));
 
 
 const Dashboard=()=>{
-    const [selected, setSelected] = useState()
+    const [selected, setSelected] = useState("Dashboard");
     return(
         <section className="dash">
             <Searchnav  />

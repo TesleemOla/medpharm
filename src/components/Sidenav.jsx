@@ -1,5 +1,5 @@
 import React, {useState}from "react";
-import "./styles/OnboardingPage/sidenav.scss"
+import "./styles/Dashboard/sidenav.scss"
 import { RiDashboardFill, RiBuildingLine } from "react-icons/ri";
 import { IoPeopleCircle } from "react-icons/io5"
 import { BiCapsule, BiMessageAltDetail, BiCaretDown, BiCaretUp, BiCaretRight } from "react-icons/bi";

@@ -22,6 +22,7 @@
     "react-toastify": "^9.0.8",
     "react-toggle-button": "^2.2.0",
     "sass": "^1.55.0",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

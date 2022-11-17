@@ -2,35 +2,38 @@
     padding: 0.8em;
     position: fixed;
     top: 0;
-    right: 1em;
     z-index: 1;
     width: 100vw;
     height: 5em;
     background: white;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid #F1F5F8;
     box-shadow: 0px 21px 45px 0px #1E428A1A;
     .logo{
+        img{
+            display: none;
+        }
         width: 15.625em;
         height: 5em;
         padding: 1em;
-        margin: 0;
-        box-shadow: 0px 21px 45px 0px #1E428A1A;
+        // box-shadow: 0px 21px 45px 0px #1E428A1A;
+        .burger{
+            font-size: 3em;
+        }
     }
     .box{
         background: #f4f7f9;
-        z-index: 2;
         border-radius: 5px;
-        display: flex;
+        display: none;
         align-items: center;
-        padding: 0.3em;
-        margin: 0 4em;
-        color: #00b5ff;
-        width: 1em;
-        position: relative;
-        left: 5%;
+        padding: 0.5em;
+        height: 2.375em;
+        width: 31.4375em;
+        left: 468px;
+        top: 21px;
+
         input{
             border: none;
             outline: none;
@@ -63,8 +66,17 @@
     .searchnav{
     padding: 1em;
     top: 0;
-    justify-content: space-between;
+    
+    .logo{
+        img{
+            display: block;
+        }
+        .burger{
+            display: none;
+        }
+    }
     .box{
+        display: flex;
         width: 20em;
     input{
             border: none;

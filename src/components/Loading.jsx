@@ -5,7 +5,9 @@ const Loading = () => {
   return (
     <div>
         <div className="loading-circle">
+          <div className="inlet">
           Loading...
+          </div>
         </div>
     </div>
   )
