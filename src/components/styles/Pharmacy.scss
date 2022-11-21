@@ -1,76 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-// table {
-//   position: absolute;
-//   width: 1098px;
-//   height: 681px;
-//   left: 295px;
-//   top: 291px;
 
-//   background: #FFFFFF;
-//   border-radius: 4px;
-
-//   th {
-//     position: absolute;
-//     left: 20.49%;
-//     right: 3.26%;
-//     top: 34.77%;
-//     bottom: 59.77%;
-
-//     background: #F7F7FA;
-//     border: 1px solid #E2E3EB;
-//   }
-
-//   td{
-//     position: absolute;
-//     width: 1098px;
-//     height: 681px;
-//     left: 295px;
-//     top: 291px;
-
-//   background: #FFFFFF;
-//     border-radius: 4px;
-//   }
-
-//   // tr:ntn-child(odd){background-color:  #F7F7FA;}
-// }
-
-
-
-// .tableDiv {
-//   position: absolute;
-//   width: 1098px;
-//   height: 681px;
-//   left: 295px;
-//   top: 291px;
-//   background: #FFFFFF;
-//   border-radius: 4px;
-//   color: #666666;
-
-
-
-//   tr:nth-child(even){background-color: #f2f2f2;}
-
-
-
-//   th {
-//   padding-top: 12px;
-//   padding-bottom: 12px;
-//   text-align: center;
-//   background: #F7F7FA;
-//   color: #666666;
-// }
-
-// }
-
-
-
-#root {
-  position: relative;
-  background: #C4C4C4;
-}
-
-.tableDiv {
+.container {
   position: absolute;
   width: 1098px;
   height: 681px;
@@ -78,89 +9,97 @@
   top: 291px;
   background: #FFFFFF;
   border-radius: 4px;
-  table {
-    text-align: center;
-
-      th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background: #F7F7FA;
-  color: #666666;
-    }
-
-      tr:nth-child(even){background-color: #f2f2f2;}
-  }
-}
-
-.checkBoxDisplay {
-  display: flex;
-  flex-direction: row;
-}
-
-.pharmTitle {
-  width: 77%;
-  height: 50px;
-  padding: 0px 20px;
-
-  display: flex;
-  top: 313px;
-  align-items: center;
-
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-/* identical to box height, or 125% */
   letter-spacing: -0.05px;
   color: #3A3B3F;
-  justify-content: space-between;
 
-  input {
-    width: 374px;
-    height: 38px;
-    font-size: 14px;
-    top: 306px;
-    background-color: #F4F7F9;
-    border-radius: 20px;
-    &::placeholder{
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 21px;
-      color: #B1B8BD;
-      padding-left: 20px;
-    }
-  }
 
-  .filterBar {
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 3px;
-    left: 1019px;
-  }
-
-  .addPharm {
-    background: #00B5FF;
-    border-radius: 5px;
+  .pharmRow {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 17px;
-    width: 206px;
-    gap: 10px;
-    color: #FFFFFF;
-    font-size: 18px;
-    letter-spacing: 0.2px;
-    #text{
-      flex: none;
-      order: 1;
-      flex-grow: 0;
+    background: #FFFFFF;
+    padding: 10px 20px;
+
+
+    #title {
+      display: flex;
+      left: 319px;
+      align-items: center;
+
+      #pharmSearch {
+        width: 374px;
+        height: 38px;
+        left: 468px;
+        top: 306px;
+        margin-left: 30px;
+        padding-left: 20px;
+
+        background: #F4F7F9;
+        border-radius: 20px;
+
+        &::placeholder{
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 21px;
+          color: #B1B8BD;
+        }
+      }
+    }
+
+    #addPharmFilter {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+
+      #filter {
+        width: 123px;
+        height: 46px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.05);
+        border-radius: 3px;
+        padding: 0px 10px 0px 5px;
+        border: none;
+      }
+
+      .addPharm{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+         padding: 10px 17px;
+        gap: 10px;
+        width: 206px;
+        background: #00B5FF;
+        border-radius: 5px;
+        margin-left: 30px;
+
+      }
     }
   }
+
+  table {
+    border-collapse: separate;
+    text-align: center; 
+    thead {
+      background: #F7F7FA;
+      border: 1px solid #E2E3EB;
+      color: #666666
+  }
+
+
+    tr {
+      td,th {
+        padding:  5px 10px;
+        border: none;
+      }
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2;}
+  }
+
 }
-
-

@@ -1,157 +1,84 @@
-import React, { useMemo } from "react";
-import { useTable, useGlobalFilter, usePagination } from "react-table";
-import MOCK_DATA from "./MOCK_DATA.json";
+import React from "react";
+// import axios from "axios";
+// import { useTable, useGlobalFilter, usePagination } from "react-table";
+import { data } from "./MOCK_DATA";
+// import PharmTableComp from "./PharmTableComp";
 import "./styles/Pharmacy.scss";
 
-const COLUMNS = [
-  {
-    Header: "id",
-    accessor: "id",
-  },
-  {
-    Header: "Name",
-    accessor: "name",
-  },
-  {
-    Header: "Pharmacy ID",
-    accessor: "pharmacy_id",
-  },
-  {
-    Header: "Mobile",
-    accessor: "mobile",
-  },
-  {
-    Header: "E-mail",
-    accessor: "e-mail",
-  },
-  {
-    Header: "Address",
-    accessor: "address",
-  },
-  {
-    Header: "Status",
-    accessor: "status",
-  },
-  {
-    Header: "Actions",
-    accessor: "actions",
-  },
-];
+const PharmacyDash = () => {
+  const handlePrevious = (e) => {
+    e.preventDefault();
+  };
 
-const FilteringRow = ({ filter, setFilter }) => {
+  const handleNext = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <div className="pharmTitle">
-      <>
-        <h4>Pharmacy</h4>
-        <div>
+    <div className="container">
+      <div className="pharmRow">
+        <div id="title">
+          <h4>Pharmacy</h4>
           <input
-            type="text"
-            value={filter || ""}
-            onChange={(e) => setFilter(e.target.value)}
+            type="search"
             placeholder="Search Organisation"
+            name=""
+            id="pharmSearch"
           />
           <i></i>
         </div>
-      </>
-      <div className="filterBar">
-        <i></i>
-        <p>Filter</p>
-        <i></i>
+
+        <div id="addPharmFilter">
+          <div>
+            <select name="filter" id="filter">
+              <option>Filter</option>
+            </select>
+          </div>
+          <div className="addPharm">
+            <span>+</span>
+            <div>Add Pharmacy</div>
+          </div>
+        </div>
       </div>
-      <div className="addPharm">
-        <div id="plus">+</div>
-        <div id="text">Add Pharmacy</div>
-      </div>
-    </div>
-  );
-};
 
-const PharmacyDash = () => {
-  const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => MOCK_DATA, []);
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    state,
-    page,
-    // rows,
-    nextPage,
-    previousPage,
-    setGlobalFilter,
-    pageOptions,
-    // setPageSize,
-    canPreviousPage,
-    canNextPage,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    useGlobalFilter,
-    usePagination
-  );
-
-  const { globalFilter, pageIndex, pageSize } = state;
-
-  return (
-    <div className="tableDiv">
-      <FilteringRow filter={globalFilter} setFilter={setGlobalFilter} />
-      <table {...getTableProps}>
+      <table>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <React.Fragment className="checkBoxDisplay">
+          <tr>
+            <th>
               <input type="checkbox" name="" id="" />
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            </React.Fragment>
-          ))}
+            </th>
+            <th>Name</th>
+            <th>Pharmacy ID</th>
+            <th>Mobile</th>
+            <th>E-mail</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
         </thead>
-        <tbody {...getTableBodyProps}>
-          {page.map((row) => {
-            prepareRow(row);
-            return (
-              <React.Fragment className="checkBoxDisplay">
-                <input type="checkbox" name="" id="" />
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
-                </tr>
-              </React.Fragment>
-            );
-          })}
-        </tbody>
+
+        {data.map((item) => {
+          return (
+            <tbody key={item.id}>
+              <tr>
+                <td>
+                  <input type="checkbox" name="" id="" />
+                </td>
+                <td>{item.name}</td>
+                <td>{item.pharmacy}</td>
+                <td>{item.mobile}</td>
+                <td>{item.mail}</td>
+                <td>{item.address}</td>
+                <td>{item.status}</td>
+                <td>{item.actions}</td>
+              </tr>
+            </tbody>
+          );
+        })}
       </table>
-      <div>
-        {/* <selected
-          value={pageSize}
-          onChange={(e) => setPageSize(Number(e.target.value))}
-        >
-          {[10, 25, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              {pageSize}
-            </option>
-          ))}
-        </selected> */}
-        <span>
-          {pageIndex + 1} of {pageOptions.length}
-        </span>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          Previous
-        </button>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          Next
-        </button>
+      <div className="paginate">
+        <button onClick={handlePrevious}>Prev</button>
+        <button onClick={handleNext}>Next</button>
       </div>
     </div>
   );
