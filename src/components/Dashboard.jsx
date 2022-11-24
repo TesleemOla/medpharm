@@ -1,4 +1,4 @@
-import React, {lazy, Suspense, useState}from "react";
+import React, {lazy, Suspense, useState }from "react";
 import MainDash from "./MainDash";
 import Searchnav from "./Searchbar";
 import Sidenav from "./Sidenav"
@@ -20,6 +20,7 @@ const OthersDash =lazy(()=>import("./OthersDash"));
 
 const Dashboard=()=>{
     const [selected, setSelected] = useState("Dashboard");
+
     return(
         <section className="dash">
             <Searchnav  />

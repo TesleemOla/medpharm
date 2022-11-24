@@ -1,0 +1,28 @@
+.tile{
+    position: relative;
+    top: 1em;
+    left: 1em;
+    .item{
+        position: absolute;
+        left: 0.5em;
+        top: 0.3em;
+    }
+}
+.card-bg{
+    height: 134px;
+    width: 340px;
+    border-radius: 10px;
+
+}
+
+.card-sm{
+    height: 134px;
+    width: 240px;
+    border-radius: 10px;
+}
+
+.card-flex{
+    display: flex;
+    position: relative;
+    left: 5em;
+}

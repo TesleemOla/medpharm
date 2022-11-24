@@ -7,7 +7,8 @@ import { FaRegNewspaper, FaBook } from "react-icons/fa";
 import { GoSettings } from "react-icons/go"
 
 const Sidenav=({selected, setSelected})=>{
-  const [opendropdown, setOpendropdown]= useState(false)
+  const [openclient, setOpenclient]= useState(false)
+  const [opendrugs, setOpendrugs]= useState(false)
     return (
       <aside className="side-aside">
         
@@ -24,21 +25,26 @@ const Sidenav=({selected, setSelected})=>{
               Staff
             </li>
             <li className="nav-item d-flex_fd"
-            onClick={()=> setOpendropdown(!opendropdown)}>
-              <RiBuildingLine />Client{opendropdown?<BiCaretUp/>:<BiCaretDown/>}
+            onClick={()=> setOpenclient(!openclient)}>
+              <RiBuildingLine />Client{openclient?<BiCaretUp/>:<BiCaretDown/>}
             </li>
-            {opendropdown && 
+            {openclient && 
             <span>
                 <li onClick={()=> setSelected("Hospital")}><BiCaretRight/>Hospital</li>
                 <li onClick={()=> setSelected("Pharmacy")}><BiCaretRight/>Pharmacy</li>
                 <li onClick={()=> setSelected("Others")}><BiCaretRight/>Others</li>
               </span>}
             
-            <li className="nav-item"
-            onClick={()=> setSelected("Drugs")}>
-              <BiCapsule />
-              Drugs
+           <li className="nav-item d-flex_fd"
+            onClick={()=> setOpendrugs(!opendrugs)}>
+              <RiBuildingLine />Drugs{opendrugs?<BiCaretUp/>:<BiCaretDown/>}
             </li>
+            {opendrugs && 
+            <span>
+                <li onClick={()=> setSelected("category 1")}><BiCaretRight/>Category I</li>
+                <li onClick={()=> setSelected("category 2")}><BiCaretRight/>Category II</li>
+                <li onClick={()=> setSelected("category 3")}><BiCaretRight/>Category III</li>
+              </span>}
             <li className="nav-item"
             onClick={()=> setSelected("Inventory")}>
               <FaRegNewspaper />

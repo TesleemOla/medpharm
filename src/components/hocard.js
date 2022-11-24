@@ -3,7 +3,6 @@ import "./styles/Dashboard/hoccard.scss"
 
 const hocard = (Component)=>({...props}) => {
     return (<div className="reuse-card">
-      <p>Show this</p>
         <Component {...props} />
     </div>
   )

@@ -4,9 +4,20 @@
     height: 5em;
     width: 5em;
     border-radius: 50%;
-    transition: rotate(180deg);
+    animation: rotateload 2s infinite linear;
+    position: absolute;
+    top: 15em;
+    right: 15em;
 }
 
+@keyframes rotateload {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(359deg);
+    }
+}
 .inlet{
     background: white;
     height: 3em;

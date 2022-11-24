@@ -1,0 +1,39 @@
+.tablenav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    font-size: 16px;
+    position: relative;
+    left: 5em;
+    .tablesearch{
+        height: 3em;
+        width: 14em;
+        border-radius: 20px;
+        border: 1px solid grey;
+        background: #F4F7F9;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5em;
+        input{
+           height: 3em;
+            width: 12em;
+            border: 0;
+            border-radius: 20px;
+            background: #F4F7F9;
+            outline:0; 
+        }
+    }
+    button{
+        height: 50px;
+        width: 183px;
+        border-radius: 5px;
+        padding: 10px 17px 10px 17px;
+        font-weight: 500;
+        background: #00B5FF;
+        color: white;
+        margin: 0 5em;
+    }
+}

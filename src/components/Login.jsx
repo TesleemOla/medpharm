@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../Context/AuthContext"
 import Cookies from "universal-cookie";
 import { FaRegEye } from "react-icons/fa"
 import "./styles/Loginpage/login.scss"
@@ -7,6 +8,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login =()=>{
+  const {userAuth, setUserAuth} = useContext(AuthContext)
   const cookies = new Cookies()
     const [formvalues, setFormvalues] = useState({
         username: "",
@@ -73,15 +75,20 @@ const Login =()=>{
                   {...formvalues})
                   .then(res=> {
                     let token = res.headers.authorization;
+                    // save user to context
+                    setUserAuth(res.data.data)
+                    // set cookie
                     cookies.set("TOKEN", token, {
                       path:"/"
                     })
                     window.location.href = "/dashboard"
+                    
                     setSuccess(!success)
                     setFormvalues({username:'', password:''})
                   })
                   .catch(err=>{
-                    setErrors({final: "Please sign up before trying to login"})
+                    setErrors({final:err.message})
+                    
                   })
                   }
               }}>Login</button>

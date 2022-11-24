@@ -1,7 +1,7 @@
 import React from 'react'
 import { AiFillFunnelPlot, AiOutlineSearch } from "react-icons/ai"
 import { BiCaretDown } from "react-icons/bi"
-import Table from './TableData'
+// import InventoryTable from './Tables'
 import { staffdata } from "../data/data"
 
 const OthersDash = ({selected, setSelected}) => {
@@ -16,8 +16,9 @@ const OthersDash = ({selected, setSelected}) => {
         <p><AiFillFunnelPlot/> Filter<BiCaretDown/></p>
         <button>+ Add Pharmacy</button>
       </nav>
-        <Table name="Name" id="Staff I.D" email="email" address="Address" status="Status" 
-        actions="Actions" array={staffdata} /></div>
+        {/* <InventoryTable name="Name" id="Staff I.D" email="email" address="Address" status="Status" 
+        actions="Actions" array={staffdata} /> */}
+        </div>
   )
 }
 
