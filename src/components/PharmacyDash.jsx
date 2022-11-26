@@ -1,10 +1,10 @@
 import React from "react";
 import hocard from './hocard'
-import Cookies from "universal-cookie"
+
 import Tablenav from "./Tablenav"
 import tile1 from "./images/tile-icon1.png"
 import tile2 from "./images/tile-icon2.png"
-import tile3 from "./images/tile-icon3.png"
+import AuthContext from "../Context/AuthContext";
 import item1 from "./images/item(1).png"
 import item2 from "./images/item(2).png"
 import item3 from "./images/item(3).png"
@@ -20,6 +20,7 @@ const PharmacyDash = () => {
     e.preventDefault();
   };
   const Card= hocard(Carddets)
+  
   return (
     <div className="center-dash">
 
@@ -94,7 +95,8 @@ const PharmacyDash = () => {
         <button onClick={handleNext}>Next</button>
       </div>
     </div>
-  );
-};
+  )
+}
+
 
 export default PharmacyDash;

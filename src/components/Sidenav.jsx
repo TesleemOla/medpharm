@@ -1,12 +1,14 @@
 import React, {useState}from "react";
-import "./styles/Dashboard/sidenav.scss"
+import { useNavigate } from "react-router-dom";
 import { RiDashboardFill, RiBuildingLine } from "react-icons/ri";
 import { IoPeopleCircle } from "react-icons/io5"
 import { BiCapsule, BiMessageAltDetail, BiCaretDown, BiCaretUp, BiCaretRight } from "react-icons/bi";
 import { FaRegNewspaper, FaBook } from "react-icons/fa";
 import { GoSettings } from "react-icons/go"
+import "./styles/Dashboard/sidenav.scss"
 
-const Sidenav=({selected, setSelected})=>{
+const Sidenav=()=>{
+  const navigate = useNavigate()
   const [openclient, setOpenclient]= useState(false)
   const [opendrugs, setOpendrugs]= useState(false)
     return (
@@ -15,12 +17,12 @@ const Sidenav=({selected, setSelected})=>{
         <nav className="sidenav">
           <ul>
             <li className="nav-item" 
-            onClick={()=> setSelected("Dashboard")}>
+            onClick={()=> navigate("/dashboard") }>
               <RiDashboardFill />
               Dashboard
             </li>
             <li className="nav-item"
-            onClick={()=> setSelected("Staff")}>
+            onClick={()=> navigate("/dashboard/Staff")}>
               <IoPeopleCircle />
               Staff
             </li>
@@ -30,9 +32,9 @@ const Sidenav=({selected, setSelected})=>{
             </li>
             {openclient && 
             <span>
-                <li onClick={()=> setSelected("Hospital")}><BiCaretRight/>Hospital</li>
-                <li onClick={()=> setSelected("Pharmacy")}><BiCaretRight/>Pharmacy</li>
-                <li onClick={()=> setSelected("Others")}><BiCaretRight/>Others</li>
+                <li onClick={()=> navigate("/dashboard/hospital")}><BiCaretRight/>Hospital</li>
+                <li onClick={()=> navigate("/dashboard/pharmacy")}><BiCaretRight/>Pharmacy</li>
+                <li onClick={()=> navigate("/dashboard/others")}><BiCaretRight/>Others</li>
               </span>}
             
            <li className="nav-item d-flex_fd"
@@ -41,27 +43,27 @@ const Sidenav=({selected, setSelected})=>{
             </li>
             {opendrugs && 
             <span>
-                <li onClick={()=> setSelected("category 1")}><BiCaretRight/>Category I</li>
-                <li onClick={()=> setSelected("category 2")}><BiCaretRight/>Category II</li>
-                <li onClick={()=> setSelected("category 3")}><BiCaretRight/>Category III</li>
+                <li onClick={()=> console.log("category")}><BiCaretRight/>Category I</li>
+                <li onClick={()=> console.log("category")}><BiCaretRight/>Category II</li>
+                <li onClick={()=> console.log("category")}><BiCaretRight/>Category III</li>
               </span>}
             <li className="nav-item"
-            onClick={()=> setSelected("Inventory")}>
+            onClick={()=>navigate("/dashboard/inventory") }>
               <FaRegNewspaper />
               Inventory
             </li>
             <li className="nav-item"
-            onClick={()=> setSelected("Subscription")}>
+            onClick={()=> navigate("/dashboard/subscription")}>
               <FaBook />
               Subscription
             </li>
             <li className="nav-item"
-            onClick={()=> setSelected("Message")}>
+            onClick={()=>navigate("/dashboard/message") }>
               <BiMessageAltDetail />
               Message
             </li>
             <li className="nav-item"
-            onClick={()=> setSelected("Settings")}>
+            onClick={()=>navigate("/dashboard/settings")}>
               <GoSettings />
               Settings
             </li>

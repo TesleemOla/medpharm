@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import Carddets from './Carddets'
 import hocard from './hocard'
-import Cookies from "universal-cookie"
+import AuthContext from '../Context/AuthContext'
 import Tablenav from "./Tablenav"
 import tile1 from "./images/tile-icon1.png"
 import tile2 from "./images/tile-icon2.png"
@@ -12,10 +12,10 @@ import capsule from "./images/capsule-dark.png"
 import calendar from "./images/calendar.png"
 import {InventoryTable} from './Tables'
 
-const cookies = new Cookies()
-const token = cookies.get("TOKEN")
+
 
 const InventoryDash = () => {
+  const {userAuth} = useContext(AuthContext)
   const [allInventory, setAllInventory] = useState([])
   const [pageNo, setPageNo] = useState(1)
   const [openEdit, setOpenEdit] = useState(false)
@@ -26,14 +26,14 @@ const InventoryDash = () => {
       pageNo,
       sizePerPage: 10,
       headers:{
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${userAuth.token}`
       }
     }
     axios(config)
     .then(res=>{
       setAllInventory(res.data.data)
     })
-  },[allInventory, pageNo])
+  },[allInventory, pageNo, userAuth])
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">

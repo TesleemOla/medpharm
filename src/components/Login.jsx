@@ -1,19 +1,43 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../Context/AuthContext"
-import Cookies from "universal-cookie";
 import { FaRegEye } from "react-icons/fa"
 import "./styles/Loginpage/login.scss"
 import logo from "./images/logo-blue.svg"
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login =()=>{
-  const {userAuth, setUserAuth} = useContext(AuthContext)
-  const cookies = new Cookies()
+  const { setUserAuth} = useContext(AuthContext)
+  const Navigate = useNavigate()
     const [formvalues, setFormvalues] = useState({
         username: "",
         password: ""
     })
+    const handleSubmit=(e)=>{
+      e.preventDefault()
+      if(!formvalues.email && !formvalues.password){
+        setErrors({email: "Please enter an email to continue",
+        password: "Please enter a password"})
+      }else if(!formvalues.password) {
+        setErrors({password: "Please enter a password"})
+      }else{
+        setErrors({})
+        axios.post('https://medipharm-test.herokuapp.com/api/login',{...formvalues})
+        .then(res=> {
+          // save user to context
+          
+            setUserAuth(res.data.data)                    
+          
+          setSuccess(!success)
+          setFormvalues({username:'', password:''})
+          Navigate("/dashboard", {replace: true})
+        })
+        .catch(err=>{
+          setErrors({final:"Email or password incorrect"})
+          console.log(err.message)
+        })
+        }
+}
     const [errors, setErrors] = useState({})
     const [showPassword, setShowPassword] = useState(false)
     const [success, setSuccess] = useState(false)
@@ -24,7 +48,8 @@ const Login =()=>{
             <p className="welcome">Welcome Back!</p>
             <p className="error">{errors.final}</p>
             <h2 className="login-txt">Login to your account</h2>
-          <form className="d-flex_jcc-aic d-flex_fd">
+          <form className="d-flex_jcc-aic d-flex_fd"
+          onSubmit={(e)=>{handleSubmit(e)}}>
             <div className="input-grp">
               <label htmlFor="email">Email Address</label>
               <p className="error">{errors.email}</p>
@@ -61,37 +86,7 @@ const Login =()=>{
               <Link className="forgot">Forgot password?</Link>
             
             <div className="d-flex_jcc-aic">
-              <button className="submit-btn" 
-              onClick={(e)=>{
-                e.preventDefault()
-                if(!formvalues.email && !formvalues.password){
-                  setErrors({email: "Please enter an email to continue",
-                  password: "Please enter a password"})
-                }else if(!formvalues.password) {
-                  setErrors({password: "Please enter a password"})
-                }else{
-                  setErrors({})
-                  axios.post('https://medipharm-test.herokuapp.com/api/login',
-                  {...formvalues})
-                  .then(res=> {
-                    let token = res.headers.authorization;
-                    // save user to context
-                    setUserAuth(res.data.data)
-                    // set cookie
-                    cookies.set("TOKEN", token, {
-                      path:"/"
-                    })
-                    window.location.href = "/dashboard"
-                    
-                    setSuccess(!success)
-                    setFormvalues({username:'', password:''})
-                  })
-                  .catch(err=>{
-                    setErrors({final:err.message})
-                    
-                  })
-                  }
-              }}>Login</button>
+              <button className="submit-btn">Login</button>
             </div>
           </form>
           <p className="foot"> &copy; Drug Monitoring 2021</p>

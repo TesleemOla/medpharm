@@ -4,7 +4,7 @@ import { BiCaretDown } from "react-icons/bi"
 // import InventoryTable from './Tables'
 import { staffdata } from "../data/data"
 
-const OthersDash = ({selected, setSelected}) => {
+const OthersDash = () => {
   return (
     <div className="center-dash">
        <nav className="tablenav">

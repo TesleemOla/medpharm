@@ -12,35 +12,37 @@ import axios from 'axios'
 import AuthContext from '../Context/AuthContext'
 
 
+
 const MainDash = () => {
-  const user = useContext(AuthContext)
+  const {userAuth} = useContext(AuthContext)
+
   const [drugCategories, setDrugCategories] = useState([])
   const [inventory, setInventory] = useState([])
   const [organisations, setOrganisations] = useState([])
-
+  
   useEffect(()=>{
      const config1 = {
       method: "get",
       url: "https://medipharm-test.herokuapp.com/api/drugscategories",
       headers: {
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${userAuth.token}`,
       },
     };
-
     const config2={
       method: "get",
       url: "https://medipharm-test.herokuapp.com/api/manufacturers",
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${userAuth.token}`
       },
     }
     const config3 ={ 
       method: "get",
       url: 'https://medipharm-test.herokuapp.com/api/inventories',
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${userAuth.token}`
       }
     }
+  
     axios(config3)
     .then(res=> setInventory(res.data.data) )
     axios(config2)
@@ -48,7 +50,8 @@ const MainDash = () => {
 
     axios(config1)
     .then(res=> setDrugCategories(res.data.data))
-    },[drugCategories, inventory, organisations, user])
+    },[drugCategories, inventory, organisations, userAuth])
+
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
@@ -60,6 +63,7 @@ const MainDash = () => {
         <Card tile={tile3} item={item1} heading="Drug Category" value={drugCategories.length} className="card-sm"/>
         <Card tile={tile1} item={moneybag} heading="Total Amount" className="card-sm"/>
       </div>
+      
       {/* <Table name="Name" id="Pharmacy I.D" mobile="Mobile"
       email="Email" address="Address" status="Status" actions="Action" 
       array={staffdata} /> */}

@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import axios from "axios"
-import Cookies from "universal-cookie"
+import AuthContext from '../Context/AuthContext'
 
-const cookies = new Cookies()
-const token = cookies.get("TOKEN")
 const MessageDash = () => {
+  const { userAuth } = useContext(AuthContext)
   useEffect(()=>{
     const config={
       method: "get",
-      // 'https://medipharm-test.herokuapp.com/api/roles'
       url:"https://medipharm-test.herokuapp.com/api/roles",
       headers:{
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${userAuth.token}`
       }
     }
     axios(config)
     .then(res=> console.log(res))
-  },[])
+  },[userAuth])
   return (
     <div>MessageDash</div>
   )
