@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useAuth } from "./ProtectDashboard/AuthDash"
 import Carddets from './Carddets'
 import hocard from './hocard'
 import tile1 from "./images/tile-icon1.png"
@@ -11,14 +12,19 @@ import axios from 'axios'
 import Tablenav from './Tablenav'
 
 const StaffDash = () => {
+  const user = useAuth()
   const [staffdata, setStaffdata] = useState()
   useEffect(()=>{
     const config= {
       method: "GET",
-      url: ""
+      url: `https://medipharm-test.herokuapp.com/api/users/${user.id}`,
+      headers:{
+        Authorization: `Bearer ${user.token}`
+      }
     }
-    axios.get()
-  },[staffdata])
+    axios(config)
+    .then(res=> console.log(res))
+  },[user])
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">

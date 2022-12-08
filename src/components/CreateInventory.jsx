@@ -1,7 +1,13 @@
 import React, {useState} from "react";
-import "./styles/CreateInventory/CreateInventory.scss"
+import { useNavigate } from "react-router-dom";
+import { GrClose } from "react-icons/gr"
+import { useAuth } from "./ProtectDashboard/AuthDash"
+import "./styles/Dashboard/Inventory/editinv.scss"
 
 const CreateInventory=()=>{
+    const user = useAuth()
+    // console.log(user)
+    const Navigate = useNavigate()
     const [formvalues, setFormValues] = useState({
   batchNumber: "string",
   drugId: "string",
@@ -10,82 +16,98 @@ const CreateInventory=()=>{
   manufacturedDate: "string",
   expiryDate: "string",
   quantityStock: 1,
-  clientId: "string"
+  clientId: user.id
 })
     return(
-        <section className="inventory center">
-            <h2>Create Inventory</h2>
-            <form className="form-field">
-                <div className="input-grp">
-                    <label>Name</label>
-                    <div className="input-item">
-                        <input type="text"
-                        placeholder="Name of Product"
-                        value={formvalues.name}
-                        onChange={(e)=> setFormValues({ ...formvalues, name: e.target.value})}
-                        />
+        <div className="AddInventory center-dash">
+        
+        <form className="inv-form">
+             <div  className="light-back">
+                <p>Create Inventory</p>
+                <GrClose onClick={()=> Navigate("/dashboard/inventory")}/>          
+            </div>
+            <div className="flex-col">
+                <div>
+                    <div className="input-div">
+                        <label>Name</label>
+                        <div>
+                            <input type="text"  />
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Category</label>
+                        <div>
+                            <input type="text"  />
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Total Quantity</label>
+                        <div>
+                            <input type="text"  />
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Amount</label>
+                        <div>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    
+                    <div className="input-div">
+                        <label>Supplied By</label>
+                        <div>
+                            <input type="text" />
+                        </div>
                     </div>
                 </div>
-                <div className="input-grp">
-                    <label>Batch No.</label>
-                    <div className="input-item">
-                        <input type="text"
-                        placeholder="Batch no."
-                        value={formvalues.batchNumber}
-                        onChange={(e)=> setFormValues({ ...formvalues, batchNumber: e.target.value})}/>
-                    </div>
-                </div>
-                <div className="input-grp">
+                <div>
+                    <div className="input-div">
                     <label>Product I.D</label>
-                    <div className="input-item">
-                        <input type="text"
-                        placeholder="Product I.D"
-                        value={formvalues.drugId}
-                        onChange={(e)=> setFormValues({ ...formvalues, drugId: e.target.value})}/>
+                    <div>
+                        <input type="text"   />
+                    </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Quantity Remaining</label>
+                        <div>
+                            <input type="text"  />
+                            
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Expiry Date</label>
+                        <div>
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Date Manufactured</label>
+                        <div>
+                            <input type="text"  />
+                        </div>
+                    </div>
+                    
+                    <div className="input-div">
+                        <label>Assigned Marketer</label>
+                        <div>
+                            <input type="text" />
+                        </div>
                     </div>
                 </div>
-                
-                <div className="input-grp">
-                    <label>Quantity stock</label>
-                    <div className="input-item">
-                        <input type="string"
-                        placeholder="1" 
-                        value={formvalues.quantityStock}
-                        onChange={(e)=> setFormValues({ ...formvalues, quantityStock: e.target.value})}/>
-                    </div>
+              </div>
+              <div className="select-div">
+                        <label>Status</label>
+                        <select>
+                            <option value="Available">Available</option>
+                            <option value="Active">Active</option>
+                        </select>
                 </div>
-                <div className="input-grp">
-                    <label>Date Manufactured</label>
-                    <div className="input-item">
-                        <input type="text"
-                        placeholder="Date Manufactured"
-                        value={formvalues.manufacturedDate}
-                        onChange={(e)=> setFormValues({ ...formvalues, manufacturedDate: e.target.value})}
-                        
-                        />
-                    </div>
+                <div className="buttons">
+                    <button className="btn-cancel">Cancel</button>
+                    <button className="btn-save">Create</button>
                 </div>
-                <div className="input-grp">
-                    <label>Expiry Date</label>
-                    <div className="input-item">
-                        <input type="date"
-                        placeholder="Expiry date"
-                        value={formvalues.expiryDate}
-                        onChange={(e)=> setFormValues({ ...formvalues, expiryDate: e.target.value})}/>
-                    </div>
-                </div>
-                <div className="input-grp">
-                    <label>Customer I.D</label>
-                    <div className="input-item">
-                        <input type="text"
-                        placeholder="Supplier I.D"
-                        value={formvalues.clientId}
-                        onChange={(e)=> setFormValues({ ...formvalues, clientId: e.target.value})}/>
-                    </div>
-                </div>
-                <button className="inventory-btn">Create Inventory</button>
-            </form>
-        </section>
+        </form>
+        </div>
     )
 }
 

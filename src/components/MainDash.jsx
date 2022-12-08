@@ -1,4 +1,5 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useEffect, useState} from 'react'
+import { useAuth } from "./ProtectDashboard/AuthDash"
 import Carddets from './Carddets'
 import hocard from './hocard'
 import tile1 from "./images/tile-icon1.png"
@@ -9,13 +10,10 @@ import item2 from "./images/item(2).png"
 import item3 from "./images/item(3).png"
 import moneybag from "./images/moneybag.png"
 import axios from 'axios'
-import AuthContext from '../Context/AuthContext'
-
 
 
 const MainDash = () => {
-  const {userAuth} = useContext(AuthContext)
-
+  const user = useAuth()
   const [drugCategories, setDrugCategories] = useState([])
   const [inventory, setInventory] = useState([])
   const [organisations, setOrganisations] = useState([])
@@ -25,21 +23,21 @@ const MainDash = () => {
       method: "get",
       url: "https://medipharm-test.herokuapp.com/api/drugscategories",
       headers: {
-        Authorization: `Bearer ${userAuth.token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     };
     const config2={
       method: "get",
       url: "https://medipharm-test.herokuapp.com/api/manufacturers",
       headers: {
-        Authorization: `Bearer ${userAuth.token}`
+        Authorization: `Bearer ${user.token}`
       },
     }
     const config3 ={ 
       method: "get",
       url: 'https://medipharm-test.herokuapp.com/api/inventories',
       headers: {
-        Authorization: `Bearer ${userAuth.token}`
+        Authorization: `Bearer ${user.token}`
       }
     }
   
@@ -50,7 +48,7 @@ const MainDash = () => {
 
     axios(config1)
     .then(res=> setDrugCategories(res.data.data))
-    },[drugCategories, inventory, organisations, userAuth])
+    },[drugCategories, inventory, organisations, user])
 
   const Card= hocard(Carddets)
   return (

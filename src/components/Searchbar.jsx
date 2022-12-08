@@ -1,5 +1,4 @@
-import React, {useState, useContext} from 'react'
-import AuthContext from '../Context/AuthContext'
+import React, { useState } from 'react'
 import logo from "./images/logo-sm.png"
 import { AiOutlineSearch, AiOutlineBell  } from "react-icons/ai"
 import { BiMenuAltRight } from "react-icons/bi"
@@ -10,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Searchbar = () => {
-  const { setUserAuth } = useContext(AuthContext)
     const [searchvalue, setSearchvalue] = useState('')
     const Navigate = useNavigate()
   return (
@@ -32,8 +30,8 @@ const Searchbar = () => {
           <AiOutlineBell />
           <BsFillPersonFill />
           <CgArrowRight onClick={()=>{
-            setUserAuth(null)
-            Navigate("/")
+            sessionStorage.removeItem("user")
+            Navigate("/", {replace: true})
           }}/>
       </div>
     </nav>

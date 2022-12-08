@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 import Carddets from './Carddets'
 import hocard from './hocard'
-import AuthContext from '../Context/AuthContext'
+import {useAuth} from "./ProtectDashboard/AuthDash"
 import Tablenav from "./Tablenav"
 import tile1 from "./images/tile-icon1.png"
 import tile2 from "./images/tile-icon2.png"
@@ -15,7 +16,8 @@ import {InventoryTable} from './Tables'
 
 
 const InventoryDash = () => {
-  const {userAuth} = useContext(AuthContext)
+  const user = useAuth()
+  const Navigate = useNavigate()
   const [allInventory, setAllInventory] = useState([])
   const [pageNo, setPageNo] = useState(1)
   const [openEdit, setOpenEdit] = useState(false)
@@ -26,14 +28,14 @@ const InventoryDash = () => {
       pageNo,
       sizePerPage: 10,
       headers:{
-        Authorization: `Bearer ${userAuth.token}`
+        Authorization: `Bearer ${user.token}`
       }
     }
     axios(config)
     .then(res=>{
       setAllInventory(res.data.data)
     })
-  },[allInventory, pageNo, userAuth])
+  },[allInventory, pageNo, user])
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
@@ -47,12 +49,10 @@ const InventoryDash = () => {
         <Card tile={tile1} item={calendar} heading="Expired" className="card-sm" 
         value={(allInventory.filter(i=> i.expired)).length}/>
       </div>
-      <Tablenav dashfield="Inventory"/>
+      <Tablenav dashfield="Inventory" onClick={()=> Navigate("/dashboard/createInventory")}/>
       <InventoryTable field1="Name" field2="Product I.D" field3="Category"
       field4="Total Quantity" field5="Amount" field6="Expiry Date" 
-      field7="Status" field8="Actions" array={allInventory}
-      data1={"drugName"} data2="drugId" data3="packageType" data4="quantityLeft"
-      data5="amount" data6="expiryDate" data7="status"/>
+      field7="Status" field8="Actions" array={allInventory} />
     </div>
   )
 }

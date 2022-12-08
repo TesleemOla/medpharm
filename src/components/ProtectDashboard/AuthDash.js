@@ -1,6 +1,5 @@
 
-const AuthDash=()=>{
-  return
+export const useAuth=()=>{
+  return JSON.parse(sessionStorage.getItem("user"))
 }
 
-export default AuthDash

@@ -2,34 +2,21 @@ import React from 'react'
 import Loading from "./Loading"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { FaCaretDown} from "react-icons/fa"
+import {useNavigate} from "react-router-dom"
 import { MdEdit } from "react-icons/md"
 import "./styles/Dashboard/dashtables.scss"
+import Tablehead from './Tablehead'
 
 // Inventory Table 
-export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, pageNo}) => {
+export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array,handleEdit, pageNo}) => {
+  const Navigate = useNavigate()
   if(array.length > 0) {
   return (
-    <div>
+    <div className="table-div">
     <table className="dash-table">
-        <thead>
-          <tr>
-          <td>
-            <input type="checkbox"/>
-          </td>
-          <td>
-            {field1}
-          </td>
-          <td>
-            {field2}
-          </td>
-          <td>{field3}</td>
-          <td>{field4}</td>
-          <td>{field5}</td>
-          <td>{field6}</td>
-          <td>{field7}</td>
-          <td>{field8}</td>
-          </tr>
-        </thead>
+        <Tablehead field1={field1} field2={field2} field3={field3}
+        field4={field4} field5={field5} field6={field6} field7={field7} 
+        field8={field8} />
         <tbody>
           {array.map((item,index)=>{
             return (
@@ -45,7 +32,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
                 <td>{item.amount}</td>
                 <td>{item.expiryDate}</td>
                 <td>{item.status}</td>
-                <td><MdEdit/></td>
+                <td onClick={()=> Navigate(`/dashboard/editInventory/${item.id}`)}><MdEdit/></td>
               </tr>
             )
           })}
@@ -64,30 +51,15 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
   }
 }
 
-export const HospitalTable=()=>({ field1, field2, field3, field4, field5,field6, field7, field8,array, pageNo}) => {
-  if(array.length > 0) {
+// Hospital Table
+export const HospitalTable=({ field1, field2, field3, field4, field5,field6, field7, field8,array, pageNo}) => {
+  const Navigate = useNavigate()
+  if(array) {
   return (
     <div>
     <table className="dash-table">
-        <thead>
-          <tr>
-          <td>
-            <input type="checkbox"/>
-          </td>
-          <td>
-            {field1}
-          </td>
-          <td>
-            {field2}
-          </td>
-          <td>{field3}</td>
-          <td>{field4}</td>
-          <td>{field5}</td>
-          <td>{field6}</td>
-          <td>{field7}</td>
-          <td>{field8}</td>
-          </tr>
-        </thead>
+        <Tablehead field1={field1} field2={field2} field3={field3}
+        field4={field4} field5={field5} field6={field6} field7={field7}  />
         <tbody>
           {array.map((item,index)=>{
             return (
@@ -96,14 +68,13 @@ export const HospitalTable=()=>({ field1, field2, field3, field4, field5,field6,
                 <td>
                   <input type="checkbox"/>
                 </td>
-                <td>{item.drugName}</td>
-                <td>{item.drugId}</td>
-                <td>{item.packageType}</td>
-                <td>{item.quantityLeft}</td>
-                <td>{item.amount}</td>
-                <td>{item.expiryDate}</td>
+                <td>{item.name}</td>
+                <td>{item.id}</td>
+                <td>{item.mobile}</td>
+                <td>{item.email}</td>
+                <td>{item.address}</td>
                 <td>{item.status}</td>
-                <td><MdEdit/></td>
+                <td onClick={()=> Navigate(`/dashboard/editPharmacy/${item.id}`)}><MdEdit/></td>
               </tr>
             )
           })}
@@ -119,5 +90,5 @@ export const HospitalTable=()=>({ field1, field2, field3, field4, field5,field6,
       </div>
   )}else{
     return <Loading/>
-  }
+        }
 }

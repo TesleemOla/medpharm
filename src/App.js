@@ -1,27 +1,21 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Routes, Route
 } from "react-router-dom"
-import Login from "./components/Login"
-import ProtectRoutes from "./components/ProtectRoutes"
-import Dashboard from "./components/Dashboard"
-import Onboarding from "./components/Onboarding"
-import EditInventory from "./components/EditInventory"
+import Login from "./Components/Login"
+import ProtectRoutes from "./Components/ProtectRoutes"
+import Dashboard from "./Components/Dashboard"
+import Onboarding from "./Components/Onboarding"
+import EditInventory from "./Components/EditInventory"
+import CreateInventory from "./Components/CreateInventory"
 import './App.css';
-import MainDash from "./components/MainDash";
-import Loading from "./components/Loading"
+import MainDash from "./Components/MainDash";
+import Loading from "./Components/Loading"
+import EditPharmacy from "./Components/EditPharmacy";
+import { PharmacyDash, StaffDash, DrugsDash, InventoryDash, SubscriptionDash, MessageDash,
+SettingDash, HospitalDash, OthersDash } from "./Dashwrap"
 
-const PharmacyDash = lazy(() => import("./components/PharmacyDash"));
-
-const StaffDash = lazy(() => import("./components/StaffDash"));
-const DrugsDash = lazy(() => import("./components/DrugsDash"));
-const InventoryDash = lazy(() => import("./components/InventoryDash"))
-const SubscriptionDash = lazy(() => import("./components/SubscriptionDash"))
-const MessageDash = lazy(() => import("./components/MessageDash"))
-const SettingDash = lazy(() => import("./components/SettingDash"))
-const HospitalDash = lazy(() => import("./components/HospitalDash"));
-const OthersDash = lazy(() => import("./components/OthersDash"));
 function App() {
   const [membership, setMembership] = useState("Client")
   const Pharmacy = Dashboard(PharmacyDash)
@@ -34,6 +28,8 @@ function App() {
   const Subscription= Dashboard(SubscriptionDash)
   const Setting = Dashboard(SettingDash)
   const Main = Dashboard(MainDash)
+  const AddInventory =  Dashboard(CreateInventory)
+  const EditPharm = Dashboard(EditPharmacy)
   return (
     <div className="App">
       <Router>
@@ -45,14 +41,19 @@ function App() {
             <Suspense fallback={<Loading />}><Main /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/pharmacy" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Pharmacy /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/editPharmacy/:id" element={<ProtectRoutes>
+            <Suspense fallback={<Loading />}><EditPharm/></Suspense>
+          </ProtectRoutes>}/>
           <Route path="/dashboard/Staff" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Staff /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Drugs" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Drugs /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Inventory" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Inventory /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/editInventory" element={<ProtectRoutes>
-          <Suspense fallback={<Loading />}><EditInventory /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/editInventory/:id" element={<ProtectRoutes>
+            <Suspense fallback={<Loading />}><EditInventory /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/createInventory" element={<ProtectRoutes>
+            <Suspense fallback={<Loading />}><AddInventory /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/hospital" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Hospital /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Others" element={<ProtectRoutes>
@@ -63,7 +64,7 @@ function App() {
             <Suspense fallback={<Loading />}><Subscription/></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/settings" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Setting/></Suspense></ProtectRoutes>} />
-          <Route path="*" element={<><Loading /><Loading/><Loading/></>} />
+          <Route path="*" element={<Loading/>} />
           <Route path="/onboarding" element={<Onboarding membership={membership} setMembership={setMembership} />} />
           
         </Routes>

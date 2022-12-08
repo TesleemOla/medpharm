@@ -1,68 +1,131 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { useAuth } from "./ProtectDashboard/AuthDash"
+import { useParams, useNavigate }  from "react-router-dom"
+import { MdEdit } from "react-icons/md"
 import { TbArrowNarrowLeft} from "react-icons/tb"
+import axios from 'axios'
+import  "./styles/Dashboard/Inventory/editinv.scss"
 
-const EditInventory = ({inventoryItem}) => {
+const EditInventory = () => {
+    const {id} = useParams()
+    const user = useAuth()
+    const Navigate = useNavigate()
+    const [inventoryItem, setInventoryItem] = useState([])
+    const [edit, setEdit] = useState(false)
+    useEffect(()=>{
+        const config = {
+            method: "GET",
+            url: `https://medipharm-test.herokuapp.com/api/inventories/${id}`,
+            headers:{
+                Authorization: `Bearer ${user.token}`,
+            }
+        }
+        axios(config)
+        .then(res=> setInventoryItem(res.data.data))
+        // console.log(inventoryItem)
+    },[user, id])
   return (
-    <div>
+    <div className="editInventory">
         <div className="back-div">
-            <h2>{inventoryItem.name}</h2>
-            <TbArrowNarrowLeft/>
-
+            <TbArrowNarrowLeft onClick={()=> Navigate("/dashboard/inventory")}/>
+            Back
         </div>
         
-        <form className="form-field">
-            <div>
-                <div className="input-div">
-                    <label>Name</label>
-                    <input type="text"/>
-                </div>
-                <div className="input-div">
-                    <label>Category</label>
-                    <input type="text"/>
-                </div>
-                <div className="input-div">
-                    <label>Total Quantity</label>
-                    <input type="text"/>
+        <form className="inv-form">
+            <div  className="light-back">
+                <p>{inventoryItem.drugName}</p>
+                <MdEdit onClick={()=> setEdit(true)}/>
+                
+            </div>
+            <div className="flex-col">
+                <div>
+                    <div className="input-div">
+                        <label>Name</label>
+                        <div>
+                            <input type="text" value={inventoryItem.drugName}
+                            readOnly={!edit} />
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Category</label>
+                        <div>
+                            <input type="text" value={inventoryItem.packageType}
+                            readOnly={!edit}/>
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Total Quantity</label>
+                        <div>
+                            <input type="text" value={inventoryItem.quantityStock}
+                            readOnly={!edit}/>
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Amount</label>
+                        <div>
+                            <input type="text" readOnly={!edit}/>
+                        </div>
+                    </div>
+                    
+                    <div className="input-div">
+                        <label>Supplied By</label>
+                        <div>
+                            <input type="text" value={inventoryItem.supplierName}
+                            readOnly={!edit}/>
+                        </div>
+                    </div>
                 </div>
                 <div>
-                    <label>Amount</label>
-                    <input type="text"/>
+                    <div className="input-div">
+                    <label>Product I.D</label>
+                    <div>
+                        <input type="text" value={inventoryItem.batchNumber}  
+                        readOnly={!edit}/>
+                    </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Quantity Remaining</label>
+                        <div>
+                            <input type="text" value={inventoryItem.quantityLeft }
+                            readOnly={!edit}/>
+                            
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Expiry Date</label>
+                        <div>
+                            <input type="text" value={inventoryItem.expiryDate}
+                            readOnly={!edit}/>
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Date Manufactured</label>
+                        <div>
+                            <input type="text" value={inventoryItem.manufacturedDate} 
+                            readOnly={!edit}/>
+                        </div>
+                    </div>
+                    
+                    <div className="input-div">
+                        <label>Assigned Marketer</label>
+                        <div>
+                            <input type="text" value={inventoryItem.supplierName}
+                            readOnly={!edit}/>
+                        </div>
+                    </div>
                 </div>
-                <div className="input-div">
-                    <label>Expiry Date</label>
-                    <input type="text"/>
+              </div>
+              <div className="select-div">
+                        <label>Status</label>
+                        <select>
+                            <option value="Available">Available</option>
+                            <option value="Active">Active</option>
+                        </select>
                 </div>
-                <div className="input-div">
-                    <label>Supplied By</label>
-                    <input type="text"/>
-                </div>
-            </div>
-            <div>
-                <div className="input-div">
-                <label>Product I.D</label>
-                <input type="text"/>
-            </div>
-            <div className="input-div">
-                <label>Treatment for</label>
-                <input type="text"/>
-            </div>
-            <div className="input-div">
-                <label>Quantity Remaining</label>
-                <input type="text"/>
-            </div>
-            <div className="input-div">
-                <label>Date Manufactured</label>
-                <input type="text"/>
-            </div>
-            <div className="input-div">
-                <label>Status</label>
-                <input type="text"/>
-            </div>
-            <div className="input-div">
-                <label>Assigned Marketer</label>
-                <input type="text"/>
-            </div>
-            </div>
+                {edit && <div className="buttons">
+                    <button className="btn-cancel">Cancel</button>
+                    <button className="btn-save">Save</button>
+                </div>}
         </form>
     </div>
   )

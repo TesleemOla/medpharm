@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import AuthContext from "../Context/AuthContext"
+import React, { useState } from "react";
 import { FaRegEye } from "react-icons/fa"
 import "./styles/Loginpage/login.scss"
 import logo from "./images/logo-blue.svg"
@@ -7,7 +6,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login =()=>{
-  const { setUserAuth} = useContext(AuthContext)
   const Navigate = useNavigate()
     const [formvalues, setFormvalues] = useState({
         username: "",
@@ -24,11 +22,9 @@ const Login =()=>{
         setErrors({})
         axios.post('https://medipharm-test.herokuapp.com/api/login',{...formvalues})
         .then(res=> {
-          // save user to context
-          
-            setUserAuth(res.data.data)                    
-          
-          setSuccess(!success)
+          // save user to session storage              
+            sessionStorage.setItem("user",JSON.stringify(res.data.data))
+          setSuccess(true)
           setFormvalues({username:'', password:''})
           Navigate("/dashboard", {replace: true})
         })

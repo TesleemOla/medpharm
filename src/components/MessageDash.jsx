@@ -1,20 +1,20 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import axios from "axios"
-import AuthContext from '../Context/AuthContext'
+import { useAuth } from "./ProtectDashboard/AuthDash"
 
 const MessageDash = () => {
-  const { userAuth } = useContext(AuthContext)
+  const user = useAuth()
   useEffect(()=>{
     const config={
       method: "get",
       url:"https://medipharm-test.herokuapp.com/api/roles",
       headers:{
-        Authorization: `Bearer ${userAuth.token}`
+        Authorization: `Bearer ${user.token}`
       }
     }
     axios(config)
     .then(res=> console.log(res))
-  },[userAuth])
+  },[user])
   return (
     <div>MessageDash</div>
   )

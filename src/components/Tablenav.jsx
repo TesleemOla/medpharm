@@ -3,7 +3,7 @@ import { BiFilterAlt} from "react-icons/bi"
 import { AiOutlineSearch } from "react-icons/ai"
 import "./styles/Dashboard/tablenav.scss"
 
-const Tablenav = ({dashfield}) => {
+const Tablenav = ({dashfield, onClick}) => {
   return (
     <nav className="tablenav">
         <p>{dashfield}</p>
@@ -20,7 +20,7 @@ const Tablenav = ({dashfield}) => {
               <option value="status">Status</option>
           </select>
         </div>
-        <button>+ Create {dashfield}</button>
+        <button onClick={onClick}>+ Create {dashfield}</button>
       </nav>
   )
 }

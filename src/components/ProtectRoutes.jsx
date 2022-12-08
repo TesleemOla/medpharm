@@ -1,11 +1,11 @@
-import React, {useContext} from 'react'
+import React from 'react'
+import { useAuth } from "./ProtectDashboard/AuthDash"
 import { Navigate } from "react-router-dom";
-import AuthContext from '../Context/AuthContext';
 
 
 const ProtectRoutes = ({children})=> {
-    const {userAuth } = useContext(AuthContext)
-        if(!userAuth){
+    const user = useAuth()
+        if(!user){
             return <Navigate to='/' replace={true}/>
         }
             return children
