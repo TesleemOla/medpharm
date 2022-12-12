@@ -3,7 +3,7 @@ import "./styles/loading.scss"
 
 const Loading = () => {
   return (
-    <div>
+    <div className="loader">
         <div className="loading-circle">
           <div className="inlet">
           </div>

@@ -14,14 +14,14 @@ import axios from 'axios'
 
 const MainDash = () => {
   const user = useAuth()
-  const [drugCategories, setDrugCategories] = useState([])
-  const [inventory, setInventory] = useState([])
+  const [drugCategories, setDrugCategories] = useState(0)
+  const [inventory, setInventory] = useState(0)
   const [organisations, setOrganisations] = useState([])
   
   useEffect(()=>{
      const config1 = {
       method: "get",
-      url: "https://medipharm-test.herokuapp.com/api/drugscategories",
+      url: 'https://medipharm-test.herokuapp.com/api/reports/drugsummary',
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
@@ -33,21 +33,14 @@ const MainDash = () => {
         Authorization: `Bearer ${user.token}`
       },
     }
-    const config3 ={ 
-      method: "get",
-      url: 'https://medipharm-test.herokuapp.com/api/inventories',
-      headers: {
-        Authorization: `Bearer ${user.token}`
-      }
-    }
+   
   
-    axios(config3)
-    .then(res=> setInventory(res.data.data) )
+    axios(config1)
+    .then(res=>{
+      setDrugCategories(res.data.data.totalDrugCategory)
+      setInventory(res.data.data.totalInventory) })
     axios(config2)
     .then(res=> setOrganisations(res.data.data))
-
-    axios(config1)
-    .then(res=> setDrugCategories(res.data.data))
     },[drugCategories, inventory, organisations, user])
 
   const Card= hocard(Carddets)
@@ -57,8 +50,8 @@ const MainDash = () => {
         <Card tile={tile1} item={item2} heading="Number of Organisations" className="card-sm"
         value={organisations.length} />
         <Card tile={tile2} item={item3} heading="Total Inventory" className="card-sm"
-        value={inventory.length} />
-        <Card tile={tile3} item={item1} heading="Drug Category" value={drugCategories.length} className="card-sm"/>
+        value={inventory} />
+        <Card tile={tile3} item={item1} heading="Drug Category" value={drugCategories} className="card-sm"/>
         <Card tile={tile1} item={moneybag} heading="Total Amount" className="card-sm"/>
       </div>
       

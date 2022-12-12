@@ -1,13 +1,15 @@
-.loading-circle{
+.loader{
+     position: absolute;
+     top: 40%;
+     right: 46%;
+    .loading-circle{
     background: conic-gradient(from 90deg at 50% 50%, rgba(0, 175, 170, 0.0001) 0deg, #00B5FF 359.96deg, rgba(0, 175, 170, 0.0001) 360deg);
     padding: 1em;
     height: 5em;
     width: 5em;
     border-radius: 50%;
     animation: rotateload 2s infinite linear;
-    position: absolute;
-    top: 15em;
-    right: 15em;
+   
 }
 
 @keyframes rotateload {
@@ -24,4 +26,5 @@
     width: 3em;
     padding: 1em;
     border-radius: 50%;
+}
 }

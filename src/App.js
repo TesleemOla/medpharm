@@ -13,8 +13,11 @@ import './App.css';
 import MainDash from "./Components/MainDash";
 import Loading from "./Components/Loading"
 import EditPharmacy from "./Components/EditPharmacy";
-import { PharmacyDash, StaffDash, DrugsDash, InventoryDash, SubscriptionDash, MessageDash,
-SettingDash, HospitalDash, OthersDash } from "./Dashwrap"
+import { PharmacyDash, StaffDash, DrugsDash, InventoryDash, 
+  // SubscriptionDash,
+   MessageDash,
+// SettingDash,
+ HospitalDash, OthersDash, EditStaffDash, EditHospitalDash } from "./Dashwrap"
 
 function App() {
   const [membership, setMembership] = useState("Client")
@@ -25,11 +28,13 @@ function App() {
   const Hospital = Dashboard(HospitalDash)
   const Others = Dashboard(OthersDash)
   const Message = Dashboard(MessageDash)
-  const Subscription= Dashboard(SubscriptionDash)
-  const Setting = Dashboard(SettingDash)
+  // const Subscription= Dashboard(SubscriptionDash)
+  // const Setting = Dashboard(SettingDash)
   const Main = Dashboard(MainDash)
   const AddInventory =  Dashboard(CreateInventory)
   const EditPharm = Dashboard(EditPharmacy)
+  const DashEditStaff = Dashboard(EditStaffDash)
+  const DashEditHospital = Dashboard(EditHospitalDash)
   return (
     <div className="App">
       <Router>
@@ -46,6 +51,8 @@ function App() {
           </ProtectRoutes>}/>
           <Route path="/dashboard/Staff" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Staff /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/editStaff/:id" element={<ProtectRoutes>
+            <Suspense fallback={<Loading />}><DashEditStaff /></Suspense></ProtectRoutes>}/>
           <Route path="/dashboard/Drugs" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Drugs /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Inventory" element={<ProtectRoutes>
@@ -56,14 +63,16 @@ function App() {
             <Suspense fallback={<Loading />}><AddInventory /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/hospital" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Hospital /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/editHospital/:id" element={<ProtectRoutes>
+            <Suspense fallback={<Loading />}><DashEditHospital /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Others" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Others/></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/message" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Message/></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/subscription" element={<ProtectRoutes>
+          {/* <Route path="/dashboard/subscription" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Subscription/></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/settings" element={<ProtectRoutes>
-            <Suspense fallback={<Loading />}><Setting/></Suspense></ProtectRoutes>} />
+            <Suspense fallback={<Loading />}><Setting/></Suspense></ProtectRoutes>} /> */}
           <Route path="*" element={<Loading/>} />
           <Route path="/onboarding" element={<Onboarding membership={membership} setMembership={setMembership} />} />
           

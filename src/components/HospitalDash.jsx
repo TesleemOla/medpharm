@@ -15,7 +15,8 @@ const HospitalDash = () => {
   useEffect(()=>{
     const config={
       method: "GET",
-      url: 'https://medipharm-test.herokuapp.com/api/suppliers',
+      url: `https://medipharm-test.herokuapp.com/api/manufacturers`,
+      // url: 'https://medipharm-test.herokuapp.com/api/reports/drugsummary',
       headers:{
         Authorization: `Bearer ${user.token}`
       },
@@ -24,7 +25,7 @@ const HospitalDash = () => {
     axios(config)
     .then(res=> { 
       setStaffData(res.data.data)
-      // console.log(staffData)
+      // console.log(res.data.data)
     })
   },[staffData, user])
   const Card= hocard(Carddets)
@@ -36,9 +37,7 @@ const HospitalDash = () => {
         <Card tile={tile1} item={item2} heading="Top Organisations"/>
       </div>
       <Tablenav dashfield="Hospital" />
-      {/* <HospitalTable field1="Name" field2="Pharmacy I.D" field3="Mobile"
-      field4="Email" field5="Address" field6="Status" field7="Action" 
-      array={staffData} /> */}
+      <HospitalTable array={staffData} />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAuth } from "./ProtectDashboard/AuthDash"
 import { RiDashboardFill, RiBuildingLine } from "react-icons/ri";
 import { IoPeopleCircle } from "react-icons/io5"
@@ -47,7 +47,7 @@ const Sidenav=()=>{
             </li>}
             <li className="nav-item d-flex_fd"
             onClick={()=> setOpenclient(!openclient)}>
-              <RiBuildingLine />Client{openclient?<BiCaretUp/>:<BiCaretDown/>}
+              <RiBuildingLine />Customer{openclient?<BiCaretUp/>:<BiCaretDown/>}
             </li>
             {openclient && 
             <span>
@@ -55,14 +55,19 @@ const Sidenav=()=>{
                 <li onClick={()=> navigate("/dashboard/pharmacy")}><BiCaretRight/>Pharmacy</li>
                 <li onClick={()=> navigate("/dashboard/others")}><BiCaretRight/>Others</li>
               </span>}
+              <li className="nav-item"
+            onClick={()=> navigate("/dashboard/drugs")}>
+              <FaBook />
+              Drugs
+            </li>
             
            <li className="nav-item d-flex_fd"
             onClick={()=> setOpendrugs(!opendrugs)}>
-              <RiBuildingLine />Drugs{opendrugs?<BiCaretUp/>:<BiCaretDown/>}
+              <RiBuildingLine />Drug Type{opendrugs?<BiCaretUp/>:<BiCaretDown/>}
             </li>
             
-                {opendrugs && drugCategories.map(item=>{
-                  return <li key={item.id} onClick={()=>Navigate(`/dashboard/${item.name}`)}><BiCaretRight/>{item.name}</li>
+                {opendrugs && drugCategories.map(({name, id})=>{
+                  return <li key={id} onClick={()=>navigate(`/dashboard/drugs/${name}`)}><BiCaretRight/>{name}</li>
                 })
                   }
             
@@ -71,21 +76,17 @@ const Sidenav=()=>{
               <FaRegNewspaper />
               Inventory
             </li>}
-            <li className="nav-item"
-            onClick={()=> navigate("/dashboard/subscription")}>
-              <FaBook />
-              Subscription
-            </li>
+            
             <li className="nav-item"
             onClick={()=>navigate("/dashboard/message") }>
               <BiMessageAltDetail />
               Message
             </li>
-            <li className="nav-item"
+            {/* <li className="nav-item"
             onClick={()=>navigate("/dashboard/settings")}>
               <GoSettings />
               Settings
-            </li>
+            </li> */}
           </ul>
         </nav>
       </aside>

@@ -19,6 +19,7 @@ const InventoryDash = () => {
   const user = useAuth()
   const Navigate = useNavigate()
   const [allInventory, setAllInventory] = useState([])
+  const [totalDrugs, setTotalDrugs] = useState(0)
   const [pageNo, setPageNo] = useState(1)
   const [openEdit, setOpenEdit] = useState(false)
   useEffect(()=>{
@@ -31,9 +32,19 @@ const InventoryDash = () => {
         Authorization: `Bearer ${user.token}`
       }
     }
+    const config2={
+      method: "GET",
+      url: 'https://medipharm-test.herokuapp.com/api/reports/drugsummary',
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    axios(config2)
+    .then(res=> setTotalDrugs(res.data.data.totalDrugs))
     axios(config)
     .then(res=>{
       setAllInventory(res.data.data)
+      // console.log(res.data.data)
     })
   },[allInventory, pageNo, user])
   const Card= hocard(Carddets)
@@ -41,11 +52,11 @@ const InventoryDash = () => {
     <div className="center-dash">
       <div className="card-flex">
         <Card tile={tile2} item={deposit} heading="Total Drugs" className="card-sm" 
-        value={allInventory.length}/>
+        value={totalDrugs}/>
         <Card tile={tile2} item={capsule} heading="Available Drugs" className="card-sm" 
         value={(allInventory.filter(i=> i.status === "ACTIVE")).length} />
         <Card tile={tile1} item={item1} heading="Not available" className="card-sm" 
-        value={(allInventory.filter(i=> i.status !== "ACTIVE")).length}/>
+        value={totalDrugs - allInventory.length}/>
         <Card tile={tile1} item={calendar} heading="Expired" className="card-sm" 
         value={(allInventory.filter(i=> i.expired)).length}/>
       </div>

@@ -10,11 +10,11 @@ import axios from 'axios'
 const EditStaff = () => {
     const user = useAuth()
     const [dataItem, setDataItem] = useState({})
-
+    const {id} = useParams()
     useEffect(()=>{
         const config={
             method: "GET",
-            url: `url${id}`,
+            url: `https://medipharm-test.herokuapp.com/api/manufacturers/${id}`,
             headers: {
                 Authorization: `Bearer ${user.token}`
             }
@@ -23,12 +23,12 @@ const EditStaff = () => {
         .then(res=> setDataItem(res.data.data))
     })
     // console.log(dataItem)
-    const {id} = useParams()
+    
     const Navigate = useNavigate()
   return (
     <div className="center-dash">
         <div className="back-arrow">
-            <TbArrowNarrowLeft onClick={()=> Navigate("/dashboard/Pharmacy")} />
+            <TbArrowNarrowLeft onClick={()=> Navigate("/dashboard/Staff")} />
             <span>Back</span>
         </div>
         <div className="d-flex">

@@ -10,6 +10,7 @@ import people from "./images/people.png"
 import person from "./images/person.png"
 import axios from 'axios'
 import Tablenav from './Tablenav'
+import { StaffTable } from "./Tables"
 
 const StaffDash = () => {
   const user = useAuth()
@@ -17,14 +18,15 @@ const StaffDash = () => {
   useEffect(()=>{
     const config= {
       method: "GET",
-      url: `https://medipharm-test.herokuapp.com/api/users/${user.id}`,
+      url: `https://medipharm-test.herokuapp.com/api/manufacturers`,
       headers:{
         Authorization: `Bearer ${user.token}`
       }
     }
     axios(config)
-    .then(res=> console.log(res))
-  },[user])
+    .then(res=> {
+      setStaffdata(res.data.data)})
+  },[user, staffdata])
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
@@ -34,6 +36,7 @@ const StaffDash = () => {
         <Card tile={tile3} item={person} heading="Other role" className="card-bg"/>
       </div>
      <Tablenav dashfield="Staff" />
+     <StaffTable array={staffdata} pageNo={1} />
     </div>
   )
 }
