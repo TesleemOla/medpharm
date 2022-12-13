@@ -17,7 +17,7 @@ import { PharmacyDash, StaffDash, DrugsDash, InventoryDash,
   // SubscriptionDash,
    MessageDash,
 // SettingDash,
- HospitalDash, OthersDash, EditStaffDash, EditHospitalDash } from "./Dashwrap"
+ HospitalDash, OthersDash, EditStaffDash, EditHospitalDash, DrugCategoryDash } from "./Dashwrap"
 
 function App() {
   const [membership, setMembership] = useState("Client")
@@ -35,6 +35,7 @@ function App() {
   const EditPharm = Dashboard(EditPharmacy)
   const DashEditStaff = Dashboard(EditStaffDash)
   const DashEditHospital = Dashboard(EditHospitalDash)
+  const DashDrugCategory = Dashboard(DrugCategoryDash)
   return (
     <div className="App">
       <Router>
@@ -55,6 +56,8 @@ function App() {
             <Suspense fallback={<Loading />}><DashEditStaff /></Suspense></ProtectRoutes>}/>
           <Route path="/dashboard/Drugs" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Drugs /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/drugs/:name" element={<ProtectRoutes>
+            <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Inventory" element={<ProtectRoutes>
             <Suspense fallback={<Loading />}><Inventory /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/editInventory/:id" element={<ProtectRoutes>

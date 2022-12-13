@@ -103,6 +103,7 @@ export const StaffTable = ({ array, pageNo})=>{
        field4="Address" field5="Date" field6="Status" field7="Action" />
         <tbody>
           {array.map((item,index)=>{
+            console.log(item.categoryId)
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={item.id}>
@@ -112,11 +113,11 @@ export const StaffTable = ({ array, pageNo})=>{
                 <td>{item.name}</td>
                 <td>{item.id}</td>
                 <td>{item.phoneNumber}</td>
-              
                 <td>{item.address}</td>
                 <td>{item.createdAt}</td>
                 <td>{item.status}</td>
                 <td onClick={()=> Navigate(`/dashboard/editStaff/${item.id}`)}><MdEdit/></td>
+                
               </tr>
             )
           })}
@@ -156,11 +157,11 @@ export const DrugsTable=({ array, pageNo})=>{
                 <td>{item.drugName}</td>
                 <td>{item.productId}</td>
                 <td>{item.categoryName}</td>
-              
                 <td>{item.treatmentUsedFor}</td>
                 <td>{item.noInPackage}</td>
                 <td>{item.status}</td>
                 <td onClick={()=> Navigate(`/dashboard/editStaff/${item.id}`)}><MdEdit/></td>
+                <td>{item.categoryId}</td>
               </tr>
             )
           })}

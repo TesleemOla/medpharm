@@ -11,3 +11,4 @@ export const HospitalDash = lazy(() => import("./Components/HospitalDash"));
 export const OthersDash = lazy(() => import("./Components/OthersDash"));
 export const EditStaffDash = lazy(()=> import("./Components/EditStaff"))
 export const EditHospitalDash = lazy(() => import("./Components/Edithospital"))
+export const DrugCategoryDash=lazy(()=> import("./Components/DrugCategory"))
