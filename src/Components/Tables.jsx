@@ -42,7 +42,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
             <div className="foot">
                 {pageNo}
                 <FaCaretDown/>
-                10 - {array.length}
+                {10*pageNo}-{(10*pageNo)+10} of {array.length}
                 <IoIosArrowBack/><IoIosArrowForward/>
         </div>  
       </div>
@@ -83,7 +83,7 @@ export const HospitalTable=({ array, pageNo}) => {
             <div className="foot">
                 {pageNo}
                 <FaCaretDown/>
-                10 - {array.length}
+                {10*pageNo}-{(10*pageNo)+10} of {array.length}
                 <IoIosArrowBack/><IoIosArrowForward/>
         </div>  
       </div>
@@ -103,7 +103,6 @@ export const StaffTable = ({ array, pageNo})=>{
        field4="Address" field5="Date" field6="Status" field7="Action" />
         <tbody>
           {array.map((item,index)=>{
-            console.log(item.categoryId)
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={item.id}>
@@ -127,7 +126,7 @@ export const StaffTable = ({ array, pageNo})=>{
             <div className="foot">
                 10
                 <FaCaretDown/>
-                {pageNo} - {array.length}
+                {10*pageNo}-{(10*pageNo)+10} of {array.length}
                 <IoIosArrowBack/><IoIosArrowForward/>
         </div>  
       </div>
@@ -160,8 +159,7 @@ export const DrugsTable=({ array, pageNo})=>{
                 <td>{item.treatmentUsedFor}</td>
                 <td>{item.noInPackage}</td>
                 <td>{item.status}</td>
-                <td onClick={()=> Navigate(`/dashboard/editStaff/${item.id}`)}><MdEdit/></td>
-                <td>{item.categoryId}</td>
+                <td onClick={()=> Navigate(`/dashboard/editDrugs/${item.id}`)}><MdEdit/></td>
               </tr>
             )
           })}
@@ -171,7 +169,7 @@ export const DrugsTable=({ array, pageNo})=>{
             <div className="foot">
                 10
                 <FaCaretDown/>
-                {pageNo} - {array.length}
+                {10*pageNo}-{(10*pageNo)+10} of {array.length}
                 <IoIosArrowBack/><IoIosArrowForward/>
         </div>  
       </div>

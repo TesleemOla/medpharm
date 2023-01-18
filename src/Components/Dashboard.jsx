@@ -1,8 +1,7 @@
-import React, { useState }from "react";
+import React from "react";
 
 import Searchnav from "./Searchbar";
 import Sidenav from "./Sidenav"
-import Loading from "./Loading"
 import "./styles/Dashboard.scss"
 
 

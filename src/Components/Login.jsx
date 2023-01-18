@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login =()=>{
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
     const [formvalues, setFormvalues] = useState({
         username: "",
         password: ""
@@ -26,7 +26,7 @@ const Login =()=>{
             sessionStorage.setItem("user",JSON.stringify(res.data.data))
           setSuccess(true)
           setFormvalues({username:'', password:''})
-          Navigate("/dashboard", {replace: true})
+          navigate("/", {replace: true})
         })
         .catch(err=>{
           setErrors({final:"Email or password incorrect"})

@@ -10,11 +10,11 @@ import { useNavigate } from 'react-router-dom'
 
 const Searchbar = () => {
     const [searchvalue, setSearchvalue] = useState('')
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
   return (
     <nav className="searchnav">
       <div className="logo">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" onClick={navigate('/')}/>
           <BiMenuAltRight className="burger"/>
         </div>
       <div className="box">
@@ -31,7 +31,7 @@ const Searchbar = () => {
           <BsFillPersonFill />
           <CgArrowRight onClick={()=>{
             sessionStorage.removeItem("user")
-            Navigate("/", {replace: true})
+            navigate("/", {replace: true})
           }}/>
       </div>
     </nav>

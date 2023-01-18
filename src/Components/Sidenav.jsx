@@ -4,7 +4,7 @@ import {  useNavigate } from "react-router-dom";
 import { useAuth } from "./ProtectDashboard/AuthDash"
 import { RiDashboardFill, RiBuildingLine } from "react-icons/ri";
 import { IoPeopleCircle } from "react-icons/io5"
-import { BiCapsule, BiMessageAltDetail, BiCaretDown, BiCaretUp, BiCaretRight } from "react-icons/bi";
+import { BiMessageAltDetail, BiCaretDown, BiCaretUp, BiCaretRight } from "react-icons/bi";
 import { FaRegNewspaper, FaBook } from "react-icons/fa";
 import { GoSettings } from "react-icons/go"
 import "./styles/Dashboard/sidenav.scss"
@@ -35,15 +35,15 @@ const Sidenav=()=>{
         <nav className="sidenav">
           <ul>
             <li className="nav-item" 
-            onClick={()=> navigate("/dashboard") }>
+            onClick={()=> navigate("/") }>
               <RiDashboardFill />
               Dashboard
             </li>
             { (role === "client_admin" || "super_admin") &&
             <li className="nav-item"
-            onClick={()=> navigate("/dashboard/Staff")}>
+            onClick={()=> navigate("/dashboard/manufacturers")}>
               <IoPeopleCircle />
-              Staff
+              Manufacturers
             </li>}
             <li className="nav-item d-flex_fd"
             onClick={()=> setOpenclient(!openclient)}>
@@ -51,9 +51,8 @@ const Sidenav=()=>{
             </li>
             {openclient && 
             <span>
-                <li onClick={()=> navigate("/dashboard/hospital")}><BiCaretRight/>Hospital</li>
-                <li onClick={()=> navigate("/dashboard/pharmacy")}><BiCaretRight/>Pharmacy</li>
-                <li onClick={()=> navigate("/dashboard/others")}><BiCaretRight/>Others</li>
+                <li onClick={()=> navigate("/dashboard/hospital")}><BiCaretRight/>Suppliers</li>
+                <li onClick={()=> navigate("/dashboard/pharmacy")}><BiCaretRight/>Manufacturers</li>
               </span>}
               <li className="nav-item"
             onClick={()=> navigate("/dashboard/drugs")}>
@@ -67,26 +66,26 @@ const Sidenav=()=>{
             </li>
             
                 {opendrugs && drugCategories.map(({name, id})=>{
-                  return <li key={id} onClick={()=>navigate(`/dashboard/drugs/${name}`)}><BiCaretRight/>{name}</li>
+                  return <li key={id} onClick={()=>navigate(`/dashboard/drugcategory/${id}`)}><BiCaretRight/>{name}</li>
                 })
                   }
-            
+            <li className="nav-item"
+            onClick={()=>navigate("/dashboard/Dispatcheddrugs") }>
+              <BiMessageAltDetail />
+              Dispatched Drugs
+            </li>
           {role !== "Pharmacist" && <li className="nav-item"
             onClick={()=>navigate("/dashboard/inventory") }>
               <FaRegNewspaper />
               Inventory
             </li>}
             
+            
             <li className="nav-item"
-            onClick={()=>navigate("/dashboard/message") }>
-              <BiMessageAltDetail />
-              Message
-            </li>
-            {/* <li className="nav-item"
             onClick={()=>navigate("/dashboard/settings")}>
               <GoSettings />
               Settings
-            </li> */}
+            </li>
           </ul>
         </nav>
       </aside>

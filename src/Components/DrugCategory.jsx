@@ -2,25 +2,31 @@ import axios from 'axios'
 import React, { useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
 import { useAuth } from "./ProtectDashboard/AuthDash"
+import Tablenav from './Tablenav'
+import { DrugsTable } from './Tables'
 
 const DrugCategory = () => {
     const user= useAuth()
     const [drugCategory, setDrugCategory] = useState()
-    const {name} = useParams()
+    const [pageNo, setPageNo] = useState(1)
+    const {id} = useParams()
     useEffect(()=>{
         const config={
             method: "GET",
-            url: `https://medipharm-test.herokuapp.com/api/drugscategories`,
+            url: `https://medipharm-test.herokuapp.com/api/drugs/category/${id}?pageNo=${pageNo}&sizePerPage=10`,
             headers:{
                 Authorization: `Bearer ${user.token}`
-            }
+            },
+
         }
         axios(config)
-        .then(res=> console.log(res))
-    },[user, name])
+        .then(res=> setDrugCategory(res.data.data))
+    },[user, id, pageNo])
   return (
     <div className="center-dash">
-        DrugCategory
+        <h1>DrugCategory</h1>
+        <Tablenav dashfield="Drug Category" onClick={()=> console.log("drug category")}/>
+        <DrugsTable array={drugCategory} pageNo={pageNo}/>
     </div>
   )
 }
