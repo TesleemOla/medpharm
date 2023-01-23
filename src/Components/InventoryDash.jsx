@@ -12,6 +12,7 @@ import item1 from "./images/item(1).png"
 import capsule from "./images/capsule-dark.png"
 import calendar from "./images/calendar.png"
 import {InventoryTable} from './Tables'
+import { baseurl } from './utils/baseurl'
 
 
 
@@ -25,7 +26,8 @@ const InventoryDash = () => {
   useEffect(()=>{
     const config={
       method: "get",
-      url: "https://medipharm-test.herokuapp.com/api/inventories",
+      url: !user.clientId?`${baseurl}/api/inventories`:
+      `${baseurl}/api/inventories/${user.clientId}/clients`,
       pageNo,
       sizePerPage: 10,
       headers:{
@@ -44,26 +46,25 @@ const InventoryDash = () => {
     axios(config)
     .then(res=>{
       setAllInventory(res.data.data)
-      // console.log(res.data.data)
     })
   },[allInventory, pageNo, user])
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
       <div className="card-flex">
-        <Card tile={tile2} item={deposit} heading="Total Drugs" className="card-sm" 
+        <Card tile={tile2} item={deposit} heading="Total Drugs" className="card-bg" 
         value={totalDrugs}/>
-        <Card tile={tile2} item={capsule} heading="Available Drugs" className="card-sm" 
+        <Card tile={tile2} item={capsule} heading="Available Drugs" className="card-bg" 
         value={(allInventory.filter(i=> i.status === "ACTIVE")).length} />
-        <Card tile={tile1} item={item1} heading="Not available" className="card-sm" 
-        value={totalDrugs - allInventory.length}/>
-        <Card tile={tile1} item={calendar} heading="Expired" className="card-sm" 
+        {/* <Card tile={tile1} item={item1} heading="Not available" className="card-bg" 
+        value={totalDrugs - allInventory.length}/> */}
+        <Card tile={tile1} item={calendar} heading="Expired" className="card-bg" 
         value={(allInventory.filter(i=> i.expired)).length}/>
       </div>
       <Tablenav dashfield="Inventory" onClick={()=> Navigate("/dashboard/createInventory")}/>
       <InventoryTable field1="Name" field2="Product I.D" field3="Category"
       field4="Total Quantity" field5="Amount" field6="Expiry Date" 
-      field7="Status" field8="Actions" array={allInventory} />
+      field7="Status" field8="Actions" array={allInventory} pageNo={pageNo}/>
     </div>
   )
 }

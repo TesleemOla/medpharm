@@ -5,30 +5,31 @@ import { useAuth } from "./ProtectDashboard/AuthDash"
 import { RiDashboardFill, RiBuildingLine } from "react-icons/ri";
 import { IoPeopleCircle } from "react-icons/io5"
 import { BiMessageAltDetail, BiCaretDown, BiCaretUp, BiCaretRight } from "react-icons/bi";
-import { FaRegNewspaper, FaBook } from "react-icons/fa";
+import { FaRegNewspaper, FaBook, FaBuilding } from "react-icons/fa";
+import { GiMedicines } from "react-icons/gi"
 import { GoSettings } from "react-icons/go"
+import { baseurl } from "./utils/baseurl";
 import "./styles/Dashboard/sidenav.scss"
 
 const Sidenav=()=>{
   const user = useAuth()
-  const {id,token,role} = user
+
   const navigate = useNavigate()
-  const [openclient, setOpenclient]= useState(false)
   const [opendrugs, setOpendrugs]= useState(false)
   const [drugCategories, setDrugCategories] = useState([])
 
   useEffect ( ()=>{
     const config={
       method: "GET",
-      url: 'https://medipharm-test.herokuapp.com/api/drugscategories',
+      url: `${baseurl}/api/drugscategories`,
       headers:{
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${user.token}`
       }
     }
 
     axios(config)
     .then(res=> setDrugCategories(res.data.data))
-  },[token])
+  },[user])
     return (
       <aside className="side-aside">
         
@@ -39,21 +40,15 @@ const Sidenav=()=>{
               <RiDashboardFill />
               Dashboard
             </li>
-            { (role === "client_admin" || "super_admin") &&
+            { (user.role === "client_admin" || "super_admin") &&
             <li className="nav-item"
             onClick={()=> navigate("/dashboard/manufacturers")}>
-              <IoPeopleCircle />
+              <FaBuilding/>
               Manufacturers
             </li>}
-            <li className="nav-item d-flex_fd"
-            onClick={()=> setOpenclient(!openclient)}>
-              <RiBuildingLine />Customer{openclient?<BiCaretUp/>:<BiCaretDown/>}
-            </li>
-            {openclient && 
-            <span>
-                <li onClick={()=> navigate("/dashboard/hospital")}><BiCaretRight/>Suppliers</li>
-                <li onClick={()=> navigate("/dashboard/pharmacy")}><BiCaretRight/>Manufacturers</li>
-              </span>}
+            <li className="nav-item" onClick={()=> navigate("/dashboard/Suppliers")}>
+              <IoPeopleCircle />Suppliers</li>
+                
               <li className="nav-item"
             onClick={()=> navigate("/dashboard/drugs")}>
               <FaBook />
@@ -62,7 +57,7 @@ const Sidenav=()=>{
             
            <li className="nav-item d-flex_fd"
             onClick={()=> setOpendrugs(!opendrugs)}>
-              <RiBuildingLine />Drug Type{opendrugs?<BiCaretUp/>:<BiCaretDown/>}
+              <GiMedicines/>Drug Type{opendrugs?<BiCaretUp/>:<BiCaretDown/>}
             </li>
             
                 {opendrugs && drugCategories.map(({name, id})=>{
@@ -74,7 +69,7 @@ const Sidenav=()=>{
               <BiMessageAltDetail />
               Dispatched Drugs
             </li>
-          {role !== "Pharmacist" && <li className="nav-item"
+          {user.role !== "Pharmacist" && <li className="nav-item"
             onClick={()=>navigate("/dashboard/inventory") }>
               <FaRegNewspaper />
               Inventory

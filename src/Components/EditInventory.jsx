@@ -27,7 +27,7 @@ const EditInventory = () => {
   return (
     <div className="editInventory">
         <div className="back-div">
-            <TbArrowNarrowLeft onClick={()=> Navigate("/dashboard/inventory")}/>
+            <TbArrowNarrowLeft onClick={()=> Navigate(-1)}/>
             Back
         </div>
         

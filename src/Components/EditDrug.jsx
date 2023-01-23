@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { TbArrowNarrowLeft } from 'react-icons/tb';
 import { MdEdit } from 'react-icons/md';
 import { useAuth } from './ProtectDashboard/AuthDash'
+import { baseurl } from './utils/baseurl'
 import  "./styles/Dashboard/Inventory/editinv.scss"
 
 const EditDrug = () => {
@@ -15,7 +16,7 @@ const EditDrug = () => {
     useEffect(()=> {
         const config = {
             method: "GET",
-            url: `https://medipharm-test.herokuapp.com/api/drugs/${id}`,
+            url: `${baseurl}/api/drugs/${id}`,
             Authorization:{
                 headers: `Bearer ${user.token}`
             }
@@ -32,7 +33,7 @@ const EditDrug = () => {
   return (
    <div className="editInventory">
         <div className="back-div">
-            <TbArrowNarrowLeft onClick={()=> navigate("/dashboard/Drugs")}/>
+            <TbArrowNarrowLeft onClick={()=> navigate(-1)}/>
             Back
         </div>
         

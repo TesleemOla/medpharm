@@ -4,6 +4,7 @@ import { AiOutlineMail } from "react-icons/ai"
 import { MdEdit } from "react-icons/md"
 import { TbArrowNarrowLeft } from "react-icons/tb"
 import { useParams, useNavigate } from "react-router-dom"
+import { baseurl } from './utils/baseurl'
 import "./styles/Dashboard/Pharmacy/editpharm.scss"
 import axios from 'axios'
 
@@ -14,7 +15,7 @@ const EditStaff = () => {
     useEffect(()=>{
         const config={
             method: "GET",
-            url: `https://medipharm-test.herokuapp.com/api/manufacturers/${id}`,
+            url: `${baseurl}/api/manufacturers/${id}`,
             headers: {
                 Authorization: `Bearer ${user.token}`
             }
@@ -24,11 +25,11 @@ const EditStaff = () => {
     })
     // console.log(dataItem)
     
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
   return (
     <div className="center-dash">
         <div className="back-arrow">
-            <TbArrowNarrowLeft onClick={()=> Navigate("/dashboard/Staff")} />
+            <TbArrowNarrowLeft onClick={()=> navigate(-1)} />
             <span>Back</span>
         </div>
         <div className="d-flex">

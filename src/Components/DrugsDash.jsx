@@ -8,18 +8,24 @@ import capsule from "./images/capsule-dark.png"
 import { useParams} from "react-router-dom"
 import { useAuth } from "./ProtectDashboard/AuthDash"
 import {DrugsTable} from "./Tables"
+import { baseurl } from './utils/baseurl'
 import Tablenav from './Tablenav'
 
 const DrugsDash = () => {
   const user = useAuth()
-  const {name} = useParams()
+  
   const [drugsData, setDrugsData] = useState([])
   const [drugCategories, setDrugCategories] = useState([])
+  const [pageNo, setPageNo] = useState(1)
   const Card = hocard(Carddets)
   useEffect(()=>{
+    
+
     const config2={
       method: "GET",
-      url: 'https://medipharm-test.herokuapp.com/api/drugscategories',
+      url: !user.clientId?
+     `${baseurl}/api/drugscategories`:
+      `${baseurl}/api/drugscategories/${user.clientId}/clients`,
       headers:{
         Authorization: `Bearer ${user.token}`
       }
@@ -29,27 +35,27 @@ const DrugsDash = () => {
     .then(res=> setDrugCategories(res.data.data))
     const config={
       method: "GET",
-      url: "https://medipharm-test.herokuapp.com/api/drugs",
+      url: !user.clientId? `${baseurl}/api/drugs`:
+        `${baseurl}/api/drugs/${user.clientId}/clients`,
       headers:{
         Authorization: `Bearer ${user.token}`
       }
     }
     axios(config)
-    .then(res=> setDrugsData(res.data.data))
+    .then(res=> setDrugsData(res.data.data.sort((a,b)=> a.name < b.name? -1: a.name > b.name? 1: 0)))
   },[user])
   return (
     <div  className="center-dash">
       <div className="card-flex">
-         <Card tile={tile1} item={capsule} heading="TotalDrugs" className="card-sm"/>
     {drugCategories.map((item)=>{
       return(
-        <Card tile={tile2} item={capsule} heading={item.name} className="card-sm"/>
+        <Card tile={tile2} item={capsule} heading={item.name} className="card-bg" key={item.id}/>
       )
     })}
         
       </div>
       <Tablenav dashfield="Drugs" />
-      <DrugsTable array={drugsData} pageNo={1} />
+      <DrugsTable array={drugsData} pageNo={pageNo} />
     </div>
   )
 }

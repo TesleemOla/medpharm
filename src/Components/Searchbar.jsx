@@ -10,11 +10,12 @@ import { useNavigate } from 'react-router-dom'
 
 const Searchbar = () => {
     const [searchvalue, setSearchvalue] = useState('')
-    const navigate = useNavigate()
+      const navigate = useNavigate()
+    
   return (
     <nav className="searchnav">
       <div className="logo">
-          <img src={logo} alt="logo" onClick={navigate('/')}/>
+          <img src={logo} alt="logo" onClick={()=>navigate('/')}/>
           <BiMenuAltRight className="burger"/>
         </div>
       <div className="box">

@@ -10,7 +10,8 @@ import people from "./images/people.png"
 import person from "./images/person.png"
 import axios from 'axios'
 import Tablenav from './Tablenav'
-import { StaffTable } from "./Tables"
+import { baseurl } from './utils/baseurl'
+import { ManufacturerTable } from "./Tables"
 
 const Manufacturers = () => {
   const user = useAuth()
@@ -18,7 +19,8 @@ const Manufacturers = () => {
   useEffect(()=>{
     const config= {
       method: "GET",
-      url: `https://medipharm-test.herokuapp.com/api/manufacturers`,
+      url: !user.clientId? `${baseurl}/api/manufacturers`:
+      `${baseurl}/api/manufacturers/${user.clientId}/clients`,
       headers:{
         Authorization: `Bearer ${user.token}`
       }
@@ -36,7 +38,7 @@ const Manufacturers = () => {
         <Card tile={tile3} item={person} heading="Other role" className="card-bg"/>
       </div>
      <Tablenav dashfield="Staff" />
-     <StaffTable array={staffdata} pageNo={1} />
+     <ManufacturerTable array={staffdata} pageNo={1} />
     </div>
   )
 }

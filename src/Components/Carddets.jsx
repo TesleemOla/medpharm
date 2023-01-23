@@ -3,17 +3,16 @@ import "./styles/Dashboard/carddets.scss"
 
 const Carddets = ({tile, item, heading, value, className}) => {
   return (
-    <div>
         <div className={className}>
             <div className={"tile"}>
                 <img src={tile} alt="tile"/>
-                <img src={item} alt="people" className="item"/>
+                <img src={item} alt="people" className="item"/> 
             </div>
-            <p>{heading}</p>
-            <h1 className="itemval-bg">{value}</h1>
+                <p className="desc-det">{heading}</p>
+                <p className="itemval-bg">{value}</p>
+            
         </div>
         
-    </div>
   )
 }
 

@@ -8,14 +8,14 @@ import { baseurl } from './utils/baseurl'
 import "./styles/Dashboard/Pharmacy/editpharm.scss"
 import axios from 'axios'
 
-const EditPharmacy = () => {
+const EditSupplier = () => {
     const user = useAuth()
     const [dataItem, setDataItem] = useState({})
-
+    const {id} = useParams()
     useEffect(()=>{
         const config={
             method: "GET",
-            url: `${baseurl}/api/suppliers/${id}`,
+            url: `${baseurl}/api/manufacturers/${id}`,
             headers: {
                 Authorization: `Bearer ${user.token}`
             }
@@ -24,7 +24,7 @@ const EditPharmacy = () => {
         .then(res=> setDataItem(res.data.data))
     })
     // console.log(dataItem)
-    const {id} = useParams()
+    
     const navigate = useNavigate()
   return (
     <div className="center-dash">
@@ -44,7 +44,7 @@ const EditPharmacy = () => {
                                 <p>{dataItem.name}</p>
                                 <p>{dataItem.email}</p>
                     </div>
-                    <p className="click-edit">Edit Pharmacy <MdEdit/></p>
+                    <p className="click-edit">Edit Info <MdEdit/></p>
                     <div className="d-flex">
                         <p>Designation</p>
                         <p>Organisation</p>
@@ -113,4 +113,4 @@ const EditPharmacy = () => {
   )
 }
 
-export default EditPharmacy
+export default EditSupplier

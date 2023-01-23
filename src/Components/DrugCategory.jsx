@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
 import { useAuth } from "./ProtectDashboard/AuthDash"
+import { baseurl } from './utils/baseurl'
 import Tablenav from './Tablenav'
 import { DrugsTable } from './Tables'
 
@@ -13,7 +14,7 @@ const DrugCategory = () => {
     useEffect(()=>{
         const config={
             method: "GET",
-            url: `https://medipharm-test.herokuapp.com/api/drugs/category/${id}?pageNo=${pageNo}&sizePerPage=10`,
+            url: `${baseurl}/api/drugs/category/${id}?pageNo=${pageNo}&sizePerPage=10`,
             headers:{
                 Authorization: `Bearer ${user.token}`
             },

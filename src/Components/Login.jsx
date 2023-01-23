@@ -30,7 +30,6 @@ const Login =()=>{
         })
         .catch(err=>{
           setErrors({final:"Email or password incorrect"})
-          console.log(err.message)
         })
         }
 }
