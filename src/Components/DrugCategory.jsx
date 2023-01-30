@@ -25,7 +25,7 @@ const DrugCategory = () => {
     },[user, id, pageNo])
   return (
     <div className="center-dash">
-        <h1>DrugCategory</h1>
+        <h1 className="dc-a">DrugCategory</h1>
         <Tablenav dashfield="Drug Category" onClick={()=> console.log("drug category")}/>
         <DrugsTable array={drugCategory} pageNo={pageNo}/>
     </div>

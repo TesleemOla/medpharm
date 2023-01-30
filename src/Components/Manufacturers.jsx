@@ -15,7 +15,7 @@ import { ManufacturerTable } from "./Tables"
 
 const Manufacturers = () => {
   const user = useAuth()
-  const [staffdata, setStaffdata] = useState()
+  const [manufacturers, setManufacturers] = useState([])
   useEffect(()=>{
     const config= {
       method: "GET",
@@ -27,18 +27,18 @@ const Manufacturers = () => {
     }
     axios(config)
     .then(res=> {
-      setStaffdata(res.data.data)})
-  },[user, staffdata])
+      setManufacturers(res.data.data)})
+  },[user, manufacturers])
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
       <div className="card-flex">
-        <Card tile={tile1} item={people} heading="Total Staff" className="card-bg"/>
+        <Card tile={tile1} item={people} heading="Total Manufacturers" className="card-bg"/>
         <Card tile={tile2} item={reg} heading="Administrators" className="card-bg"/>
         <Card tile={tile3} item={person} heading="Other role" className="card-bg"/>
       </div>
-     <Tablenav dashfield="Staff" />
-     <ManufacturerTable array={staffdata} pageNo={1} />
+     <Tablenav dashfield="Manufacturers" />
+     <ManufacturerTable array={manufacturers} pageNo={1} />
     </div>
   )
 }

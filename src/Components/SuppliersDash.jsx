@@ -10,9 +10,9 @@ import tile2 from "./images/tile-icon2.png"
 import item2 from "./images/item(2).png"
 import Tablenav from './Tablenav'
 
-const HospitalDash = () => {
+const SuppliersDash = () => {
   const user = useAuth()
-  const [staffData, setStaffData] = useState([])
+  const [suppliers, setSuppliers] = useState([])
   useEffect(()=>{
     const config={
       method: "GET",
@@ -25,21 +25,21 @@ const HospitalDash = () => {
     }
     axios(config)
     .then(res=> { 
-      setStaffData(res.data.data)
+      setSuppliers(res.data.data)
     })
-  },[staffData, user])
+  },[suppliers, user])
   const Card= hocard(Carddets)
   return (
     <div  className="center-dash">
-      <div className="d-flex">
+      <div className="card-flex">
         <Card tile={tile1} item={item2} heading="All Organisations" className='card-sm'/>
         <Card tile={tile2} item={item2} heading="Organisation Category" className='card-sm'/>
         <Card tile={tile1} item={item2} heading="Top Organisations" className='card-sm'/>
       </div>
-      <Tablenav dashfield="Hospital" />
-      <SupplierTable array={staffData} />
+      <Tablenav dashfield="Suppliers" />
+      <SupplierTable array={suppliers} />
     </div>
   )
 }
 
-export default HospitalDash
+export default SuppliersDash

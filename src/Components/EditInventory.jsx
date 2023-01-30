@@ -42,21 +42,21 @@ const EditInventory = () => {
                     <div className="input-div">
                         <label>Name</label>
                         <div>
-                            <input type="text" value={inventoryItem.drugName}
+                            <input type="text" defaultValue={inventoryItem.drugName}
                             readOnly={!edit} />
                         </div>
                     </div>
                     <div className="input-div">
                         <label>Category</label>
                         <div>
-                            <input type="text" value={inventoryItem.packageType}
+                            <input type="text" defaultValue={inventoryItem.packageType}
                             readOnly={!edit}/>
                         </div>
                     </div>
                     <div className="input-div">
                         <label>Total Quantity</label>
                         <div>
-                            <input type="text" value={inventoryItem.quantityStock}
+                            <input type="text" defaultValue={inventoryItem.quantityStock}
                             readOnly={!edit}/>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ const EditInventory = () => {
                     <div className="input-div">
                         <label>Supplied By</label>
                         <div>
-                            <input type="text" value={inventoryItem.supplierName}
+                            <input type="text" defaultValue={inventoryItem.supplierName}
                             readOnly={!edit}/>
                         </div>
                     </div>
@@ -79,14 +79,14 @@ const EditInventory = () => {
                     <div className="input-div">
                     <label>Product I.D</label>
                     <div>
-                        <input type="text" value={inventoryItem.batchNumber}  
+                        <input type="text" defaultValue={inventoryItem.batchNumber}  
                         readOnly={!edit}/>
                     </div>
                     </div>
                     <div className="input-div">
                         <label>Quantity Remaining</label>
                         <div>
-                            <input type="text" value={inventoryItem.quantityLeft }
+                            <input type="text" defaultValue={inventoryItem.quantityLeft }
                             readOnly={!edit}/>
                             
                         </div>
@@ -94,14 +94,14 @@ const EditInventory = () => {
                     <div className="input-div">
                         <label>Expiry Date</label>
                         <div>
-                            <input type="text" value={inventoryItem.expiryDate}
+                            <input type="text" defaultValue={inventoryItem.expiryDate}
                             readOnly={!edit}/>
                         </div>
                     </div>
                     <div className="input-div">
                         <label>Date Manufactured</label>
                         <div>
-                            <input type="text" value={inventoryItem.manufacturedDate} 
+                            <input type="text" defaultValue={inventoryItem.manufacturedDate} 
                             readOnly={!edit}/>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ const EditInventory = () => {
                     <div className="input-div">
                         <label>Assigned Marketer</label>
                         <div>
-                            <input type="text" value={inventoryItem.supplierName}
+                            <input type="text" defaultValue={inventoryItem.supplierName}
                             readOnly={!edit}/>
                         </div>
                     </div>
@@ -118,8 +118,8 @@ const EditInventory = () => {
               <div className="select-div">
                         <label>Status</label>
                         <select>
-                            <option value="Available">Available</option>
-                            <option value="Active">Active</option>
+                            <option defaultValue="Available">Available</option>
+                            <option defaultValue="Active">Active</option>
                         </select>
                 </div>
                 {edit && <div className="buttons">

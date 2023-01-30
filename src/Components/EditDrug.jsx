@@ -1,6 +1,7 @@
 import React,{ useEffect, useState }  from 'react'
 import axios from "axios";
 import { useParams, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 import { TbArrowNarrowLeft } from 'react-icons/tb';
 import { MdEdit } from 'react-icons/md';
 import { useAuth } from './ProtectDashboard/AuthDash'
@@ -10,26 +11,50 @@ import  "./styles/Dashboard/Inventory/editinv.scss"
 const EditDrug = () => {
     const [drugData, setDrugData] = useState({})
     const [edit, setEdit] = useState(false)
+    const [error, setError] = useState()
+    const success=()=> toast(`Drug Edited successfully`)
     const {id} = useParams()
+  
     const  user  = useAuth()
     const navigate = useNavigate()
     useEffect(()=> {
         const config = {
             method: "GET",
             url: `${baseurl}/api/drugs/${id}`,
-            Authorization:{
-                headers: `Bearer ${user.token}`
+            headers:{
+                Authorization: `Bearer ${user.token}`
             }
         }
             axios(config)
             .then(res=> setDrugData(res.data.data))
-            console.log(drugData)
-            console.log(user)
+          
         }
         
     ,[id, user,drugData])
 
-//   "drugDescription": "string",
+        function handleSubmit(e){
+            e.preventDefault();
+            setDrugData({...drugData,
+                 updatedAt: Date.now(),
+                updatedBy: user.name})
+            const config={
+                method: "PUT",
+                url: `${baseurl}/api/drugs/${id}`,
+                headers:{
+                    Authorization: `Bearer ${user.token}`
+                },
+                data: drugData
+
+            }
+            axios(config)
+            .then(res=> {
+                console.log(res)
+                setError(null)
+                success()
+                navigate(-1)
+            })
+            .catch(err=> setError(err.response.data.message))
+        }
   return (
    <div className="editInventory">
         <div className="back-div">
@@ -38,9 +63,11 @@ const EditDrug = () => {
         </div>
         
         <form className="inv-form">
+            <ToastContainer />
+            <p className="errors">{error}</p>
             <div  className="light-back">
                 <p>{drugData.drugName}</p>
-                <MdEdit onClick={()=> setEdit(true)}/>
+                <p onClick={()=> setEdit(true)}>Edit<MdEdit/></p>
                 
             </div>
             <div className="flex-col">
@@ -48,88 +75,93 @@ const EditDrug = () => {
                     <div className="input-div">
                         <label>Product I.D</label>
                         <div>
-                            <input type="text" value={drugData.productId}
-                            readOnly={!edit} />
+                            <input type="text" defaultValue={drugData.productId}
+                            readOnly={!edit}  onChange={(e)=> setDrugData({...drugData, productId: e.target.value})}/>
                         </div>
                     </div>
                     <div className="input-div">
                         <label>Category I.D</label>
                         <div>
-                            <input type="text" value={drugData.categoryId}
-                            readOnly={!edit}/>
+                            <input type="text" defaultValue={drugData.categoryId}
+                            readOnly={!edit} onChange={(e)=> setDrugData({...drugData, categoryId: e.target.value})}/>
                         </div>
                     </div>
                     <div className="input-div">
                         <label>Purpose</label>
                         <div>
-                            <input type="text" value={drugData.treatmentFor}
-                            readOnly={!edit}/>
+                            <input type="text" defaultValue={drugData.treatmentUsedFor}
+                            readOnly={!edit} onChange={(e)=> setDrugData({...drugData, treatmentUsedFor: e.target.value})}/>
                         </div>
                     </div>
                     <div className="input-div">
                         <label>Quantity</label>
                         <div>
-                            <input type="text" readOnly={!edit} value={drugData.noInPackage}/>
+                            <input type="text" readOnly={!edit} defaultValue={drugData.noInPackage}
+                            onChange={(e)=> setDrugData({...drugData, noInPackage: Number(e.target.value)})}/>
                         </div>
                     </div>
                     
                     <div className="input-div">
                         <label>Scientific Name</label>
                         <div>
-                            <input type="text" value={drugData.scientificName}
-                            readOnly={!edit}/>
+                            <input type="text" defaultValue={drugData.scientificName}
+                            readOnly={!edit} onChange={(e)=> setDrugData({...drugData, scientificName: e.target.value})}/>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div className="input-div">
-                    <label>Reorder</label>
+                    <label>Reorder Level</label>
                     <div>
-                        <input type="text" value={drugData.reOrderLevel}  
-                        readOnly={!edit}/>
+                        <input type="text" defaultValue={drugData.reOrderLevel}  
+                        readOnly={!edit} onChange={(e)=> setDrugData({...drugData, reOrderLevel: e.target.value})}/>
                     </div>
                     </div>
                     <div className="input-div">
-                        <label>Quantity Remaining</label>
+                        <label>Total Stock</label>
                         <div>
-                            <input type="text" value={drugData.quantityLeft }
-                            readOnly={!edit}/>
+                            <input type="text" defaultValue={drugData.totalStocked}
+                            readOnly={!edit} onChange={(e)=> setDrugData({...drugData, totalStocked: Number(e.target.value)})}/>
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Out of Stock</label>
+                        <div>
+                            <input type="text" defaultValue={drugData.totalOutOfStock}
+                            readOnly={!edit} onChange={(e)=> setDrugData({...drugData, totalOutOfStock: Number(e.target.value)})} />
                             
                         </div>
                     </div>
-                    <div className="input-div">
-                        <label>Package Type</label>
-                        <div>
-                            <input type="text" value={drugData.packageType}
-                            readOnly={!edit}/>
-                        </div>
-                    </div>
+                    
                     <div className="input-div">
                         <label>Date Manufactured</label>
                         <div>
-                            <input type="text" value={drugData.manufacturedDate} 
-                            readOnly={!edit}/>
+                            <input type="text" defaultValue={drugData.manufacturedDate} 
+                            readOnly={!edit} onChange={(e)=> setDrugData({...drugData, manufacturedDate: e.target.value})}/>
                         </div>
                     </div>
                     
                     <div className="input-div">
                         <label>Status</label>
                         <div>
-                        <select>
-                            <option value="Available">Available</option>
-                            <option value="Active">Active</option>
-                            <option value="NotAvailable">Not Available</option>
+                        <select onChange={(e)=> setDrugData({...drugData, status: e.target.value})}>
+                            <option value="AVAILABLE" default={drugData.status === "AVAILABLE"}>Available</option>
+                            <option value="ACTIVE" default={drugData.status === "ACTIVE"}>Active</option>
+                            <option value="NOT AVAILABLE" default={drugData.status === "NOT AVAILABLE"}>Not Available</option>
                         </select>
                         </div>
                     </div>
                 </div>
               </div>
-              <div className="select-div">
-                        
-                </div>
+              
                 {edit && <div className="buttons">
-                    <button className="btn-cancel">Cancel</button>
-                    <button className="btn-save">Save</button>
+                    <button className="btn-cancel"
+                    onClick={(e)=>{
+                        e.preventDefault();
+                        navigate(-1)
+                    }}>Cancel</button>
+                    <button className="btn-save"
+                    onClick={(e)=> handleSubmit(e)}>Save</button>
                 </div>}
         </form>
     </div>

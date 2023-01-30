@@ -29,7 +29,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
                 <td>{item.batchNumber}</td>
                 <td>{item.packageType}</td>
                 <td>{item.quantityLeft}</td>
-                <td>{item.amount}</td>
+                <td>{item.expired}</td>
                 <td>{item.expiryDate.substring(0,10)}</td>
                 <td>{item.status}</td>
                 <td onClick={()=> Navigate(`/dashboard/editInventory/${item.id}`)}><MdEdit/></td>
@@ -58,7 +58,7 @@ export const SupplierTable=({ array, pageNo}) => {
   return (
     <div>
     <table className="dash-table">
-        <Tablehead field1="Name" field2="Mobile" field3="Email" field4="Address"
+        <Tablehead field1="Name" field2="Mobile" field3="Date Created" field4="Address"
         field5="Status" field6="Action" />
         <tbody>
           {array.map((item,index)=>{
@@ -70,7 +70,7 @@ export const SupplierTable=({ array, pageNo}) => {
                 </td>
                 <td>{item.name}</td>
                 <td>{item.phoneNumber}</td>
-                <td>{item.email}</td>
+                <td>{item.createdAt.substring(0,10)}</td>
                 <td>{item.address}</td>
                 <td>{item.status}</td>
                 <td onClick={()=> Navigate(`/dashboard/editHospital/${item.id}`)}><MdEdit/></td>

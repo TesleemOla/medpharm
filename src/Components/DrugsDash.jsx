@@ -5,13 +5,14 @@ import Carddets from './Carddets'
 import tile1 from "./images/tile-icon1.png"
 import tile2 from "./images/tile-icon2.png"
 import capsule from "./images/capsule-dark.png"
-import { useParams} from "react-router-dom"
+import { useParams, useNavigate} from "react-router-dom"
 import { useAuth } from "./ProtectDashboard/AuthDash"
 import {DrugsTable} from "./Tables"
 import { baseurl } from './utils/baseurl'
 import Tablenav from './Tablenav'
 
 const DrugsDash = () => {
+  const navigate = useNavigate()
   const user = useAuth()
   
   const [drugsData, setDrugsData] = useState([])
@@ -54,7 +55,7 @@ const DrugsDash = () => {
     })}
         
       </div>
-      <Tablenav dashfield="Drugs" />
+      <Tablenav dashfield="Drugs" onClick={()=> navigate("/dashboard/createDrug")}/>
       <DrugsTable array={drugsData} pageNo={pageNo} />
     </div>
   )

@@ -45,9 +45,13 @@ const InventoryDash = () => {
     .then(res=> setTotalDrugs(res.data.data.totalDrugs))
     axios(config)
     .then(res=>{
+      
+      // console.log(up)
       setAllInventory(res.data.data)
     })
   },[allInventory, pageNo, user])
+      const date = new Date()
+      let up = `${date.getFullYear()}-${(Number(date.getMonth())+1)}-${date.getDate()}}`
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
@@ -56,14 +60,12 @@ const InventoryDash = () => {
         value={totalDrugs}/>
         <Card tile={tile2} item={capsule} heading="Available Drugs" className="card-bg" 
         value={(allInventory.filter(i=> i.status === "ACTIVE")).length} />
-        {/* <Card tile={tile1} item={item1} heading="Not available" className="card-bg" 
-        value={totalDrugs - allInventory.length}/> */}
         <Card tile={tile1} item={calendar} heading="Expired" className="card-bg" 
-        value={(allInventory.filter(i=> i.expired)).length}/>
+        value={(allInventory.filter(i=> toString(i.expiryDate.substring(0,10)) === toString(up))).length}/>
       </div>
       <Tablenav dashfield="Inventory" onClick={()=> Navigate("/dashboard/createInventory")}/>
       <InventoryTable field1="Name" field2="Product I.D" field3="Category"
-      field4="Total Quantity" field5="Amount" field6="Expiry Date" 
+      field4="Total Quantity" field5="Expired" field6="Expiry Date" 
       field7="Status" field8="Actions" array={allInventory} pageNo={pageNo}/>
     </div>
   )

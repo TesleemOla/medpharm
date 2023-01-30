@@ -5,37 +5,23 @@ import {
 } from "react-router-dom"
 import Login from "./Components/Login"
 import ProtectRoutes from "./Components/ProtectRoutes"
-import Dashboard from "./Components/Dashboard"
-import Onboarding from "./Components/Onboarding"
-import EditInventory from "./Components/EditInventory"
-import CreateInventory from "./Components/CreateInventory"
+
+import Onboarding from "./Components/Onboarding";
 import './App.css';
-import MainDash from "./Components/MainDash";
+import 'react-toastify/dist/ReactToastify.css';
 import Loading from "./Components/Loading"
-import EditPharmacy from "./Components/EditPharmacy";
-import { ManufacturersDash, DrugsDash, InventoryDash, 
-  // SubscriptionDash, 
-  SettingDash,
-   Dispatched,
-  SuppliersDash, EditStaffDash, EditSupplier,
-   DrugCategoryDash } from "./Dashwrap"
+
+import { Manufacturers, Drugs, Inventory, AddInventory, 
+  CreateDrugDash, EditPharm,
+  Setting,
+   DispatchedDash, DashEditHospital, EditInventoryDash,
+  Suppliers, EditStaffDash, EditSupplierDash,
+   DashDrugCategory, Main } from "./Dashwrap"
 export const EditDrug = lazy(() => import('./Components/EditDrug'))
 
 function App() {
   const [membership, setMembership] = useState("Client")
-  const Manufacturers = Dashboard(ManufacturersDash)
-  const Drugs = Dashboard(DrugsDash)
-  const Inventory = Dashboard(InventoryDash)
-  const Suppliers = Dashboard(SuppliersDash)
-  const DispatchedDash= Dashboard(Dispatched)
-  // const Subscription= Dashboard(SubscriptionDash)
-  const Setting = Dashboard(SettingDash)
-  const Main = Dashboard(MainDash)
-  const AddInventory =  Dashboard(CreateInventory)
-  const EditPharm = Dashboard(EditPharmacy)
-  const DashEditStaff = Dashboard(EditStaffDash)
-  const DashEditHospital = Dashboard(EditSupplier)
-  const DashDrugCategory = Dashboard(DrugCategoryDash)
+  
 
   return (
     <div className="App">
@@ -50,6 +36,9 @@ function App() {
           <Route path="/dashboard/manufacturers" element={
             <ProtectRoutes>
             <Suspense fallback={<Loading />}><Manufacturers /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/suppliers" element={
+            <ProtectRoutes>
+              <Suspense fallback={<Loading />}><Suppliers /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Dispatcheddrugs" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DispatchedDash /></Suspense></ProtectRoutes>} />
@@ -59,23 +48,25 @@ function App() {
           <Route path="/dashboard/Drugs" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><Drugs /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/editDrugs/:id" element={
+          <Route path="/dashboard/settings" element={
             <ProtectRoutes>
-              <Suspense fallback={<Loading />}><EditDrug /></Suspense></ProtectRoutes>} />
-          
-          <Route path="/dashboard/drugcategory/:id" element={
-            <ProtectRoutes>
-              <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
+              <Suspense fallback={<Loading />}><Setting /></Suspense></ProtectRoutes>} />
+          <Route path="*" element={<Loading />} />
+          <Route path="/onboarding" element={<Onboarding membership={membership} setMembership={setMembership} />} />
 
-          <Route path="/dashboard/editInventory/:id" element={
-            <ProtectRoutes>
-              <Suspense fallback={<Loading />}><EditInventory /></Suspense></ProtectRoutes>} />
+          
+         
+            {/* ***********CREATE ************ */}
+          
           <Route path="/dashboard/createInventory" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><AddInventory /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/createDrug" element={
+            <ProtectRoutes>
+              <Suspense fallback={<Loading />}><CreateDrugDash /></Suspense></ProtectRoutes>} />
               
               {/* ************************************** */}
-
+              {/* **************EDITS */}
           <Route path="/dashboard/dispatcheddrugs" element={
           <ProtectRoutes>
             <Suspense fallback={<Loading />}><DispatchedDash /></Suspense></ProtectRoutes>} />
@@ -83,26 +74,25 @@ function App() {
           <ProtectRoutes>
             <Suspense fallback={<Loading />}><EditPharm/></Suspense>
           </ProtectRoutes>}/>
-        
+          <Route path="/dashboard/editDrugs/:id" element={
+            <ProtectRoutes>
+              <Suspense fallback={<Loading />}><EditDrug /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/editManufacturer/:id" element={
             <ProtectRoutes>
-            <Suspense fallback={<Loading />}><DashEditStaff /></Suspense></ProtectRoutes>}/>
-         
-          <Route path="/dashboard/suppliers" element={
+            <Suspense fallback={<Loading />}><EditStaffDash /></Suspense></ProtectRoutes>}/>
+          <Route path="/dashboard/editInventory/:id" element={
             <ProtectRoutes>
-            <Suspense fallback={<Loading />}><Suppliers/></Suspense></ProtectRoutes>} />
+              <Suspense fallback={<Loading />}><EditInventoryDash /></Suspense></ProtectRoutes>} />
+          
           <Route path="/dashboard/editSupplier/:id" element={
             <ProtectRoutes>
-            <Suspense fallback={<Loading />}><DashEditHospital /></Suspense></ProtectRoutes>} />
-          
-          {/* <Route path="/dashboard/subscription" element={
+            <Suspense fallback={<Loading />}><EditSupplierDash /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/drugcategory/:id" element={
             <ProtectRoutes>
-            <Suspense fallback={<Loading />}><Subscription/></Suspense></ProtectRoutes>} />*/}
-          <Route path="/dashboard/settings" element={
+              <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/editHospital/:id" element={
             <ProtectRoutes>
-            <Suspense fallback={<Loading />}><Setting/></Suspense></ProtectRoutes>} /> 
-          <Route path="*" element={<Loading/>} />
-          <Route path="/onboarding" element={<Onboarding membership={membership} setMembership={setMembership} />} />
+            <Suspense fallback={<Loading />}><DashEditHospital/></Suspense></ProtectRoutes>} />
           
         </Routes>
       </Router>
