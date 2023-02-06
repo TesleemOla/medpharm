@@ -8,7 +8,8 @@ import "./styles/Dashboard/dashtables.scss"
 import Tablehead from './Tablehead'
 
 // Inventory Table 
-export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, pageNo}) => {
+export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, 
+  pageNo, handleNext, handlePrev}) => {
   const Navigate = useNavigate()
   if(array.length > 0) {
   return (
@@ -43,7 +44,10 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
                 10
                 <FaCaretDown/>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
-                <IoIosArrowBack/><IoIosArrowForward/>
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
         </div>
       </div>
   )}else{
@@ -52,7 +56,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
 }
 
 // Hospital Table
-export const SupplierTable=({ array, pageNo}) => {
+export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
   const Navigate = useNavigate()
   if(array) {
   return (
@@ -84,7 +88,10 @@ export const SupplierTable=({ array, pageNo}) => {
                 10
                 <FaCaretDown/>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
-                <IoIosArrowBack/><IoIosArrowForward/>
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
         </div>  
       </div>
   )}else{
@@ -93,7 +100,7 @@ export const SupplierTable=({ array, pageNo}) => {
 }
 
 // Staff table
-export const ManufacturerTable = ({ array, pageNo})=>{
+export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev})=>{
   const Navigate = useNavigate()
   if(array){
   return(
@@ -126,7 +133,10 @@ export const ManufacturerTable = ({ array, pageNo})=>{
                 10
                 <FaCaretDown/>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
-                <IoIosArrowBack/><IoIosArrowForward/>
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
         </div>  
       </div>
   )}else{
@@ -136,7 +146,7 @@ export const ManufacturerTable = ({ array, pageNo})=>{
 
 // Drugs Table
 
-export const DrugsTable=({ array, pageNo})=>{
+export const DrugsTable=({ array, pageNo, handleNext, handlePrev})=>{
   const Navigate = useNavigate()
   if(array){
   return(
@@ -169,7 +179,10 @@ export const DrugsTable=({ array, pageNo})=>{
                 10
                 <FaCaretDown/>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
-                <IoIosArrowBack/><IoIosArrowForward/>
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
         </div>  
       </div>
   )}else{
@@ -180,7 +193,7 @@ export const DrugsTable=({ array, pageNo})=>{
 
 // Dispatched drugs table
 
-export const DispatchedTable=({ array, pageNo})=>{
+export const DispatchedTable=({ array, pageNo, handleNext, handlePrev})=>{
   const Navigate = useNavigate()
   if(array){
   return(
@@ -188,8 +201,8 @@ export const DispatchedTable=({ array, pageNo})=>{
     <table className="dash-table">
         <Tablehead field1="DrugName" field2="ClientName" field3="Expiry"
          field4="Pack size" field5="Package type"
-          field6="Status" field7="Quantity dispached" field8="remarks"
-          field9="Action" />
+          field6="Status" field7="Quantity dispached"
+          field8="Action" />
         <tbody>
           {array.map((item,index)=>{
             return (
@@ -205,7 +218,6 @@ export const DispatchedTable=({ array, pageNo})=>{
                 <td>{item.packageType}</td>
                 <td>{item.dispatchedStatus}</td>
                 <td>{item.quantity-item.quantityReturned}</td>
-                <td>{item.remarks}</td>
                 <td onClick={()=> Navigate(`/dashboard/editDispatchedDrugs/${item.id}`)}><MdEdit/></td>
               </tr>
             )
@@ -217,7 +229,10 @@ export const DispatchedTable=({ array, pageNo})=>{
                 10
                 <FaCaretDown/>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
-                <IoIosArrowBack/><IoIosArrowForward/>
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
         </div>  
       </div>
   )}else{

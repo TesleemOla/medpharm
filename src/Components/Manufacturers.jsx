@@ -12,9 +12,11 @@ import axios from 'axios'
 import Tablenav from './Tablenav'
 import { baseurl } from './utils/baseurl'
 import { ManufacturerTable } from "./Tables"
+import { useNavigate } from 'react-router-dom'
 
 const Manufacturers = () => {
   const user = useAuth()
+  // console.log(user)
   const [manufacturers, setManufacturers] = useState([])
   useEffect(()=>{
     const config= {
@@ -29,6 +31,10 @@ const Manufacturers = () => {
     .then(res=> {
       setManufacturers(res.data.data)})
   },[user, manufacturers])
+  const navigate = useNavigate()
+  // function handleCreate(){
+  //   if(user)
+  // }
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
@@ -37,7 +43,7 @@ const Manufacturers = () => {
         <Card tile={tile2} item={reg} heading="Administrators" className="card-bg"/>
         <Card tile={tile3} item={person} heading="Other role" className="card-bg"/>
       </div>
-     <Tablenav dashfield="Manufacturers" />
+     <Tablenav dashfield="Manufacturers" array={manufacturers} onClick={()=>navigate("/dashboard/createManufacturer")}/>
      <ManufacturerTable array={manufacturers} pageNo={1} />
     </div>
   )

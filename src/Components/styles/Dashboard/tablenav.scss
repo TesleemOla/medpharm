@@ -9,8 +9,8 @@
     background: #fff;
     border-radius: 4px 4px 0 0 ;
     .tablesearch{
-        height: 3em;
-        width: 14em;
+        height: 2.375em;
+        width: 23em;
         border-radius: 20px;
         border: 1px solid grey;
         background: #F4F7F9;
@@ -18,19 +18,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 5em;
         input{
-           height: 3em;
-            width: 14em;
+            height: 2em;
+            width: 20em;
+            padding: 0 1em;
             border: 0;
             border-radius: 20px;
             background: #F4F7F9;
             outline:0; 
         }
+        .s-btns{
+            position: absolute;
+            right: 1em;
+        }
     }
     button{
         height: 50px;
-        width: 11.4375em;
+        width: max-content;
         border: 0;
         border-radius: 5px;
         padding: 10px 17px 10px 17px;

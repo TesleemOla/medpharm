@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiFilterAlt} from "react-icons/bi"
 import { AiOutlineSearch } from "react-icons/ai"
 import "./styles/Dashboard/tablenav.scss"
 
-const Tablenav = ({dashfield, onClick}) => {
+
+const Tablenav = ({dashfield, onClick, array}) => {
+  const [searchValue, setSearchValue]= useState()
+  function handleSearch (e){
+    e.preventDefault()
+  }
   return (
     <nav className="tablenav">
         <p>{dashfield}</p>
         <div className="tablesearch">
-          <input type="search" placeholder={`search ${dashfield}`}/>
-          <AiOutlineSearch/>
+          <input type="search" placeholder={`search ${dashfield}`}
+          onChange={(e)=> setSearchValue(e.target.value)}/>
+          <AiOutlineSearch onClick={(e)=> console.log(array, searchValue)}/>
         </div>
         <div> 
           <BiFilterAlt/>
@@ -20,7 +26,7 @@ const Tablenav = ({dashfield, onClick}) => {
               <option value="status">Status</option>
           </select>
         </div>
-        <button onClick={onClick}>+ Create {dashfield}</button>
+        <button onClick={onClick}>+ Add {dashfield}</button>
       </nav>
   )
 }

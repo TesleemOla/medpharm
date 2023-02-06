@@ -6,11 +6,11 @@ const ManufacturersDash = lazy(() => import("./Components/Manufacturers"));
 const DrugsDash = lazy(() => import("./Components/DrugsDash"));
 const InventoryDash = lazy(() => import("./Components/InventoryDash"))
 const EditInventory= lazy(() => import("./Components/EditInventory"))
-const EditHospital = lazy(() => import("./Components/EditHospital"))
 const SettingDash = lazy(() => import("./Components/SettingDash"))
 const SuppliersDash = lazy(() => import("./Components/SuppliersDash"));
-const CreateInventory = lazy(() => import("./Components/Create/CreateInventory"))
-const CreateDrug = lazy(() => import("./Components/Create/CreateDrug"))
+const CreateInventory = lazy(() => import("./Pages/Create/CreateInventory"))
+const CreateDrug = lazy(() => import("./Pages/Create/CreateDrug"))
+const CreateManufacturer = lazy(()=> import('./Pages/Create/CreateManufacturer'))
 const EditStaff = lazy(()=> import("./Components/EditStaff"))
 const EditSupplier= lazy(() => import("./Components/EditSupplier"))
 const DrugCategoryDash=lazy(()=> import("./Components/DrugCategory"))
@@ -29,5 +29,6 @@ export const EditInventoryDash = Dashboard(EditInventory)
 export const EditPharm = Dashboard(EditPharmacy)
 export const EditStaffDash = Dashboard(EditStaff)
 export const EditSupplierDash = Dashboard(EditSupplier)
-export const DashEditHospital = Dashboard(EditHospital)
 export const DashDrugCategory = Dashboard(DrugCategoryDash) 
+
+export const AddManufacturer = Dashboard(CreateManufacturer)

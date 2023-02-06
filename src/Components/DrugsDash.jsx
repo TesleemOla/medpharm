@@ -55,7 +55,8 @@ const DrugsDash = () => {
     })}
         
       </div>
-      <Tablenav dashfield="Drugs" onClick={()=> navigate("/dashboard/createDrug")}/>
+      <Tablenav dashfield="Drugs" array={drugsData}
+       onClick={()=> navigate("/dashboard/createDrug")}/>
       <DrugsTable array={drugsData} pageNo={pageNo} />
     </div>
   )

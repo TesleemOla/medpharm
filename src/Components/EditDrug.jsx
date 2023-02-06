@@ -9,7 +9,7 @@ import { baseurl } from './utils/baseurl'
 import  "./styles/Dashboard/Inventory/editinv.scss"
 
 const EditDrug = () => {
-    const [drugData, setDrugData] = useState({})
+    const [drugData, setDrugData] = useState([])
     const [edit, setEdit] = useState(false)
     const [error, setError] = useState()
     const success=()=> toast(`Drug Edited successfully`)

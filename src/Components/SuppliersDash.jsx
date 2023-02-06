@@ -36,7 +36,7 @@ const SuppliersDash = () => {
         <Card tile={tile2} item={item2} heading="Organisation Category" className='card-sm'/>
         <Card tile={tile1} item={item2} heading="Top Organisations" className='card-sm'/>
       </div>
-      <Tablenav dashfield="Suppliers" />
+      <Tablenav dashfield="Suppliers" array={suppliers} />
       <SupplierTable array={suppliers} />
     </div>
   )

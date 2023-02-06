@@ -8,9 +8,10 @@ const Carddets = ({tile, item, heading, value, className}) => {
                 <img src={tile} alt="tile"/>
                 <img src={item} alt="people" className="item"/> 
             </div>
+            <div className="dets-f">
                 <p className="desc-det">{heading}</p>
                 <p className="itemval-bg">{value}</p>
-            
+            </div>
         </div>
         
   )

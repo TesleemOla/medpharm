@@ -51,8 +51,9 @@ const DispatchedDash = () => {
         <Card tile={tile1} item={item1} heading="Not available" className="card-sm"/>
         <Card tile={tile1} item={item1} heading="Expiry Date" className="card-sm"/>
       </div>
-      <Tablenav dashfield="Dispatched" />
-      <DispatchedTable array={dispatchedData} pageNo={pageNo} />
+      <Tablenav dashfield="Dispatched" array={dispatchedData} />
+      <DispatchedTable array={dispatchedData} pageNo={pageNo} 
+      handleNext={handleNext} handlePrev={handlePrevious}/>
     </div>
   )
 }

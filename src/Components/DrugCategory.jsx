@@ -8,7 +8,7 @@ import { DrugsTable } from './Tables'
 
 const DrugCategory = () => {
     const user= useAuth()
-    const [drugCategory, setDrugCategory] = useState()
+    const [drugCategory, setDrugCategory] = useState([])
     const [pageNo, setPageNo] = useState(1)
     const {id} = useParams()
     useEffect(()=>{
@@ -26,7 +26,8 @@ const DrugCategory = () => {
   return (
     <div className="center-dash">
         <h1 className="dc-a">DrugCategory</h1>
-        <Tablenav dashfield="Drug Category" onClick={()=> console.log("drug category")}/>
+        <Tablenav dashfield="Drug Category" array={drugCategory}
+         onClick={()=> console.log("drug category")}/>
         <DrugsTable array={drugCategory} pageNo={pageNo}/>
     </div>
   )

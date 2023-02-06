@@ -12,9 +12,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from "./Components/Loading"
 
 import { Manufacturers, Drugs, Inventory, AddInventory, 
-  CreateDrugDash, EditPharm,
+  CreateDrugDash, AddManufacturer, EditPharm,
   Setting,
-   DispatchedDash, DashEditHospital, EditInventoryDash,
+   DispatchedDash, EditInventoryDash,
   Suppliers, EditStaffDash, EditSupplierDash,
    DashDrugCategory, Main } from "./Dashwrap"
 export const EditDrug = lazy(() => import('./Components/EditDrug'))
@@ -64,7 +64,9 @@ function App() {
           <Route path="/dashboard/createDrug" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><CreateDrugDash /></Suspense></ProtectRoutes>} />
-              
+          <Route path="/dashboard/createManufacturer" element={
+            <ProtectRoutes>
+              <Suspense fallback={<Loading />}><AddManufacturer /></Suspense></ProtectRoutes>} />    
               {/* ************************************** */}
               {/* **************EDITS */}
           <Route path="/dashboard/dispatcheddrugs" element={
@@ -90,9 +92,7 @@ function App() {
           <Route path="/dashboard/drugcategory/:id" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/editHospital/:id" element={
-            <ProtectRoutes>
-            <Suspense fallback={<Loading />}><DashEditHospital/></Suspense></ProtectRoutes>} />
+          
           
         </Routes>
       </Router>

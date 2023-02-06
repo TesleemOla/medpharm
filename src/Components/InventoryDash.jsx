@@ -63,7 +63,8 @@ const InventoryDash = () => {
         <Card tile={tile1} item={calendar} heading="Expired" className="card-bg" 
         value={(allInventory.filter(i=> toString(i.expiryDate.substring(0,10)) === toString(up))).length}/>
       </div>
-      <Tablenav dashfield="Inventory" onClick={()=> Navigate("/dashboard/createInventory")}/>
+      <Tablenav dashfield="Inventory" array={allInventory} 
+      onClick={()=> Navigate("/dashboard/createInventory")}/>
       <InventoryTable field1="Name" field2="Product I.D" field3="Category"
       field4="Total Quantity" field5="Expired" field6="Expiry Date" 
       field7="Status" field8="Actions" array={allInventory} pageNo={pageNo}/>

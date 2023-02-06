@@ -9,12 +9,18 @@
         top: 0.3em;
     }
 }
+.dets-f{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 1em;
+    left: 5em;
+}
 .desc-det{
     font-weight: 500;
     font-size: 16px;
     text-align: center;
-    right: 2em;
-    top: 0.5em;
+    width: 7em;
 }
 .itemval-bg{
     font-weight: 600;
@@ -22,6 +28,7 @@
     text-align:center;
 }
 .card-bg{
+    position: relative;
     height: 8.375em;
     width: 18em;
     border-radius: 10px;
@@ -29,6 +36,7 @@
 }
 
 .card-sm{
+    position: relative;    
     height: 8.375em;
     width: 14em;
     border-radius: 10px;
