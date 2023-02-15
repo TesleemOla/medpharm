@@ -1,3 +1,7 @@
+    .edittar{
+        position: relative;
+        left: 3em;
+    }
     .back-arrow{
         display: flex;
         align-items: center;
@@ -6,6 +10,9 @@
         span{
             font-size: 0.5em;
         }
+    }
+    .org-n{
+        font-weight: 500;
     }
     .pharmacy-profile{
     height: 716px;
@@ -53,7 +60,7 @@
     .activity{
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
     .dot{
         height: 10px;
         width: 10px;
@@ -117,15 +124,20 @@
         margin: 2em;
     }
     .contact-details{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        margin: 1em;
-        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 1em 2em;
+        .detail-itm{
+            margin: 1em;
+            padding: 1em;
+            .itm-bld{
+                font-weight: 500;
+                font-size: 16px;
+            }
+        }
         .activity{
         display: flex;
         align-items: center;
-        justify-content: space-around;
     .dot{
         height: 10px;
         width: 10px;

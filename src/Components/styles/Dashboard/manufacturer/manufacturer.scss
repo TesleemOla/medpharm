@@ -1,0 +1,53 @@
+@import "../../globals.scss";
+.manuf-form{
+    position: relative;
+    left: 5em;
+    background: $white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px 21px 45px 0px #1E428A1A;
+    text-align: center;
+    width: 1034px;
+    .light-back{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: $lightblue;
+        width: 1034px;
+        height:70px;
+        border-radius: 10px 10px 0 0;
+        font-size: 1.5em;
+    }
+    .input-grid{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 25vw;
+            label{
+                font-size: 1.5em;
+                margin: 0 0.5em;
+                text-align: left;
+            }
+            input{
+                width: 400px;
+                height: 3em;
+                font-size: 1.4em;
+                padding: 0.5em 1em;
+                margin: 1em;
+                border: 1px solid black;
+                outline: 1px solid black;
+                border-radius: 5px;
+            }
+        }
+      
+    }
+      .manuf-btn{
+            padding: 1em;
+            background: $blue;
+            margin: 1em auto;
+            border: 0;
+            border-radius: 5px;
+        }
+}

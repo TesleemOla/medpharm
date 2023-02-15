@@ -1,8 +1,9 @@
 import React from 'react'
 import Loading from "./Loading"
+import { BiDotsVerticalRounded } from "react-icons/bi"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { FaCaretDown} from "react-icons/fa"
-import {useNavigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { MdEdit } from "react-icons/md"
 import "./styles/Dashboard/dashtables.scss"
 import Tablehead from './Tablehead'
@@ -10,7 +11,7 @@ import Tablehead from './Tablehead'
 // Inventory Table 
 export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, 
   pageNo, handleNext, handlePrev}) => {
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   if(array.length > 0) {
   return (
     <div className="table-div">
@@ -33,7 +34,8 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
                 <td>{item.expired}</td>
                 <td>{item.expiryDate.substring(0,10)}</td>
                 <td>{item.status}</td>
-                <td onClick={()=> Navigate(`/dashboard/editInventory/${item.id}`)}><MdEdit/></td>
+                <td onClick={()=> navigate(`/dashboard/editInventory/${item.id}`)}><MdEdit/>
+                <BiDotsVerticalRounded/></td>
               </tr>
             )
           })}
@@ -57,7 +59,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
 
 // Hospital Table
 export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   if(array) {
   return (
     <div>
@@ -77,7 +79,8 @@ export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
                 <td>{item.createdAt.substring(0,10)}</td>
                 <td>{item.address}</td>
                 <td>{item.status}</td>
-                <td onClick={()=> Navigate(`/dashboard/editHospital/${item.id}`)}><MdEdit/></td>
+                <td onClick={()=> navigate(`/dashboard/editSupplier/${item.id}`)}><MdEdit/>
+                <BiDotsVerticalRounded/></td>
               </tr>
             )
           })}
@@ -87,7 +90,7 @@ export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
         <div className="foot">
                 10
                 <FaCaretDown/>
-                {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
+                {pageNo===1? 1:10*(1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
                 <IoIosArrowBack onClick={()=>{
                    if(pageNo>1) return handlePrev}}/>
                 <IoIosArrowForward  onClick={()=>{
@@ -101,7 +104,7 @@ export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
 
 // Staff table
 export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev})=>{
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   if(array){
   return(
     <div>
@@ -121,7 +124,8 @@ export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev})=>{
                 <td>{item.address}</td>
                 <td>{item.createdAt.substring(0,10)}</td>
                 <td>{item.status}</td>
-                <td onClick={()=> Navigate(`/dashboard/editManufacturer/${item.id}`)}><MdEdit/></td>
+                <td onClick={()=> navigate(`/dashboard/editManufacturer/${item.id}`)}><MdEdit/>
+                <BiDotsVerticalRounded/></td>
                 
               </tr>
             )
@@ -147,7 +151,7 @@ export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev})=>{
 // Drugs Table
 
 export const DrugsTable=({ array, pageNo, handleNext, handlePrev})=>{
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   if(array){
   return(
     <div>
@@ -168,7 +172,8 @@ export const DrugsTable=({ array, pageNo, handleNext, handlePrev})=>{
                 <td>{item.treatmentUsedFor}</td>
                 <td>{item.noInPackage}</td>
                 <td>{item.status}</td>
-                <td onClick={()=> Navigate(`/dashboard/editDrugs/${item.id}`)}><MdEdit/></td>
+                <td onClick={()=> navigate(`/dashboard/editDrugs/${item.id}`)}><MdEdit/>
+                <BiDotsVerticalRounded/></td>
               </tr>
             )
           })}
@@ -190,11 +195,56 @@ export const DrugsTable=({ array, pageNo, handleNext, handlePrev})=>{
         }
 }
 
+// Drug Category Tables
+export const DrugCategoryTable=({ array, pageNo, handleNext, handlePrev})=>{
+  const navigate = useNavigate()
+  if(array){
+  return(
+    <div>
+    <table className="dash-table">
+        <Tablehead field1="Name" field2="Description" field3="Status"
+        field4="Created At" field5="Updated By" field6="Created By"  field7="Action" />
+        <tbody>
+          {array.map(({name, status, description, updatedBy, id, createdBy, createdAt }, index)=>{
+            return (
+              <tr  className={index%2? "grayback": "whiteback"}
+              key={id}>
+                <td>
+                  <input type="checkbox"/>
+                </td>
+                <td>{name}</td>
+                <td>{description}</td>
+                <td>{status}</td>
+                <td>{createdAt.substring(0,10)}</td>
+                <td>{updatedBy}</td>
+                <td>{createdBy}</td>
+                <td onClick={()=> navigate(`/dashboard/editDrugCategory/${id}`)}><MdEdit/>
+                <BiDotsVerticalRounded/></td>
+              </tr>
+            )
+          })}
+        </tbody>
+        
+      </table>
+        <div className="foot">
+                10
+                <FaCaretDown/>
+                {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
+        </div>  
+      </div>
+  )}else{
+    return <Loading/>
+        }
+}
 
 // Dispatched drugs table
 
 export const DispatchedTable=({ array, pageNo, handleNext, handlePrev})=>{
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   if(array){
   return(
     <div>
@@ -218,7 +268,8 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev})=>{
                 <td>{item.packageType}</td>
                 <td>{item.dispatchedStatus}</td>
                 <td>{item.quantity-item.quantityReturned}</td>
-                <td onClick={()=> Navigate(`/dashboard/editDispatchedDrugs/${item.id}`)}><MdEdit/></td>
+                <td onClick={()=> navigate(`/dashboard/editDispatcheddrugs/${item.id}`)}><MdEdit/>
+                <BiDotsVerticalRounded/></td>
               </tr>
             )
           })}

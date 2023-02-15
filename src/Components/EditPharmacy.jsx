@@ -28,6 +28,7 @@ const EditPharmacy = () => {
     const navigate = useNavigate()
   return (
     <div className="center-dash">
+        <div className="edittar">
         <div className="back-arrow">
             <TbArrowNarrowLeft onClick={()=> navigate(-1)} />
             <span>Back</span>
@@ -108,6 +109,7 @@ const EditPharmacy = () => {
                     </div>
                 </div>
             </section>
+        </div>
         </div>
     </div>
   )

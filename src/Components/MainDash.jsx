@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useAuth } from "./ProtectDashboard/AuthDash"
+import { baseurl } from './utils/baseurl'
 import Carddets from './Carddets'
 import hocard from './hocard'
 import tile1 from "./images/tile-icon1.png"
@@ -16,43 +17,40 @@ const MainDash = () => {
   const user = useAuth()
   const [drugCategories, setDrugCategories] = useState(0)
   const [inventory, setInventory] = useState(0)
-  const [organisations, setOrganisations] = useState([])
+  const [drugs, setDrugs] = useState(0)
   
   useEffect(()=>{
      const config1 = {
       method: "get",
-      url: 'https://medipharm-test.herokuapp.com/api/reports/drugsummary',
+      url: user.clientId? `${baseurl}/api/reports/drugsummary/${user.clientId}/clients`
+      :`${baseurl}/api/reports/drugsummary`,
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
     };
-    const config2={
-      method: "get",
-      url: "https://medipharm-test.herokuapp.com/api/manufacturers",
-      headers: {
-        Authorization: `Bearer ${user.token}`
-      },
-    }
+
    
   
     axios(config1)
     .then(res=>{
       setDrugCategories(res.data.data.totalDrugCategory)
-      setInventory(res.data.data.totalInventory) })
-    axios(config2)
-    .then(res=> setOrganisations(res.data.data))
-    },[drugCategories, inventory, organisations, user])
-
+      setInventory(res.data.data.totalInventory)
+    setDrugs(res.data.data.totalDrugs) })
+    // axios(config2)
+    // .then(res=> setOrganisations(res.data.data))
+    },[drugCategories, inventory,drugs, user])
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
       <div className="card-flex">
-        <Card tile={tile1} item={item2} heading="Number of Organisations" className="card-sm"
-        value={organisations.length} />
+        <Card tile={tile1} item={item2} heading="Number of Drugs" className="card-sm"
+        value={drugs} />
         <Card tile={tile2} item={item3} heading="Total Inventory" className="card-sm"
         value={inventory} />
-        <Card tile={tile3} item={item1} heading="Drug Category" value={drugCategories} className="card-sm"/>
-        <Card tile={tile1} item={moneybag} heading="Total Amount" className="card-sm"/>
+        <Card tile={tile3} item={item1} heading="Drug Category" value={drugCategories} 
+        className="card-sm"/>
+        <Card tile={tile1} item={moneybag} heading="Total Amount" className="card-sm"
+        value={inventory + drugs}/>
       </div>
       
       {/* <Table name="Name" id="Pharmacy I.D" mobile="Mobile"

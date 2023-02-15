@@ -44,6 +44,14 @@
 
 .card-flex{
     display: flex;
-    position: relative;
-    left: 6em;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (min-width: 768px){
+    .card-flex{
+        flex-direction: row;
+        position: relative;
+        left: 6em;
+    }
 }

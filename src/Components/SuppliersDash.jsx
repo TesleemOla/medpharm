@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import {SupplierTable} from './Tables'
 import {useAuth} from "./ProtectDashboard/AuthDash"
+import { useNavigate, useParams } from 'react-router-dom'
 import { baseurl } from "./utils/baseurl"
 import Carddets from './Carddets'
 import hocard from './hocard'
@@ -12,6 +13,9 @@ import Tablenav from './Tablenav'
 
 const SuppliersDash = () => {
   const user = useAuth()
+  const {id} = useParams()
+  const [pageNo, setPageNo] = useState(1)
+  const navigate = useNavigate()
   const [suppliers, setSuppliers] = useState([])
   useEffect(()=>{
     const config={
@@ -36,8 +40,9 @@ const SuppliersDash = () => {
         <Card tile={tile2} item={item2} heading="Organisation Category" className='card-sm'/>
         <Card tile={tile1} item={item2} heading="Top Organisations" className='card-sm'/>
       </div>
-      <Tablenav dashfield="Suppliers" array={suppliers} />
-      <SupplierTable array={suppliers} />
+      <Tablenav dashfield="Suppliers" array={suppliers}
+      onClick={()=> navigate(`/dashboard/createSupplier`)}/>
+      <SupplierTable array={suppliers} pageNo={pageNo} />
     </div>
   )
 }

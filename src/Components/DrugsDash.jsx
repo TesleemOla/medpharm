@@ -50,10 +50,10 @@ const DrugsDash = () => {
       <div className="card-flex">
     {drugCategories.map((item)=>{
       return(
-        <Card tile={tile2} item={capsule} heading={item.name} className="card-bg" key={item.id}/>
+        <Card tile={tile2} item={capsule} heading={item.name} className="card-sm" key={item.id}/>
       )
     })}
-        
+       <Card tile={tile2} item={capsule} heading="Total" className="card-sm" key= "P" />
       </div>
       <Tablenav dashfield="Drugs" array={drugsData}
        onClick={()=> navigate("/dashboard/createDrug")}/>

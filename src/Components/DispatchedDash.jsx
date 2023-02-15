@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import hocard from './hocard'
 import { useAuth } from "./ProtectDashboard/AuthDash"
 import {DispatchedTable} from './Tables'
@@ -15,11 +16,12 @@ const DispatchedDash = () => {
   const user = useAuth()
   const [dispatchedData, setDispatchedData] = useState([])
   const [pageNo, setPageNo] = useState(1)
+  const navigate = useNavigate()
   useEffect(()=>{
     const config={
       method: "GET",
       url: !user.clientId? `${baseurl}/api/dispatcheddrugs?pageNo=${pageNo}&sizePerPage=10`:
-        `${baseurl}/api/dispatcheddrugs/${user.clientId}/clients`,
+        `${baseurl}/api/dispatcheddrugs/${user.clientId}/clients?pageNo=${pageNo}&sizePerPage=10`,
       headers:{
         Authorization: `Bearer ${user.token}`
       },
@@ -30,7 +32,7 @@ const DispatchedDash = () => {
       setDispatchedData(res.data.data)
       // console.log(res.data.data)
     })
-  },[user])
+  },[user, pageNo])
   const handlePrevious = (e) => {
     e.preventDefault();
     setPageNo(()=>pageNo-1)
@@ -51,7 +53,7 @@ const DispatchedDash = () => {
         <Card tile={tile1} item={item1} heading="Not available" className="card-sm"/>
         <Card tile={tile1} item={item1} heading="Expiry Date" className="card-sm"/>
       </div>
-      <Tablenav dashfield="Dispatched" array={dispatchedData} />
+      <Tablenav dashfield="Dispatched" array={dispatchedData} onClick={()=> navigate('/dashboard/createDispatchedDrug')}/>
       <DispatchedTable array={dispatchedData} pageNo={pageNo} 
       handleNext={handleNext} handlePrev={handlePrevious}/>
     </div>

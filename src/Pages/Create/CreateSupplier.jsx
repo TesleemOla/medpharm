@@ -7,8 +7,8 @@ import { useAuth } from '../../Components/ProtectDashboard/AuthDash'
 import { baseurl } from '../../Components/utils/baseurl'
 import "../../Components/styles/Dashboard/manufacturer/manufacturer.scss"
 
-const CreateManufacturer = () => {
-    const user = useAuth()
+const CreateSupplier = () => {
+   const user = useAuth()
     
     const navigate = useNavigate()
     const [manufacturer, setManufacturer] = useState({
@@ -23,7 +23,7 @@ const CreateManufacturer = () => {
     e.preventDefault()
     const config = {
         method: "POST",
-        url: `${baseurl}/api/manufacturers`,
+        url: `${baseurl}/api/suppliers`,
         headers: {
             Authorization: `Bearer ${user.token}`
         },
@@ -42,14 +42,13 @@ const CreateManufacturer = () => {
     .catch(err=> console.log(err))
         }
 }
-  
   return (
      <div className="center-dash">
         <ToastContainer/>
         <form className="manuf-form">
 
              <div  className="light-back">
-                <p>Create Manufacturer</p>
+                <p>Create Supplier</p>
                 <GrClose onClick={()=> navigate("/")}/>          
             </div>
             
@@ -86,10 +85,10 @@ const CreateManufacturer = () => {
                
                 </div>
                  <button className="manuf-btn"
-                 onClick={(e)=> handleCreate(e)}> Create Manufacturer</button>
+                 onClick={(e)=> handleCreate(e)}> Create Supplier</button>
                 </form>
             </div>
   )
 }
 
-export default CreateManufacturer
+export default CreateSupplier

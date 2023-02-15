@@ -13,23 +13,22 @@ import "./styles/Dashboard/sidenav.scss"
 
 const Sidenav=()=>{
   const user = useAuth()
-
+  // console.log(user)
   const navigate = useNavigate()
-  const [opendrugs, setOpendrugs]= useState(false)
-  const [drugCategories, setDrugCategories] = useState([])
 
-  useEffect ( ()=>{
-    const config={
-      method: "GET",
-      url: `${baseurl}/api/drugscategories`,
-      headers:{
-        Authorization: `Bearer ${user.token}`
-      }
-    }
 
-    axios(config)
-    .then(res=> setDrugCategories(res.data.data))
-  },[user])
+  // useEffect ( ()=>{
+  //   const config={
+  //     method: "GET",
+  //     url: `${baseurl}/api/drugscategories`,
+  //     headers:{
+  //       Authorization: `Bearer ${user.token}`
+  //     }
+  //   }
+
+  //   axios(config)
+  //   .then(res=> setDrugCategories(res.data.data))
+  // },[user])
     return (
       <aside className="side-aside">
         
@@ -55,15 +54,16 @@ const Sidenav=()=>{
               Drugs
             </li>
             
+            <li className="nav-item"
+            onClick={()=> navigate("/dashboard/Staffs")}>
+              <FaBook />
+              Staffs
+            </li>
            <li className="nav-item d-flex_fd"
-            onClick={()=> setOpendrugs(!opendrugs)}>
-              <GiMedicines/>Drug Type{opendrugs?<BiCaretUp/>:<BiCaretDown/>}
+            onClick={()=>navigate(`/dashboard/drugcategory`)}>
+              <GiMedicines/>Drug Type
             </li>
             
-                {opendrugs && drugCategories.map(({name, id})=>{
-                  return <li key={id} onClick={()=>navigate(`/dashboard/drugcategory/${id}`)}><BiCaretRight/>{name}</li>
-                })
-                  }
             <li className="nav-item"
             onClick={()=>navigate("/dashboard/Dispatcheddrugs") }>
               <BiMessageAltDetail />
