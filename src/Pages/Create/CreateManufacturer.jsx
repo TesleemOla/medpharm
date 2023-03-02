@@ -15,7 +15,7 @@ const CreateManufacturer = () => {
   name: "",
   address: "",
   phoneNumber: "",
-  clientId: user.clientId
+  clientId: user.clientId? user.clientId: null
 
     })
 
@@ -29,10 +29,7 @@ const CreateManufacturer = () => {
         },
         data: manufacturer
     }
-    if(!manufacturer.clientId){
-        toast("You are not authorized to create a manufacturer")
-    }
-    else if(!manufacturer.name || !manufacturer.address || 
+   if(!manufacturer.name || !manufacturer.address || 
         !manufacturer.phoneNumber){
             toast("Please fill all fields")
         }else{
@@ -74,15 +71,7 @@ const CreateManufacturer = () => {
                             <label>Phone Number</label>
                             <input type="text"   onChange={(e)=> setManufacturer({...manufacturer, phoneNumber: e.target.value })}/>
                         </div>
-              
-        
-                        
-                        <div>
-                            <label>Client ID</label>
-                            <input type="text"  disabled placeholder = {user.clientId}/>
-                        </div>
-
-                       
+                  
                
                 </div>
                  <button className="manuf-btn"

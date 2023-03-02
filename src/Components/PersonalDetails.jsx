@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios'
+import { useAuth } from "./ProtectDashboard/AuthDash";
+import { baseurl } from "../Components/utils/baseurl"
 import "./styles/OnboardingPage/personaldetails.scss";
 
 
 const PersonalDetails=({formvalues, setFormvalues})=>{
+  const user = useAuth()
+  const [roles, setRoles] = useState([])
+  useEffect(()=>{
+    const config ={
+      method: "GET",
+      url: `${baseurl}/api/roles`,
+      headers:{
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    axios(config)
+    .then(res=>{
+      setRoles(res.data.data)
+    })
+  },[user])
 return (<div className="form">
           <div className="input-grp">
             <label>FirstName</label>
@@ -73,33 +91,19 @@ return (<div className="form">
           </div>
 
           <div className="input-id">
-            <label>Client ID</label>
+            <label>Role</label>
               <select onChange={(e) =>
-                  setFormvalues({ ...formvalues, clientId: e.target.value })
+                  setFormvalues({ ...formvalues, roleId: e.target.value })
                 }>
-                <option/>
+                  <option default>Please select a Role</option>
+                { roles.map(({id, name})=><option value={id} key={id}>
+                  {name}
+                </option>)}
               </select>
                 
           </div>
           
-          <div className="input-id">
-            <label>Role ID</label>
-              <select onChange={(e) =>
-                  setFormvalues({ ...formvalues, roleId: e.target.value })
-                }>
-                <option/>
-              </select>
-                
-          </div>
-          <div className="input-id">
-            <label>Organisation ID</label>
-              <select onChange={(e) =>
-                  setFormvalues({ ...formvalues, organisationId: e.target.value })
-                }>
-                <option/>
-              </select>
-                
-          </div>
+          
           <div className="input-grp">
                 <label>Upload Profile Image</label>
                 <div className="input-item">
@@ -109,8 +113,7 @@ return (<div className="form">
                     let reader = new FileReader()
                     reader.readAsDataURL(e.target.files[0])
                     reader.onload=(e)=>{
-                  setFormvalues({ ...formvalues,
-                  adminUser: {...formvalues.adminUser, imageUrl: e.target.result}})}
+                  setFormvalues({ ...formvalues, imageUrl: e.target.result})}
                   }
                   }
                   />

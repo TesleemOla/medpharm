@@ -1,6 +1,7 @@
 import React from 'react'
 
 const CompanyDetails = ({formvalues, setFormvalues}) => {
+  
   return (
     <div className="form">
           <div className="input-grp">
@@ -17,7 +18,7 @@ const CompanyDetails = ({formvalues, setFormvalues}) => {
           </div>
           
             
-            <div className="input-id">
+            {/* <div className="input-id">
             <label>Parent Organisation ID</label>
               <select onChange={(e) =>
                   setFormvalues({ ...formvalues, parentOrganisationId: e.target.value })
@@ -25,7 +26,7 @@ const CompanyDetails = ({formvalues, setFormvalues}) => {
                 <option/>
               </select>
                 
-          </div>
+          </div> */}
           
           
           <div className="input-grp">

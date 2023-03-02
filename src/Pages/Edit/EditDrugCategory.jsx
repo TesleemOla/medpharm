@@ -5,10 +5,13 @@ import { ToastContainer, toast } from 'react-toastify'
 import { GrClose } from "react-icons/gr"
 import { baseurl } from '../../Components/utils/baseurl'
 import { useAuth } from '../../Components/ProtectDashboard/AuthDash'
+import "../../Components/styles/Dashboard/manufacturer/manufacturer.scss"
 
 const EditDrugCategory = () => {
 const user = useAuth()
-    const [newCategory, setNewCategory] = useState({})
+    const [newCategory, setNewCategory] = useState({
+        clientId: user.clientId? user.clientId: null
+    })
     const [dataItem, setDataItem] = useState()
     const {id} = useParams()
     useEffect(()=>{
@@ -22,7 +25,7 @@ const user = useAuth()
         axios(config)
         .then(res=> setDataItem(res.data.data))
     })
-    console.log(newCategory)
+    
     function handleEdit(e){
     e.preventDefault()
     const config = {
@@ -75,12 +78,6 @@ const user = useAuth()
                 
                
                    
-                        
-                        <div>
-                            <label>Client ID</label>
-                            <input type="text" 
-                             disabled placeholder = {user.clientId}/>
-                        </div>
                   
 
                 </div>

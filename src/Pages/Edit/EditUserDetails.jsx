@@ -12,6 +12,7 @@ const EditUserDetails = () => {
     const {id} = useParams()
     const navigate = useNavigate()
     const user = useAuth()
+    const ustatus = [ 'ACTIVE', 'SUSPENDED', 'DEACTIVATED', 'REGISTERED', 'DELETED' ]
 
     const [userData, setUserData] = useState({
          firstName: user.firstName,
@@ -110,8 +111,11 @@ const EditUserDetails = () => {
               <div className="select-div">
                         <label>Status</label>
                         <select>
-                            <option defaultValue="Available">Available</option>
-                            <option defaultValue="Active">Active</option>
+                            <option default value={user.status}>{user.status}</option>
+                           {ustatus.filter((item)=> item !== user.status)
+                           .map((item,i)=>{
+                            return <option value={item} key={i}>{item}</option>
+                           })}
                         </select>
                 </div>
                 <div className="buttons">

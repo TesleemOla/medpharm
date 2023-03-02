@@ -55,9 +55,9 @@ const Sidenav=()=>{
             </li>
             
             <li className="nav-item"
-            onClick={()=> navigate("/dashboard/Staffs")}>
+            onClick={()=> navigate("/dashboard/Organisation")}>
               <FaBook />
-              Staffs
+              Organisation
             </li>
            <li className="nav-item d-flex_fd"
             onClick={()=>navigate(`/dashboard/drugcategory`)}>

@@ -9,7 +9,10 @@ import axios from 'axios'
 
 const EditSupplier = () => {
     const user = useAuth()
-    const [supplier, setSupplier] = useState({})
+    
+    const [supplier, setSupplier] = useState({
+        
+    })
     const {id} = useParams()
     useEffect(()=>{
         const config={
@@ -24,6 +27,8 @@ const EditSupplier = () => {
     })
     // console.log(Supplier)
     function handleEdit(e){
+        setSupplier({...supplier,
+        clientId: user.clientId? user.clientId: null })
     e.preventDefault()
     const config = {
         method: "PUT",
@@ -83,13 +88,6 @@ const EditSupplier = () => {
                
                    
                         
-                        <div>
-                            <label>Client ID</label>
-                            <input type="text" 
-                             disabled placeholder = {user.clientId}/>
-                        </div>
-                  
-
                 </div>
                         <button className="manuf-btn"
                         onClick={(e)=> handleEdit(e) }> Edit supplier</button>

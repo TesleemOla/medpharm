@@ -7,7 +7,6 @@ import {useAuth} from "./ProtectDashboard/AuthDash"
 import Tablenav from "./Tablenav"
 import tile1 from "./images/tile-icon1.png"
 import tile2 from "./images/tile-icon2.png"
-import deposit from "./images/depositphotos.png"
 import item1 from "./images/item(1).png"
 import capsule from "./images/capsule-dark.png"
 import calendar from "./images/calendar.png"
@@ -22,14 +21,15 @@ const InventoryDash = () => {
   const [allInventory, setAllInventory] = useState([])
   const [totalDrugs, setTotalDrugs] = useState(0)
   const [pageNo, setPageNo] = useState(1)
-  const [openEdit, setOpenEdit] = useState(false)
+  const [dataSize, setDataSize] = useState()
+  // const [openEdit, setOpenEdit] = useState(false)
   useEffect(()=>{
     const config={
       method: "get",
       url: !user.clientId?`${baseurl}/api/inventories`:
       `${baseurl}/api/inventories/${user.clientId}/clients`,
       pageNo,
-      sizePerPage: 10,
+      sizePerPage: dataSize,
       headers:{
         Authorization: `Bearer ${user.token}`
       }
@@ -49,14 +49,14 @@ const InventoryDash = () => {
       // console.log(up)
       setAllInventory(res.data.data)
     })
-  },[allInventory, pageNo, user])
+  },[allInventory, pageNo, dataSize, user])
       const date = new Date()
       let up = `${date.getFullYear()}-${(Number(date.getMonth())+1)}-${date.getDate()}}`
   const Card= hocard(Carddets)
   return (
     <div className="center-dash">
       <div className="card-flex">
-        <Card tile={tile2} item={deposit} heading="Total Drugs" className="card-bg" 
+        <Card tile={tile2} item={item1} heading="Total Drugs" className="card-bg" 
         value={totalDrugs}/>
         <Card tile={tile2} item={capsule} heading="Available Drugs" className="card-bg" 
         value={(allInventory.filter(i=> i.status === "ACTIVE")).length} />
@@ -67,7 +67,7 @@ const InventoryDash = () => {
       onClick={()=> Navigate("/dashboard/createInventory")}/>
       <InventoryTable field1="Name" field2="Product I.D" field3="Category"
       field4="Total Quantity" field5="Expired" field6="Expiry Date" 
-      field7="Status" field8="Actions" array={allInventory} pageNo={pageNo}/>
+      field7="Status" field8="Actions" array={allInventory} pageNo={pageNo} setDataSize={setDataSize} />
     </div>
   )
 }

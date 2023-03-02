@@ -14,26 +14,15 @@ import Tablenav from './Tablenav'
 const DrugsDash = () => {
   const navigate = useNavigate()
   const user = useAuth()
-  
+
+
   const [drugsData, setDrugsData] = useState([])
-  const [drugCategories, setDrugCategories] = useState([])
   const [pageNo, setPageNo] = useState(1)
   const Card = hocard(Carddets)
   useEffect(()=>{
     
 
-    const config2={
-      method: "GET",
-      url: !user.clientId?
-     `${baseurl}/api/drugscategories`:
-      `${baseurl}/api/drugscategories/${user.clientId}/clients`,
-      headers:{
-        Authorization: `Bearer ${user.token}`
-      }
-    }
 
-    axios(config2)
-    .then(res=> setDrugCategories(res.data.data))
     const config={
       method: "GET",
       url: !user.clientId? `${baseurl}/api/drugs`:
@@ -47,14 +36,7 @@ const DrugsDash = () => {
   },[user])
   return (
     <div  className="center-dash">
-      <div className="card-flex">
-    {drugCategories.map((item)=>{
-      return(
-        <Card tile={tile2} item={capsule} heading={item.name} className="card-sm" key={item.id}/>
-      )
-    })}
-       <Card tile={tile2} item={capsule} heading="Total" className="card-sm" key= "P" />
-      </div>
+    
       <Tablenav dashfield="Drugs" array={drugsData}
        onClick={()=> navigate("/dashboard/createDrug")}/>
       <DrugsTable array={drugsData} pageNo={pageNo} />

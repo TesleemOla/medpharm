@@ -15,7 +15,7 @@ const CreateDrugCategory = () => {
     const [drugCategory, setDrugCategory] = useState({
         name: "",
         description: "",
-        clientId: user.clientId
+        clientId: user.clientId? user.clientId: null
 
     })
 
@@ -29,10 +29,7 @@ const CreateDrugCategory = () => {
         },
         data: drugCategory
     }
-    if(!drugCategory.clientId){
-        toast("You are not authorized to create a drugCategory")
-    }
-    else if(!drugCategory.name || !drugCategory.description){
+     if(!drugCategory.name || !drugCategory.description){
             toast("Please fill all fields")
         }else{
             
@@ -65,12 +62,6 @@ const CreateDrugCategory = () => {
                             <input type="text"   onChange={(e)=> setDrugCategory({...drugCategory, description: e.target.value })}/>
                         </div>        
                         
-                        <div>
-                            <label>Client ID</label>
-                            <input type="text"  disabled placeholder = {user.clientId}/>
-                        </div>
-
-                       
                
                 </div>
                  <button className="manuf-btn"

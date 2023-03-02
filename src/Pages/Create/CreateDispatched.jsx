@@ -14,14 +14,12 @@ const CreateDispatched = () => {
     const [dispatched, setDispatched] = useState({
     inventoryId: "",
     quantity: 1,
-    clientId: user.clientId
+    clientId: user.clientId? user.clientId: null
     })
     
     function handleCreate(e){
         e.preventDefault();
-        if(!dispatched.clientId){
-            toast("Not authorized")
-        }else if(!dispatched.inventoryId){
+        if(!dispatched.inventoryId){
             toast("Please add an Inventory Id")
         }else{
             const config={
@@ -61,13 +59,7 @@ const CreateDispatched = () => {
                              onChange={(e)=> setDispatched({...dispatched, quantity: e.target.value })}/>
                         </div>
                     </div>
-                 
-                    <div className="input-div">
-                        <label>Client ID</label>
-                        <div>
-                            <input type="text"  disabled placeholder = {dispatched.clientId}/>
-                        </div>
-                    </div>
+                
                 </div>
                 <button className="manuf-btn"
                     onClick={(e)=> handleCreate(e)}> Create drugCategory</button>

@@ -78,6 +78,14 @@ const Orgform = ({membership, setMembership, orgPage, setOrgPage}) => {
         onClick={()=> orgPage< pages.length-1?setOrgPage(orgPage+1): orgPage }
         >Next
         </button>:
+        orgPage === pages.length?
+        <button className="next-btn"
+        onClick={(e)=> {
+          e.preventDefault()
+          console.log(formvalues)
+        }}>
+          Submit
+        </button>:
         <button className="preview-btn"
         onClick={()=> setOrgPage(orgPage+1)}>
           Preview

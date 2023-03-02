@@ -14,7 +14,7 @@ const EditManufacturer = () => {
   name: "",
   address: "",
   phoneNumber: "",
-  clientId: user.clientId
+  clientId: user.clientId? user.clientId: null
 })
 const [ dataItem, setDataItem] = useState({})
  useEffect(()=>{
@@ -40,12 +40,9 @@ function handleEdit(e){
         },
         data: manufacturer
     }
-    if(!manufacturer.clientId){
-        toast("You are not authorized to edit a manufacturer")
-    }
-    else if(!manufacturer.name || !manufacturer.address || 
+   if(!manufacturer.name && !manufacturer.address && 
         !manufacturer.phoneNumber){
-            toast("Please fill all fields")
+            toast("All values remain the same")
         }else{
             
     axios(config)
@@ -87,16 +84,7 @@ const navigate = useNavigate()
                             <input type="text" placeholder={dataItem.phoneNumber}
                               onChange={(e)=> setManufacturer({...manufacturer, phoneNumber: e.target.value })}/>
                         </div>
-               
-                   
-                        
-                        <div>
-                            <label>Client ID</label>
-                            <input type="text" 
-                             disabled placeholder = {user.clientId}/>
-                        </div>
-                  
-
+             
                 </div>
                         <button className="manuf-btn"
                         onClick={(e)=> handleEdit(e) }> Edit Manufacturer</button>

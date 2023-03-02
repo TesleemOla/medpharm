@@ -69,9 +69,10 @@ const UserSettings = () => {
             <section className="pharmacy-info">
                 <div className="grey-div-bg">
                     <p>Staff Info</p>
-                    <button>
-                        <AiOutlineMail/>
-                        Send Message</button>
+                    <button onClick={()=> navigate('/changePassword')}>
+                        Change Password
+                    </button>
+                    
                 </div>
                 <div>
                     <p className="contact-head">Contact Info</p>

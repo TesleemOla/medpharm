@@ -1,24 +1,26 @@
 import React, {useState} from "react";
 import PersonalDetails from "./PersonalDetails"
+import { useAuth } from './ProtectDashboard/AuthDash'
 import Preview from "./Preview"
 import { TbArrowNarrowLeft} from "react-icons/tb"
 import "./styles/OnboardingPage/clientform.scss"
 
 const Staffform=({membership, setMembership,page,setPage})=>{
+  const user = useAuth() 
     const [formvalues, setFormvalues] = useState({
         firstName: "",
         lastName: "",
         otherName: "",
         emailAddress: "",
         phoneNumber: '',
-        clientId: "",
+        clientId: user.clientId,
         roleId:"",
-        organisationId: "",
+        organisationId: user.organisationId,
         imageUrl: "",
         referredReferralCode:"",
         acceptTermsandConditions: false
     })
-    
+   
    
     const pages =["Personal Details", "Preview"]
     return (
@@ -68,8 +70,12 @@ const Staffform=({membership, setMembership,page,setPage})=>{
         {
           page !== pages.length-2?
           <button className="next-btn"
-        onClick={()=> page< pages.length-1?setPage(page+1): page }
-        >Next
+        onClick={(e)=>{
+          e.preventDefault()
+          
+          console.log(formvalues)
+        } }
+        >Submit
         </button>:
         <button className="preview-btn"
         onClick={()=> setPage(page+1)}>

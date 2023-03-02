@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { GrClose } from 'react-icons/gr'
 import { useAuth } from '../../Components/ProtectDashboard/AuthDash'
 import { baseurl } from '../../Components/utils/baseurl'
+import "../../Components/styles/Dashboard/manufacturer/manufacturer.scss"
 
 const EditDispatched = () => {
      const user = useAuth()
@@ -19,7 +20,7 @@ function handleEdit(e){
     e.preventDefault()
     const config = {
         method: "PUT",
-        url: user.clientId && `${baseurl}/api/dispatcheddrugs/${id}/returned`,
+        url: `${baseurl}/api/dispatcheddrugs/${id}/returned`,
         headers: {
             Authorization: `Bearer ${user.token}`
         },

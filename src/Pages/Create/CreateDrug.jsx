@@ -14,6 +14,7 @@ const CreateDrug = () => {
     const success=()=> toast("New Drug successfully Added")
     const [categories, setCategories] = useState([])
     const [error, setError] = useState()
+    const pType = ["VIAL", 'BOTTLE', 'BLISTER_PACK', 'SACHET', 'SYRINGE', 'AMPOULE', 'CARTON', 'BOX' ]
     const [formvalues, setFormvalues] = useState({
           categoryId: "",
             productId: "",
@@ -22,7 +23,7 @@ const CreateDrug = () => {
             reOrderLevel: 0,
             drugDescription: "",
             treatmentUsedFor: "",
-            packageType: "VIAL",
+            packageType: '',
             noInPackage: 1
     })
      useEffect(()=>{
@@ -63,7 +64,9 @@ const CreateDrug = () => {
             .then(res=> {
                 console.log(res)
                 success()})
-                .catch(err=> setError(err.response.data.message))
+                .catch(err=> {
+                    console.log(err)
+                    setError(err.response.data.message)})
         }
      }
   return (
@@ -101,7 +104,7 @@ const CreateDrug = () => {
                     <div className="input-div">
                         <label>Reorder Level</label>
                         <div>
-                            <input type="text" onChange={(e)=> setFormvalues({...formvalues, reOrderLevel: e.target.value})}/>
+                            <input type="number" onChange={(e)=> setFormvalues({...formvalues, reOrderLevel: e.target.value})}/>
                         </div>
                     </div>
                     
@@ -110,6 +113,12 @@ const CreateDrug = () => {
                         <label>Drug Description</label>
                         <div>
                             <input type="text" onChange={(e)=> setFormvalues({...formvalues, drugDescription: e.target.value})}/>
+                        </div>
+                    </div>
+                    <div className="input-div">
+                        <label>Pack size</label>
+                        <div>
+                            <input type="text" onChange={(e)=> setFormvalues({...formvalues, noInPackage: e.target.value})}/>
                         </div>
                     </div>
                 </div>
@@ -133,19 +142,18 @@ const CreateDrug = () => {
                             
                         </div>
                     </div>
-                    <div className="input-div">
+                    <div className="input-div"> 
                         <label>Package Type</label>
                         <div>
-                            <input type="text" onChange={(e)=> setFormvalues({...formvalues, packageType: e.target.value})}
-                            defaultValue={formvalues.packageType}/>
+                            <select>
+                                <option default>Select Package Type</option>
+                                {pType.map((item,i)=>{
+                                    return <option value={item} key={i}>{item}</option>
+                                })}
+                            </select>
                         </div>
                     </div>
-                    <div className="input-div">
-                        <label>Pack size</label>
-                        <div>
-                            <input type="text" onChange={(e)=> setFormvalues({...formvalues, noInPackage: e.target.value})}/>
-                        </div>
-                    </div>
+                    
                 </div>
               </div>
         

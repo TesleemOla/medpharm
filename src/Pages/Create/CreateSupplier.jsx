@@ -11,11 +11,11 @@ const CreateSupplier = () => {
    const user = useAuth()
     
     const navigate = useNavigate()
-    const [manufacturer, setManufacturer] = useState({
+    const [suppliers, setSuppliers] = useState({
   name: "",
   address: "",
   phoneNumber: "",
-  clientId: user.clientId
+  clientId: user.clientId? user.clientId: null
 
     })
 
@@ -27,19 +27,16 @@ const CreateSupplier = () => {
         headers: {
             Authorization: `Bearer ${user.token}`
         },
-        data: manufacturer
+        data: suppliers
     }
-    if(!manufacturer.clientId){
-        toast("You are not authorized to create a manufacturer")
-    }
-    else if(!manufacturer.name || !manufacturer.address || 
-        !manufacturer.phoneNumber){
+  if(!suppliers.name || !suppliers.address || 
+        !suppliers.phoneNumber){
             toast("Please fill all fields")
         }else{
             
     axios(config)
-    .then(res=> console.log(res))
-    .catch(err=> console.log(err))
+    .then(res=> toast("Supplier Added successfully"))
+    .catch(err=> toast(err.message))
         }
 }
   return (
@@ -57,31 +54,23 @@ const CreateSupplier = () => {
                         
                         <div>
                             <label>Name</label>
-                            <input type="text"  onChange={(e)=> setManufacturer({...manufacturer, name: e.target.value })}/>
+                            <input type="text"  onChange={(e)=> setSuppliers({...suppliers, name: e.target.value })}/>
                         </div>
              
         
                         
                         <div>
                             <label>Address</label>
-                            <input type="text"   onChange={(e)=> setManufacturer({...manufacturer, address: e.target.value })}/>
+                            <input type="text"   onChange={(e)=> setSuppliers({...suppliers, address: e.target.value })}/>
                         </div>
              
         
                         
                         <div>
                             <label>Phone Number</label>
-                            <input type="text"   onChange={(e)=> setManufacturer({...manufacturer, phoneNumber: e.target.value })}/>
+                            <input type="text"   onChange={(e)=> setSuppliers({...suppliers, phoneNumber: e.target.value })}/>
                         </div>
-              
-        
-                        
-                        <div>
-                            <label>Client ID</label>
-                            <input type="text"  disabled placeholder = {user.clientId}/>
-                        </div>
-
-                       
+             
                
                 </div>
                  <button className="manuf-btn"

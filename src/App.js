@@ -11,7 +11,9 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "./Components/Loading"
 
-import { Manufacturers, Drugs, Inventory, Staffs, AddInventory, 
+import {
+  Manufacturers, Drugs, Inventory, Organisation, SubOrganisationDash,
+   AddInventory, 
   CreateDrugDash, AddManufacturer, EditPharm, EditManufacturerDash,
   // Setting,
   DispatchedDash, CreateDispatchedDrug, CreateSupplierDash, AddDrugCategory,
@@ -19,7 +21,7 @@ import { Manufacturers, Drugs, Inventory, Staffs, AddInventory,
    DashDrugCategory, Main } from "./Dashwrap"
 
 export const EditDrug = lazy(() => import('./Components/EditDrug'))
-const EditInventory = lazy(() => import("./Components/EditInventory"))
+const EditInventory = lazy(() => import("./Pages/Edit/EditInventory"))
 export const EditUserDetails = lazy(()=> import('./Pages/Edit/EditUserDetails'))
 export const ChangePassword = lazy(() => import('./Pages/Edit/ChangePassword'))
 function App() {
@@ -31,8 +33,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+
           {/* Each component is wrapped with a suspense for loading and a protectroute component to prevent
           unauthorized access */}
+
           <Route path="/" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><Main /></Suspense></ProtectRoutes>} />
@@ -54,14 +58,22 @@ function App() {
           <Route path="/dashboard/drugcategory" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/Staffs" element={
+          <Route path="/dashboard/Organisation" element={
             <ProtectRoutes>
-              <Suspense fallback={<Loading />}><Staffs /></Suspense></ProtectRoutes>} />
+              <Suspense fallback={<Loading />}><Organisation /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/Organisation/suborg/:id" element={
+            <ProtectRoutes>
+              <Suspense fallback={<Loading />}><SubOrganisationDash /></Suspense></ProtectRoutes>} />
+          <Route path="/dashboard/Settings" element={
+            <ProtectRoutes>
+              <Suspense fallback={<Loading />}><UserSettingsDash /></Suspense>
+            </ProtectRoutes>} />
           {/* <Route path="/dashboard/settings" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><Setting /></Suspense></ProtectRoutes>} /> */}
           <Route path="*" element={<Loading />} />
-          <Route path="/onboarding" element={<Onboarding membership={membership} setMembership={setMembership} />} />
+          <Route path="/onboarding" element={<ProtectRoutes>
+            <Onboarding membership={membership} setMembership={setMembership} /></ProtectRoutes>} />
           <Route path="/dashboard/dispatcheddrugs" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DispatchedDash /></Suspense></ProtectRoutes>} />
@@ -84,7 +96,7 @@ function App() {
           <Route path="/dashboard/createManufacturer" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><AddManufacturer /></Suspense></ProtectRoutes>} />
-          CreateDispatchedDrug
+          
           <Route path="/dashboard/createDispatchedDrug" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><CreateDispatchedDrug /></Suspense></ProtectRoutes>} />
@@ -118,10 +130,7 @@ function App() {
           <Route path="/dashboard/editSupplier/:id" element={
             <ProtectRoutes>
             <Suspense fallback={<Loading />}><EditSupplierDash /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/Settings" element={
-            <ProtectRoutes>
-              <Suspense fallback={<Loading />}><UserSettingsDash /></Suspense>
-            </ProtectRoutes>} />
+      
           <Route path="/dashboard/settings/edituser/:id" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><EditUserDetails /></Suspense></ProtectRoutes>} />

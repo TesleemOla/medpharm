@@ -20,8 +20,8 @@ const DispatchedDash = () => {
   useEffect(()=>{
     const config={
       method: "GET",
-      url: !user.clientId? `${baseurl}/api/dispatcheddrugs?pageNo=${pageNo}&sizePerPage=10`:
-        `${baseurl}/api/dispatcheddrugs/${user.clientId}/clients?pageNo=${pageNo}&sizePerPage=10`,
+      url: !user.clientId? `${baseurl}/api/dispatcheddrugs?pageNo=${pageNo}&sizePerPage=10&sortBy="drugName"`:
+        `${baseurl}/api/dispatcheddrugs/${user.clientId}/clients?pageNo=${pageNo}&sizePerPage=10&sortBy="drugName"`,
       headers:{
         Authorization: `Bearer ${user.token}`
       },

@@ -9,7 +9,9 @@ import { baseurl } from './utils/baseurl'
 import  "./styles/Dashboard/Inventory/editinv.scss"
 
 const EditDrug = () => {
-    const [drugData, setDrugData] = useState([])
+    const [drugData, setDrugData] = useState({})
+    const [categories, setCategories] = useState([])
+    const [defaultCategory, setDefaultCategory] = useState({})
     const [edit, setEdit] = useState(false)
     const [error, setError] = useState()
     const success=()=> toast(`Drug Edited successfully`)
@@ -26,12 +28,39 @@ const EditDrug = () => {
             }
         }
             axios(config)
-            .then(res=> setDrugData(res.data.data))
+            .then(res=>  setDrugData(res.data.data))
           
         }
         
     ,[id, user,drugData])
+        useEffect(()=>{
+            const config = {
+                method: 'GET',
+                url: `${baseurl}/api/drugscategories`,
+                headers:{
+                    Authorization: `Bearer ${user.token}`
+                }
+            }
+            axios(config)
+            .then(res=> {
+                setCategories(res.data.data)})
+        },[user])
 
+        useEffect(()=>{
+            
+            const config = {
+                method: 'GET',
+                url: `${baseurl}/api/drugscategories/${drugData.categoryId}`,
+                headers:{
+                    Authorization: `Bearer ${user.token}`
+                }
+            }
+            if(drugData.categoryId){
+            axios(config)
+            .then(res=> {
+                setDefaultCategory(res.data.data)})
+            }
+        },[user, drugData])
         function handleSubmit(e){
             e.preventDefault();
             setDrugData({...drugData,
@@ -80,11 +109,15 @@ const EditDrug = () => {
                         </div>
                     </div>
                     <div className="input-div">
-                        <label>Category I.D</label>
-                        <div>
-                            <input type="text" defaultValue={drugData.categoryId}
-                            readOnly={!edit} onChange={(e)=> setDrugData({...drugData, categoryId: e.target.value})}/>
-                        </div>
+                        <label>Category</label>
+                        <select onChange={(e)=>setDrugData({...drugData, categoryId: e.target.value})}>
+                            <option value={defaultCategory.id} default>{defaultCategory.name}</option>
+                            {
+                                categories.filter(item=> item.id !== defaultCategory.id)
+                                .map(item=> <option value={item.id} key={item.id}>{item.name}</option>
+                                )
+                            }
+                        </select>
                     </div>
                     <div className="input-div">
                         <label>Purpose</label>
@@ -143,13 +176,13 @@ const EditDrug = () => {
                     
                     <div className="input-div">
                         <label>Status</label>
-                        <div>
+                       
                         <select onChange={(e)=> setDrugData({...drugData, status: e.target.value})}>
                             <option value="AVAILABLE" default={drugData.status === "AVAILABLE"}>Available</option>
                             <option value="ACTIVE" default={drugData.status === "ACTIVE"}>Active</option>
                             <option value="NOT AVAILABLE" default={drugData.status === "NOT AVAILABLE"}>Not Available</option>
                         </select>
-                        </div>
+                        
                     </div>
                 </div>
               </div>

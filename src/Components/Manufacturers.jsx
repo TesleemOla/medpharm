@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Manufacturers = () => {
   const user = useAuth()
-  // console.log(user)
+
   const [manufacturers, setManufacturers] = useState([])
   useEffect(()=>{
     const config= {
