@@ -26,8 +26,8 @@ const InventoryDash = () => {
   useEffect(()=>{
     const config={
       method: "get",
-      url: !user.clientId?`${baseurl}/api/inventories`:
-      `${baseurl}/api/inventories/${user.clientId}/clients`,
+      url: !user.clientId?`${baseurl}/api/inventories/paged?pageNo=${pageNo}&sizePerPage=10&sortBy=drugName`:
+      `${baseurl}/api/inventories/${user.clientId}/paged?pageNo=${pageNo}&sizePerPage=10&sortBy=drugName`,
       pageNo,
       sizePerPage: dataSize,
       headers:{
@@ -63,7 +63,7 @@ const InventoryDash = () => {
         <Card tile={tile1} item={calendar} heading="Expired" className="card-bg" 
         value={(allInventory.filter(i=> toString(i.expiryDate.substring(0,10)) === toString(up))).length}/>
       </div>
-      <Tablenav dashfield="Inventory" array={allInventory} 
+      <Tablenav dashfield="Inventory" array={allInventory} dis={!(user.permissions.find((item)=> item === "create:inventory"))}
       onClick={()=> Navigate("/dashboard/createInventory")}/>
       <InventoryTable field1="Name" field2="Product I.D" field3="Category"
       field4="Total Quantity" field5="Expired" field6="Expiry Date" 

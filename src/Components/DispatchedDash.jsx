@@ -20,8 +20,8 @@ const DispatchedDash = () => {
   useEffect(()=>{
     const config={
       method: "GET",
-      url: !user.clientId? `${baseurl}/api/dispatcheddrugs?pageNo=${pageNo}&sizePerPage=10&sortBy="drugName"`:
-        `${baseurl}/api/dispatcheddrugs/${user.clientId}/clients?pageNo=${pageNo}&sizePerPage=10&sortBy="drugName"`,
+      url: !user.clientId? `${baseurl}/api/dispatcheddrugs?pageNo=${pageNo}&sizePerPage=10&sortBy=drugName`:
+        `${baseurl}/api/dispatcheddrugs/${user.clientId}/clients?pageNo=${pageNo}&sizePerPage=10&sortBy=drugName`,
       headers:{
         Authorization: `Bearer ${user.token}`
       },
@@ -53,7 +53,9 @@ const DispatchedDash = () => {
         <Card tile={tile1} item={item1} heading="Not available" className="card-sm"/>
         <Card tile={tile1} item={item1} heading="Expiry Date" className="card-sm"/>
       </div>
-      <Tablenav dashfield="Dispatched" array={dispatchedData} onClick={()=> navigate('/dashboard/createDispatchedDrug')}/>
+      <Tablenav dashfield="Dispatched" array={dispatchedData}
+      //  dis={!(user.permissions.find((item)=> item === "create:inventory"))}
+      onClick={()=> navigate('/dashboard/createDispatchedDrug')}/>
       <DispatchedTable array={dispatchedData} pageNo={pageNo} 
       handleNext={handleNext} handlePrev={handlePrevious}/>
     </div>

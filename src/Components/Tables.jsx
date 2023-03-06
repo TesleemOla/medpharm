@@ -7,12 +7,13 @@ import { useNavigate} from "react-router-dom"
 import { MdEdit } from "react-icons/md"
 import "./styles/Dashboard/dashtables.scss"
 import Tablehead from './Tablehead'
+import { useAuth } from './ProtectDashboard/AuthDash'
 
 // Inventory Table 
 export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, 
   pageNo, setDataSize, handleNext, handlePrev}) => {
   const navigate = useNavigate()
-  
+  const user = useAuth()
   if(array.length > 0) {
   return (
     <div className="table-div">
@@ -35,7 +36,8 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
                 <td>{item.expired}</td>
                 <td>{item.expiryDate.substring(0,10)}</td>
                 <td>{item.status}</td>
-                <td><MdEdit  onClick={()=> navigate(`/dashboard/editInventory/${item.id}`)}/>
+                <td><MdEdit  onClick={()=> navigate(`/dashboard/editInventory/${item.id}`)}
+                disabled={!(user.permissions.find((item)=> item === "update:inventory")) }/>
                 <BiDotsVerticalRounded/></td>
               </tr>
             )
@@ -64,7 +66,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
 }
 
 // Hospital Table
-export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
+export const SupplierTable=({ array, pageNo, handleNext, handlePrev, setDataSize}) => {
   const navigate = useNavigate()
   if(array) {
   return (
@@ -94,11 +96,11 @@ export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
         
       </table>
         <div className="foot">
-                {/* <select onChange={(e)=>setDataSize(e.target.value)}>
+                <select onChange={(e)=>setDataSize(e.target.value)}>
                   <option value="10" default >10</option>
                   <option value="20">20</option>
                   <option value="30">30</option>
-                </select> */}
+                </select>
                 {pageNo===1? 1:10*(1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
                 <IoIosArrowBack onClick={()=>{
                    if(pageNo>1) return handlePrev}}/>
@@ -112,7 +114,7 @@ export const SupplierTable=({ array, pageNo, handleNext, handlePrev}) => {
 }
 
 // Staff table
-export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev})=>{
+export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
   const navigate = useNavigate()
   if(array){
   return(
@@ -143,11 +145,11 @@ export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev})=>{
         
       </table>
         <div className="foot">
-                {/* <select onChange={(e)=>setDataSize(e.target.value)}>
+                <select onChange={(e)=>setDataSize(e.target.value)}>
                   <option value="10" default >10</option>
                   <option value="20">20</option>
                   <option value="30">30</option>
-                </select> */}
+                </select>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
                 <IoIosArrowBack onClick={()=>{
                    if(pageNo>1) return handlePrev}}/>
@@ -162,7 +164,7 @@ export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev})=>{
 
 // Drugs Table
 
-export const DrugsTable=({ array, pageNo, handleNext, handlePrev})=>{
+export const DrugsTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
   const navigate = useNavigate()
   if(array){
   return(
@@ -193,11 +195,11 @@ export const DrugsTable=({ array, pageNo, handleNext, handlePrev})=>{
         
       </table>
         <div className="foot">
-                {/* <select onChange={(e)=>setDataSize(e.target.value)}>
+                <select onChange={(e)=>setDataSize(e.target.value)}>
                   <option value="10" default >10</option>
                   <option value="20">20</option>
                   <option value="30">30</option>
-                </select> */}
+                </select>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
                 <IoIosArrowBack onClick={()=>{
                    if(pageNo>1) return handlePrev}}/>
@@ -211,7 +213,7 @@ export const DrugsTable=({ array, pageNo, handleNext, handlePrev})=>{
 }
 
 // Drug Category Tables
-export const DrugCategoryTable=({ array, pageNo, handleNext, handlePrev})=>{
+export const DrugCategoryTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
   const navigate = useNavigate()
   if(array){
   return(
@@ -242,11 +244,11 @@ export const DrugCategoryTable=({ array, pageNo, handleNext, handlePrev})=>{
         
       </table>
         <div className="foot">
-                {/* <select onChange={(e)=>setDataSize(e.target.value)}>
+                <select onChange={(e)=>setDataSize(e.target.value)}>
                   <option value="10" default >10</option>
                   <option value="20">20</option>
                   <option value="30">30</option>
-                </select> */}
+                </select>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
                 <IoIosArrowBack onClick={()=>{
                    if(pageNo>1) return handlePrev}}/>
@@ -261,7 +263,7 @@ export const DrugCategoryTable=({ array, pageNo, handleNext, handlePrev})=>{
 
 // Dispatched drugs table
 
-export const DispatchedTable=({ array, pageNo, handleNext, handlePrev})=>{
+export const DispatchedTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
   const navigate = useNavigate()
   if(array){
   return(
@@ -295,11 +297,11 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev})=>{
         
       </table>
         <div className="foot">
-                {/* <select onChange={(e)=>setDataSize(e.target.value)}>
+                <select onChange={(e)=>setDataSize(e.target.value)}>
                   <option value="10" default >10</option>
                   <option value="20">20</option>
                   <option value="30">30</option>
-                </select> */}
+                </select>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
                 <IoIosArrowBack onClick={()=>{
                    if(pageNo>1) return handlePrev}}/>
@@ -314,8 +316,9 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev})=>{
 
 // Organisation Table
 
-export const OrganisationTable=({ array, pageNo, handleNext, handlePrev})=>{
+export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
   const navigate = useNavigate()
+  const user = useAuth()
   if(array){
   return(
     <div>
@@ -339,7 +342,8 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev})=>{
                 <td>{clientCode}</td>
                 
                 <td> 
-                <BiDotsVerticalRounded onClick={()=> navigate(`/dashboard/Organisation/suborg/${id}`)}/></td>
+                <BiDotsVerticalRounded onClick={()=> navigate(`/dashboard/Organisation/suborg/${id}`)}
+                disabled={!(user.permissions.find((item)=> item === "update:organisation")) }/></td>
               </tr>
             )
           })}
@@ -347,11 +351,11 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev})=>{
         
       </table>
         <div className="foot">
-                {/* <select onChange={(e)=>setDataSize(e.target.value)}>
+                <select onChange={(e)=>setDataSize(e.target.value)}>
                   <option value="10" default >10</option>
                   <option value="20">20</option>
                   <option value="30">30</option>
-                </select> */}
+                </select>
                 {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
                 <IoIosArrowBack onClick={()=>{
                    if(pageNo>1) return handlePrev}}/>

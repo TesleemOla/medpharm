@@ -43,14 +43,12 @@ const MainDash = () => {
   return (
     <div className="center-dash">
       <div className="card-flex">
-        <Card tile={tile1} item={item2} heading="Number of Drugs" className="card-sm"
+        <Card tile={tile1} item={item2} heading="Number of Drugs" className="card-bg"
         value={drugs} />
-        <Card tile={tile2} item={item3} heading="Total Inventory" className="card-sm"
+        <Card tile={tile2} item={item3} heading="Total Inventory" className="card-bg"
         value={inventory} />
         <Card tile={tile3} item={item1} heading="Drug Category" value={drugCategories} 
-        className="card-sm"/>
-        <Card tile={tile1} item={moneybag} heading="Total Amount" className="card-sm"
-        value={inventory + drugs}/>
+        className="card-bg"/>
       </div>
       
       {/* <Table name="Name" id="Pharmacy I.D" mobile="Mobile"

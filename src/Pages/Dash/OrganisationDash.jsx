@@ -16,6 +16,8 @@ import Tablenav from '../../Components/Tablenav'
 const OrganistionDash = () => {
   const user = useAuth()
   const navigate = useNavigate()
+  const [pageNo, setPageNo] = useState(1)
+  const [dataSize, setDataSize] = useState()
   const [organisationData, setOrganisationData] = useState([])
 
   useEffect(()=>{
@@ -32,6 +34,16 @@ const OrganistionDash = () => {
     .catch(err=> toast(err.message))
   }
   },[user])
+
+  const handlePrevious = (e) => {
+    e.preventDefault();
+    setPageNo(()=>pageNo-1)
+  };
+
+  const handleNext = (e) => {
+    e.preventDefault();
+    setPageNo(()=>pageNo+1)
+  };
    const Card= hocard(Carddets)
   return (
     <div  className="center-dash">
@@ -42,7 +54,8 @@ const OrganistionDash = () => {
         <Card tile={tile1} item={item2} heading="Other roles" className='card-sm'/>
       </div>
       <Tablenav dashfield="Organisation" onClick={()=>(navigate('/onboarding'))} array={organisationData}/>
-      <OrganisationTable array={organisationData} />
+      <OrganisationTable array={organisationData} pageNo={pageNo} handleNext={handleNext} 
+      handlePrev={handlePrevious} setDataSize/>
     </div>
   )
 }

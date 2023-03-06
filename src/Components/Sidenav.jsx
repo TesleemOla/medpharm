@@ -13,22 +13,9 @@ import "./styles/Dashboard/sidenav.scss"
 
 const Sidenav=()=>{
   const user = useAuth()
-  // console.log(user)
+
   const navigate = useNavigate()
 
-
-  // useEffect ( ()=>{
-  //   const config={
-  //     method: "GET",
-  //     url: `${baseurl}/api/drugscategories`,
-  //     headers:{
-  //       Authorization: `Bearer ${user.token}`
-  //     }
-  //   }
-
-  //   axios(config)
-  //   .then(res=> setDrugCategories(res.data.data))
-  // },[user])
     return (
       <aside className="side-aside">
         
@@ -39,12 +26,12 @@ const Sidenav=()=>{
               <RiDashboardFill />
               Dashboard
             </li>
-            { (user.role === "client_admin" || "super_admin") &&
+           
             <li className="nav-item"
             onClick={()=> navigate("/dashboard/manufacturers")}>
               <FaBuilding/>
               Manufacturers
-            </li>}
+            </li>
             <li className="nav-item" onClick={()=> navigate("/dashboard/Suppliers")}>
               <IoPeopleCircle />Suppliers</li>
                 
@@ -53,12 +40,12 @@ const Sidenav=()=>{
               <FaBook />
               Drugs
             </li>
-            
+            {(user.permissions.find((item)=> item === "view:organisation")) &&           
             <li className="nav-item"
             onClick={()=> navigate("/dashboard/Organisation")}>
               <FaBook />
               Organisation
-            </li>
+            </li>}
            <li className="nav-item d-flex_fd"
             onClick={()=>navigate(`/dashboard/drugcategory`)}>
               <GiMedicines/>Drug Type
@@ -69,7 +56,8 @@ const Sidenav=()=>{
               <BiMessageAltDetail />
               Dispatched Drugs
             </li>
-          {user.role !== "Pharmacist" && <li className="nav-item"
+          {(user.role ==="super_admin" || user.permissions.find((item)=> item === "view:inventory")) && 
+          <li className="nav-item"
             onClick={()=>navigate("/dashboard/inventory") }>
               <FaRegNewspaper />
               Inventory

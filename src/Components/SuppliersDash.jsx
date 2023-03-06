@@ -21,7 +21,7 @@ const SuppliersDash = () => {
     const config={
       method: "GET",
       url: !user.organisationId?`${baseurl}/api/suppliers/`:
-      `${baseurl}/api/suppliers/${user.organisationId}/clients`,
+      `${baseurl}/api/suppliers/${user.clientId}/clients`,
       headers:{
         Authorization: `Bearer ${user.token}`
       },

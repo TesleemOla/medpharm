@@ -20,7 +20,7 @@ import {
   Suppliers, UserSettingsDash, EditSupplierDash, EditCategory, EditDispatchedDrug,
    DashDrugCategory, Main } from "./Dashwrap"
 
-export const EditDrug = lazy(() => import('./Components/EditDrug'))
+export const EditDrug = lazy(() => import('./Pages/Edit/EditDrug'))
 const EditInventory = lazy(() => import("./Pages/Edit/EditInventory"))
 export const EditUserDetails = lazy(()=> import('./Pages/Edit/EditUserDetails'))
 export const ChangePassword = lazy(() => import('./Pages/Edit/ChangePassword'))

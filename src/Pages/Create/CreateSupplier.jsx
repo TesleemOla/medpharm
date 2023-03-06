@@ -12,10 +12,10 @@ const CreateSupplier = () => {
     
     const navigate = useNavigate()
     const [suppliers, setSuppliers] = useState({
-  name: "",
-  address: "",
-  phoneNumber: "",
-  clientId: user.clientId? user.clientId: null
+    name: "",
+    address: "",
+    phoneNumber: "",
+    clientId: user.clientId? user.clientId: null
 
     })
 
@@ -35,8 +35,10 @@ const CreateSupplier = () => {
         }else{
             
     axios(config)
-    .then(res=> toast("Supplier Added successfully"))
-    .catch(err=> toast(err.message))
+    .then(res=> console.log(res))
+    .catch(err=> {
+        console.log(err)
+        toast(err.message)})
         }
 }
   return (

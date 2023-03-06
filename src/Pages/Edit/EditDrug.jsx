@@ -4,9 +4,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import { TbArrowNarrowLeft } from 'react-icons/tb';
 import { MdEdit } from 'react-icons/md';
-import { useAuth } from './ProtectDashboard/AuthDash'
-import { baseurl } from './utils/baseurl'
-import  "./styles/Dashboard/Inventory/editinv.scss"
+import { useAuth } from '../../Components/ProtectDashboard/AuthDash'
+import { baseurl } from '../../Components/utils/baseurl'
+import  "../../Components/styles/Dashboard/Inventory/editinv.scss"
 
 const EditDrug = () => {
     const [drugData, setDrugData] = useState({})
