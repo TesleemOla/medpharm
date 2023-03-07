@@ -50,7 +50,7 @@ const CreateManufacturer = () => {
                 <GrClose onClick={()=> navigate("/")}/>          
             </div>
             
-                <div className="input-grid">
+                <div className="input-flex">
         
                         
                         <div>

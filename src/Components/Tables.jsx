@@ -9,6 +9,7 @@ import "./styles/Dashboard/dashtables.scss"
 import Tablehead from './Tablehead'
 import { useAuth } from './ProtectDashboard/AuthDash'
 
+
 // Inventory Table 
 export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, 
   pageNo, setDataSize, handleNext, handlePrev}) => {
@@ -367,3 +368,5 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
     return <Loading/>
         }
 }
+
+ 

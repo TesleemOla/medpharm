@@ -45,11 +45,11 @@ const CreateDrugCategory = () => {
         <form className="manuf-form">
 
              <div  className="light-back">
-                <p>Create drugCategory</p>
+                <p>Create drug Type</p>
                 <GrClose onClick={()=> navigate("/")}/>          
             </div>
             
-                <div className="input-grid">
+                <div className="input-flex">
         
                         
                         <div>

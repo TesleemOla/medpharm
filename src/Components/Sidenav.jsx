@@ -26,7 +26,12 @@ const Sidenav=()=>{
               <RiDashboardFill />
               Dashboard
             </li>
-           
+            {(user.permissions.find((item)=> item === "view:organisation")) &&           
+            <li className="nav-item"
+            onClick={()=> navigate("/dashboard/Organisation")}>
+              <FaBook />
+              Organisation
+            </li>}
             <li className="nav-item"
             onClick={()=> navigate("/dashboard/manufacturers")}>
               <FaBuilding/>
@@ -40,12 +45,7 @@ const Sidenav=()=>{
               <FaBook />
               Drugs
             </li>
-            {(user.permissions.find((item)=> item === "view:organisation")) &&           
-            <li className="nav-item"
-            onClick={()=> navigate("/dashboard/Organisation")}>
-              <FaBook />
-              Organisation
-            </li>}
+           
            <li className="nav-item d-flex_fd"
             onClick={()=>navigate(`/dashboard/drugcategory`)}>
               <GiMedicines/>Drug Type
@@ -63,12 +63,6 @@ const Sidenav=()=>{
               Inventory
             </li>}
             
-            
-            <li className="nav-item"
-            onClick={()=>navigate("/dashboard/settings")}>
-              <GoSettings />
-              Settings
-            </li>
           </ul>
         </nav>
       </aside>

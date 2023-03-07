@@ -45,7 +45,7 @@ const CreateDispatched = () => {
                 <GrClose onClick={()=> navigate("/dashboard/Dispatcheddrugs")}/>          
             </div>
             
-                <div className="input-grid">
+                <div className="input-flex">
                     <div className="input-div">
                         <label>Inventory I.D</label>
                         <div>

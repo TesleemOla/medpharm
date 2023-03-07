@@ -69,7 +69,7 @@ const Moredetails=({formvalues, setFormvalues})=>{
           </div>
           <div className="input-grp">
                 <label>Upload Profile Image</label>
-                <div className="input-item">
+                
                   <input type="file"
                   accept="image/*"
                   onChange={(e)=>{
@@ -81,7 +81,7 @@ const Moredetails=({formvalues, setFormvalues})=>{
                   }
                   }
                   />
-                </div>
+              
           </div>
           <div className="input-grp">
                 <label>Referral Code</label>

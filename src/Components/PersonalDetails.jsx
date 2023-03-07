@@ -103,10 +103,9 @@ return (<div className="form">
                 
           </div>
           
-          
           <div className="input-grp">
                 <label>Upload Profile Image</label>
-                <div className="input-item">
+             
                   <input type="file"
                   accept="image/*"
                   onChange={(e)=>{
@@ -117,7 +116,7 @@ return (<div className="form">
                   }
                   }
                   />
-                </div>
+               
           </div>
           <div className="input-grp">
                 <label>Referral Code</label>

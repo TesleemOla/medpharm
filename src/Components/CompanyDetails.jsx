@@ -27,7 +27,15 @@ const CompanyDetails = ({formvalues, setFormvalues}) => {
               </select>
                 
           </div> */}
-          
+           <div className="input-id">
+            <label>Client Type</label>
+            <select  onChange={(e)=> setFormvalues({...formvalues, clientType: e.target.value})}>
+              <option default> Please select a Client Type</option>
+              <option value="HOSPITAL">Hospital</option>
+              <option value="PHARMACY">Pharmacy</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </div>
           
           <div className="input-grp">
             <label>Email Address</label>

@@ -18,18 +18,18 @@ const Searchbar = () => {
           <img src={logo} alt="logo" onClick={()=>navigate('/')}/>
           <BiMenuAltRight className="burger"/>
         </div>
-      <div className="box">
+      {/* <div className="box">
         <input
           type="search"
           placeholder="Search"
           onChange={(e) => setSearchvalue(e.target.value)}
         />
         <AiOutlineSearch />
-      </div>
+      </div> */}
       <div className="nav-icons">
         
           <AiOutlineBell />
-          <BsFillPersonFill />
+          <BsFillPersonFill onClick={()=>navigate("/dashboard/settings")}/>
           <CgArrowRight onClick={()=>{
             sessionStorage.removeItem("user")
             navigate("/", {replace: true})

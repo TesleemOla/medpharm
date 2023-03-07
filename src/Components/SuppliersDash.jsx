@@ -36,9 +36,9 @@ const SuppliersDash = () => {
   return (
     <div  className="center-dash">
       <div className="card-flex">
-        <Card tile={tile1} item={item2} heading="All Organisations" className='card-sm'/>
-        <Card tile={tile2} item={item2} heading="Organisation Category" className='card-sm'/>
-        <Card tile={tile1} item={item2} heading="Top Organisations" className='card-sm'/>
+        <Card tile={tile1} item={item2} heading="All Organisations" className='card-bg'/>
+        <Card tile={tile2} item={item2} heading="Organisation Category" className='card-bg'/>
+        <Card tile={tile1} item={item2} heading="Top Organisations" className='card-bg'/>
       </div>
       <Tablenav dashfield="Suppliers" array={suppliers}
       onClick={()=> navigate(`/dashboard/createSupplier`)}/>

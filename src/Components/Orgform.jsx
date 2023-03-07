@@ -1,12 +1,18 @@
 import React, {useState} from 'react';
+import axios from 'axios'
+import { ToastContainer, toast} from "react-toastify"
 import CompanyDetails from "./CompanyDetails";
 import Moredetails from "./Moredetails"
 import Preview from "./Preview"
+import {baseurl} from "./utils/baseurl"
+import {useAuth} from "./ProtectDashboard/AuthDash"
 import { TbArrowNarrowLeft} from "react-icons/tb"
 
 const Orgform = ({membership, setMembership, orgPage, setOrgPage}) => {
+  const user = useAuth()
  const [formvalues, setFormvalues] = useState({
     companyName:'',
+    clientType:'',
     parentOrganisationId: "",
     contactEmailAddress:"",
     contactPhoneNumber:"",
@@ -29,7 +35,7 @@ const Orgform = ({membership, setMembership, orgPage, setOrgPage}) => {
     const pages =["Company Details", "Admin User Details", "Preview"]
     return (
       <section className="form-field">
-        
+        <ToastContainer/>
         
         <form>
           <div className="top">
@@ -82,7 +88,17 @@ const Orgform = ({membership, setMembership, orgPage, setOrgPage}) => {
         <button className="next-btn"
         onClick={(e)=> {
           e.preventDefault()
-          console.log(formvalues)
+          const config={
+            method: 'POST',
+            url: `${baseurl}/api/organisations/register`,
+            data: formvalues,
+            headers: {
+              Authorization: `Bearer ${user.token}`
+            }
+          }
+          axios(config)
+          .then(res=> toast(res.data.data.message))
+          .catch(err=> toast(err.message))
         }}>
           Submit
         </button>:

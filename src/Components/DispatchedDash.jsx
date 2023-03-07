@@ -48,10 +48,10 @@ const DispatchedDash = () => {
     <div className="center-dash">
 
       <div className="card-flex">
-        <Card tile={tile2} item={item1} heading="Total Drugs" className="card-sm"/>
-        <Card tile={tile2} item={item1} heading="Available Drugs" className="card-sm"/>
-        <Card tile={tile1} item={item1} heading="Not available" className="card-sm"/>
-        <Card tile={tile1} item={item1} heading="Expiry Date" className="card-sm"/>
+        <Card tile={tile2} item={item1} heading="Total Dispatched Drugs" className="card-bg"/>
+        <Card tile={tile2} item={item1} heading="Accepted Drugs" className="card-bg"/>
+        <Card tile={tile1} item={item1} heading="Rejected Drugs" className="card-bg"/>
+        {/* <Card tile={tile1} item={item1} heading="Expired Drugs" className="card-sm"/> */}
       </div>
       <Tablenav dashfield="Dispatched" array={dispatchedData}
       //  dis={!(user.permissions.find((item)=> item === "create:inventory"))}

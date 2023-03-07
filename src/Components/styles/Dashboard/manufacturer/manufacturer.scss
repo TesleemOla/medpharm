@@ -50,4 +50,38 @@
             border: 0;
             border-radius: 5px;
         }
+         .input-flex{
+        display: flex;
+        flex-direction: column;
+   
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            label{
+                font-size: 1.5em;
+                margin: 0 0.5em;
+                text-align: left;
+            }
+            input{
+               
+                height: 3em;
+                font-size: 1.4em;
+                padding: 0.5em 1em;
+                margin: 1em;
+                border: 1px solid black;
+                outline: 1px solid black;
+                border-radius: 5px;
+            }
+        }
+      
+    }
+      .manuf-btn{
+            padding: 1em;
+            background: $blue;
+            margin: 1em auto;
+            border: 0;
+            border-radius: 5px;
+        }
 }

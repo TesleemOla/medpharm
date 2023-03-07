@@ -19,6 +19,7 @@ const OrganistionDash = () => {
   const [pageNo, setPageNo] = useState(1)
   const [dataSize, setDataSize] = useState()
   const [organisationData, setOrganisationData] = useState([])
+  const [organisationsummary, setOrganisationsummary] = useState({})
 
   useEffect(()=>{
     if(user.organisationId){
@@ -34,7 +35,17 @@ const OrganistionDash = () => {
     .catch(err=> toast(err.message))
   }
   },[user])
-
+  useEffect(()=>{
+    const config={
+      url: `${baseurl}/api/reports/organisation/summary`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    axios(config)
+    .then(res=> setOrganisationsummary(res.data.data))
+  })
   const handlePrevious = (e) => {
     e.preventDefault();
     setPageNo(()=>pageNo-1)
@@ -49,11 +60,12 @@ const OrganistionDash = () => {
     <div  className="center-dash">
       <ToastContainer/>
       <div className="card-flex">
-        <Card tile={tile1} item={item2} heading="All organisation" className='card-sm'/>
-        <Card tile={tile2} item={item2} heading="Administrators" className='card-sm'/>
-        <Card tile={tile1} item={item2} heading="Other roles" className='card-sm'/>
+        <Card tile={tile1} item={item2} heading="All organisation" className='card-sm' value={organisationsummary.totalOrganisations}/>
+        <Card tile={tile2} item={item2} heading="Hospitals" className='card-sm' value={organisationsummary.totalHospitals}/>
+        <Card tile={tile2} item={item2} heading="Pharmacies" className='card-sm' value={organisationsummary.totalPharmacies}/>
+        <Card tile={tile1} item={item2} heading="Other Clients" className='card-sm' value={organisationsummary.totalOtherClients}/>
       </div>
-      <Tablenav dashfield="Organisation" onClick={()=>(navigate('/onboarding'))} array={organisationData}/>
+      <Tablenav dashfield="Organisation" onClick={()=>(navigate('/onboarding'))} array={organisationData} dis={!(user.permissions.find(item=> item === "create:organisation"))}/>
       <OrganisationTable array={organisationData} pageNo={pageNo} handleNext={handleNext} 
       handlePrev={handlePrevious} setDataSize/>
     </div>
