@@ -67,7 +67,7 @@ const OrganistionDash = () => {
       </div>
       <Tablenav dashfield="Organisation" onClick={()=>(navigate('/onboarding'))} array={organisationData} dis={!(user.permissions.find(item=> item === "create:organisation"))}/>
       <OrganisationTable array={organisationData} pageNo={pageNo} handleNext={handleNext} 
-      handlePrev={handlePrevious} setDataSize/>
+      handlePrev={handlePrevious} setDataSize={setDataSize}/>
     </div>
   )
 }

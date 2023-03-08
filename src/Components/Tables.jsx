@@ -27,9 +27,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={item.id}>
-                <td>
-                  <input type="checkbox"/>
-                </td>
+                
                 <td>{item.drugName}</td>
                 <td>{item.batchNumber}</td>
                 <td>{item.packageType}</td>
@@ -39,7 +37,7 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
                 <td>{item.status}</td>
                 <td><MdEdit  onClick={()=> navigate(`/dashboard/editInventory/${item.id}`)}
                 disabled={!(user.permissions.find((item)=> item === "update:inventory")) }/>
-                <BiDotsVerticalRounded/></td>
+                </td>
               </tr>
             )
           })}
@@ -80,16 +78,14 @@ export const SupplierTable=({ array, pageNo, handleNext, handlePrev, setDataSize
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={item.id}>
-                <td>
-                  <input type="checkbox"/>
-                </td>
+                
                 <td>{item.name}</td>
                 <td>{item.phoneNumber}</td>
                 <td>{item.createdAt.substring(0,10)}</td>
                 <td>{item.address}</td>
                 <td>{item.status}</td>
                 <td><MdEdit  onClick={()=> navigate(`/dashboard/editSupplier/${item.id}`)}/>
-                <BiDotsVerticalRounded/></td>
+                </td>
               </tr>
             )
           })}
@@ -128,16 +124,14 @@ export const ManufacturerTable = ({ array, pageNo, handleNext, handlePrev, setDa
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={item.id}>
-                <td>
-                  <input type="checkbox"/>
-                </td>
+                
                 <td>{item.name}</td>
                 <td>{item.phoneNumber}</td>
                 <td>{item.address}</td>
                 <td>{item.createdAt.substring(0,10)}</td>
                 <td>{item.status}</td>
                 <td><MdEdit  onClick={()=> navigate(`/dashboard/editManufacturer/${item.id}`)}/>
-                <BiDotsVerticalRounded/></td>
+                </td>
                 
               </tr>
             )
@@ -178,9 +172,7 @@ export const DrugsTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={item.id}>
-                <td>
-                  <input type="checkbox"/>
-                </td>
+                
                 <td>{item.drugName}</td>
                 <td>{item.productId}</td>
                 <td>{item.categoryName}</td>
@@ -188,7 +180,7 @@ export const DrugsTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=
                 <td>{item.noInPackage}</td>
                 <td>{item.status}</td>
                 <td><MdEdit  onClick={()=> navigate(`/dashboard/editDrugs/${item.id}`)}/>
-                <BiDotsVerticalRounded/></td>
+                </td>
               </tr>
             )
           })}
@@ -227,9 +219,7 @@ export const DrugCategoryTable=({ array, pageNo, handleNext, handlePrev, setData
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={id}>
-                <td>
-                  <input type="checkbox"/>
-                </td>
+                
                 <td>{name}</td>
                 <td>{description}</td>
                 <td>{status}</td>
@@ -237,7 +227,7 @@ export const DrugCategoryTable=({ array, pageNo, handleNext, handlePrev, setData
                 <td>{updatedBy}</td>
                 <td>{createdBy}</td>
                 <td><MdEdit  onClick={()=> navigate(`/dashboard/editDrugCategory/${id}`)}/>
-                <BiDotsVerticalRounded/></td>
+                </td>
               </tr>
             )
           })}
@@ -279,9 +269,7 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev, setDataSi
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={item.id}>
-                <td>
-                  <input type="checkbox"/>
-                </td>
+                
                 <td>{item.drugName}</td>
                 <td>{item.clientName}</td>
                 <td>{item.expiryDate.substring(0,10)}</td>
@@ -290,7 +278,7 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev, setDataSi
                 <td>{item.dispatchedStatus}</td>
                 <td>{item.quantity-item.quantityReturned}</td>
                 <td><MdEdit  onClick={()=> navigate(`/dashboard/editDispatcheddrugs/${item.id}`)}/>
-                <BiDotsVerticalRounded/></td>
+                </td>
               </tr>
             )
           })}
@@ -319,6 +307,7 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev, setDataSi
 
 export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
   const navigate = useNavigate()
+  const [dialog, setDialog] = useState({})
   const user = useAuth()
   if(array){
   return(
@@ -332,9 +321,7 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
             return (
               <tr  className={index%2? "grayback": "whiteback"}
               key={id}>
-                <td>
-                  <input type="checkbox"/>
-                </td>
+                
                 <td>{companyName}</td>
                 <td>{contactEmailAddress}</td>
                 <td>{officeAddress}</td>
@@ -343,8 +330,14 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
                 <td>{clientCode}</td>
                 
                 <td> 
-                <BiDotsVerticalRounded onClick={()=> navigate(`/dashboard/Organisation/suborg/${id}`)}
-                disabled={!(user.permissions.find((item)=> item === "update:organisation")) }/></td>
+                <BiDotsVerticalRounded  onClick={()=> setDialog({...dialog, [index]: true})}/>
+                {
+                  dialog[index] && <span className='dialogbox'>
+                    <div><a href={`/dashboard/Organisation/suborg/${id}`} >SubOrganisations</a></div>
+                    <div><a href={`/dashboard/clients/${id}`}>Clients</a></div>
+                  </span>
+                }
+                </td>
               </tr>
             )
           })}
@@ -369,4 +362,102 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
         }
 }
 
- 
+ export const SubOrganisationTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
+  const navigate = useNavigate()
+  if(array){
+  return(
+    <div>
+    <table className="dash-table">
+        <Tablehead field1="Company Name" field2="Organisation Code" field3="Email"
+         field4="Phone Number" field5="Address"
+          field6="City" field7="State"
+          field8="Action" />
+        <tbody>
+          {array.map((item,index)=>{
+            return (
+              <tr  className={index%2? "grayback": "whiteback"}
+              key={item.id}>
+                
+                <td>{item.companyName}</td>
+                <td>{item.organisationCode}</td>
+                <td>{item.companyEmailAddress}</td>
+                <td>{item.companyPhoneNumber}</td>
+                <td>{item.officeAddress}</td>
+                
+                <td>{item.city}</td>
+                <td>{item.state}</td>
+                <td><MdEdit/>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+        
+      </table>
+        <div className="foot">
+                <select onChange={(e)=>setDataSize(e.target.value)}>
+                  <option value="10" default >10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+                {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
+        </div>  
+      </div>
+  )}else{
+    return <Loading/>
+        }
+}
+
+export const ClientsTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
+  const navigate = useNavigate()
+  if(array){
+  return(
+    <div>
+    <table className="dash-table">
+        <Tablehead field1="Company Name" field2="Organisation Code" field3="Email"
+         field4="Phone Number" field5="Address"
+          field6="City" field7="State"
+          field8="Action" />
+        <tbody>
+          {array.map((item,index)=>{
+            return (
+              <tr  className={index%2? "grayback": "whiteback"}
+              key={item.id}>
+                
+                <td>{item.companyName}</td>
+                <td>{item.clientType}</td>
+                <td>{item.companyEmailAddress}</td>
+                <td>{item.companyPhoneNumber}</td>
+                <td>{item.officeAddress}</td>
+                
+                <td>{item.city}</td>
+                <td>{item.state}</td>
+                <td><MdEdit/>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+        
+      </table>
+        <div className="foot">
+                <select onChange={(e)=>setDataSize(e.target.value)}>
+                  <option value="10" default >10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+                {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
+        </div>  
+      </div>
+  )}else{
+    return <Loading/>
+        }
+}

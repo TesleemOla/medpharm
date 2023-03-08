@@ -5,9 +5,7 @@ const Tablehead = ({field1, field2, field3, field4, field5,field6, field7, field
   return (
     <thead>
           <tr>
-          <td>
-            <input type="checkbox"/>
-          </td>
+          
           <td>
             {field1}
           </td>

@@ -13,7 +13,7 @@ import Loading from "./Components/Loading"
 
 import {
   Manufacturers, Drugs, Inventory, Organisation, SubOrganisationDash,
-   AddInventory, 
+  AddInventory, ClientDash,
   CreateDrugDash, AddManufacturer, EditPharm, EditManufacturerDash,
   // Setting,
   DispatchedDash, CreateDispatchedDrug, CreateSupplierDash, AddDrugCategory,
@@ -64,6 +64,10 @@ function App() {
           <Route path="/dashboard/Organisation/suborg/:id" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><SubOrganisationDash /></Suspense></ProtectRoutes>} />
+          ClientDash
+          <Route path="/dashboard/clients/:id" element={
+            <ProtectRoutes>
+              <Suspense fallback={<Loading />}><ClientDash /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Settings" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><UserSettingsDash /></Suspense>

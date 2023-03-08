@@ -18,10 +18,20 @@
     }
     .grayback{
         background: #F7F7FA;
+        position:relative;
         
     }
     .whiteback{
         background: white;
+        position:relative;
+    }
+    .dialogbox{
+        width: max-content;
+        height: 10em;
+        background: #fff;
+        position: absolute;
+        right: 0.5em;
+       
     }
 }
     .foot{
