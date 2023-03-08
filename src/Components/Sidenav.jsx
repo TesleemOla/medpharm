@@ -28,9 +28,9 @@ const Sidenav=()=>{
             </li>
             {(user.permissions.find((item)=> item === "view:organisation")) &&           
             <li className="nav-item"
-            onClick={()=> navigate("/dashboard/Organisation")}>
+            onClick={()=> navigate("/dashboard/Clients")}>
               <FaBook />
-              Organisation
+              Clients
             </li>}
             <li className="nav-item"
             onClick={()=> navigate("/dashboard/manufacturers")}>

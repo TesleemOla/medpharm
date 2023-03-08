@@ -12,10 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from "./Components/Loading"
 
 import {
-  Manufacturers, Drugs, Inventory, Organisation, SubOrganisationDash,
-  AddInventory, ClientDash,
+  Manufacturers, Drugs, Inventory, Client, SubOrganisationDash,
+  AddInventory,
   CreateDrugDash, AddManufacturer, EditPharm, EditManufacturerDash,
-  // Setting,
+  UsersDash,
   DispatchedDash, CreateDispatchedDrug, CreateSupplierDash, AddDrugCategory,
   Suppliers, UserSettingsDash, EditSupplierDash, EditCategory, EditDispatchedDrug,
    DashDrugCategory, Main } from "./Dashwrap"
@@ -58,23 +58,21 @@ function App() {
           <Route path="/dashboard/drugcategory" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/Organisation" element={
+          <Route path="/dashboard/Clients" element={
             <ProtectRoutes>
-              <Suspense fallback={<Loading />}><Organisation /></Suspense></ProtectRoutes>} />
+              <Suspense fallback={<Loading />}><Client /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Organisation/suborg/:id" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><SubOrganisationDash /></Suspense></ProtectRoutes>} />
-          ClientDash
-          <Route path="/dashboard/clients/:id" element={
-            <ProtectRoutes>
-              <Suspense fallback={<Loading />}><ClientDash /></Suspense></ProtectRoutes>} />
+          
+          
           <Route path="/dashboard/Settings" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><UserSettingsDash /></Suspense>
             </ProtectRoutes>} />
-          {/* <Route path="/dashboard/settings" element={
+          <Route path="/dashboard/users/:id/:type" element={
             <ProtectRoutes>
-              <Suspense fallback={<Loading />}><Setting /></Suspense></ProtectRoutes>} /> */}
+              <Suspense fallback={<Loading />}><UsersDash /></Suspense></ProtectRoutes>} />
           <Route path="*" element={<Loading />} />
           <Route path="/onboarding" element={<ProtectRoutes>
             <Onboarding membership={membership} setMembership={setMembership} /></ProtectRoutes>} />

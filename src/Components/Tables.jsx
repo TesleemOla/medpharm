@@ -306,7 +306,7 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev, setDataSi
 // Organisation Table
 
 export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
-  const navigate = useNavigate()
+
   const [dialog, setDialog] = useState({})
   const user = useAuth()
   if(array){
@@ -334,7 +334,7 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
                 {
                   dialog[index] && <span className='dialogbox'>
                     <div><a href={`/dashboard/Organisation/suborg/${id}`} >SubOrganisations</a></div>
-                    <div><a href={`/dashboard/clients/${id}`}>Clients</a></div>
+                    <div><a href={`/dashboard/users/${id}/ORGANISATION`}>Users</a></div>
                   </span>
                 }
                 </td>
@@ -364,6 +364,7 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
 
  export const SubOrganisationTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
   const navigate = useNavigate()
+  const [dialog, setDialog] = useState({})
   if(array){
   return(
     <div>
@@ -386,7 +387,13 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
                 
                 <td>{item.city}</td>
                 <td>{item.state}</td>
-                <td><MdEdit/>
+                <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: true})}/>
+                {
+                  dialog[index] && <span className='dialogbox'>
+                    <div><a href={`/dashboard/Organisation/suborg/${item.id}`} >Clients</a></div>
+                    <div><a href={`/dashboard/users/${item.id}/ORGANISATION`}>Users</a></div>
+                  </span>
+                }
                 </td>
               </tr>
             )
@@ -436,7 +443,58 @@ export const ClientsTable=({ array, pageNo, handleNext, handlePrev, setDataSize}
                 
                 <td>{item.city}</td>
                 <td>{item.state}</td>
-                <td><MdEdit/>
+                <td><BiDotsVerticalRounded />
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+        
+      </table>
+        <div className="foot">
+                <select onChange={(e)=>setDataSize(e.target.value)}>
+                  <option value="10" default >10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+                {pageNo===1? 1:10*(pageNo-1)}-{array.length<10? array.length: (10*pageNo)} of {array.length}
+                <IoIosArrowBack onClick={()=>{
+                   if(pageNo>1) return handlePrev}}/>
+                <IoIosArrowForward  onClick={()=>{
+                  if(array.length > (10*pageNo)) return handleNext}}/>
+        </div>  
+      </div>
+  )}else{
+    return <Loading/>
+        }
+}
+
+export const UsersTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
+  const navigate = useNavigate()
+  if(array){
+  return(
+    <div>
+    <table className="dash-table">
+        <Tablehead field1="Name" field2="Email" field3="Mobile"
+         field4="Org Name" field5="Role"
+          field6="Status"
+          field7="Action" />
+        <tbody>
+          {array.map((item,index)=>{
+            return (
+              <tr  className={index%2? "grayback": "whiteback"}
+              key={item.id}>
+                
+                <td>{item.fullName}</td>
+                <td>{item.emailAddress}</td>
+                <td>{item.phoneNumber}</td>
+                <td>{item.organisationName}</td>
+                <td>{item.role}</td>
+                
+                
+                <td>{item.status}</td>
+                
+                <td><BiDotsVerticalRounded onClick={()=> navigate(`/`)}/>
                 </td>
               </tr>
             )
