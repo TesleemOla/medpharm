@@ -60,7 +60,7 @@ const navigate = useNavigate()
                 <GrClose onClick={()=> navigate("/dashboard/manufacturers")}/>          
             </div>
             
-                <div className="input-grid">
+                <div className="input-flex">
                    
                         
                         <div>

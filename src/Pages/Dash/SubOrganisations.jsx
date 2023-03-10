@@ -10,12 +10,12 @@ import { ToastContainer, toast} from "react-toastify"
 import Carddets from '../../Components/Carddets'
 import hocard from '../../Components/hocard'
 import { useAuth } from '../../Components/ProtectDashboard/AuthDash'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SubOrganisations = () => {
     const user = useAuth()
     const navigate = useNavigate()
-    const {id} = useParams()
+
     const [subOrganisation, setSubOrganisation] = useState([])
     const [orgUsers, setOrgUsers] = useState([])
     const Card= hocard(Carddets)
@@ -30,7 +30,7 @@ const SubOrganisations = () => {
         axios(config)
         .then(res=> setSubOrganisation(res.data.data))
         .catch(err=> console.error(err))
-    },[id, user])
+    },[ user])
 
     useEffect(()=>{
 
@@ -39,9 +39,7 @@ const SubOrganisations = () => {
     <div  className="center-dash">
       <ToastContainer/>
       <div className="card-flex">
-        <Card tile={tile1} item={item2} heading="All organisation" className='card-sm'/>
-        <Card tile={tile2} item={item2} heading="Administrators" className='card-sm'/>
-        <Card tile={tile1} item={item2} heading="Other roles" className='card-sm'/>
+     
       </div>
       <Tablenav dashfield="Organisation"  />
       <SubOrganisationTable array={subOrganisation} />

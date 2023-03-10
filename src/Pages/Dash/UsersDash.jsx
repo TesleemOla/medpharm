@@ -8,6 +8,7 @@ import { baseurl } from '../../Components/utils/baseurl'
 
 import { UsersTable } from '../../Components/Tables'
 import Tablenav from '../../Components/Tablenav'
+import "../../Components/styles/Dashboard.scss"
 
 
 const UsersDash = () => {

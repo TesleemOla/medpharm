@@ -4,7 +4,7 @@ import { ToastContainer, toast} from "react-toastify"
 import Carddets from '../../Components/Carddets'
 import hocard from '../../Components/hocard'
 import { useAuth } from '../../Components/ProtectDashboard/AuthDash'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { baseurl } from '../../Components/utils/baseurl'
 import tile1 from "../../Components/images/tile-icon1.png"
 import tile2 from "../../Components/images/tile-icon2.png"
@@ -15,6 +15,7 @@ import Tablenav from '../../Components/Tablenav'
 
 const ClientDash = () => {
   const user = useAuth()
+  const {id} = useParams()
   const navigate = useNavigate()
   const [pageNo, setPageNo] = useState(1)
   const [dataSize, setDataSize] = useState()
@@ -25,16 +26,16 @@ const ClientDash = () => {
     if(user.organisationId){
     const config ={
       method: "GET",
-      url: `${baseurl}/api/organisations/${user.organisationId}/clients`,
+      url: `${baseurl}/api/organisations/${id}/clients`,
       headers: {
         Authorization: `Bearer ${user.token}`
       }
     }
     axios(config)
-    .then(res=> setOrganisationData(res.data.data))
+    .then(res=> console.log(res.data.data))
     .catch(err=> toast(err.message))
   }
-  },[user])
+  },[user, id])
   useEffect(()=>{
     const config={
       url: `${baseurl}/api/reports/organisation/summary`,
@@ -59,12 +60,12 @@ const ClientDash = () => {
   return (
     <div  className="center-dash">
       <ToastContainer/>
-      <div className="card-flex">
+      {/* <div className="card-flex">
         <Card tile={tile1} item={item2} heading="All Clients" className='card-sm' value={organisationsummary.totalOrganisations}/>
         <Card tile={tile2} item={item2} heading="Hospitals" className='card-sm' value={organisationsummary.totalHospitals}/>
         <Card tile={tile2} item={item2} heading="Pharmacies" className='card-sm' value={organisationsummary.totalPharmacies}/>
         <Card tile={tile1} item={item2} heading="Other Clients" className='card-sm' value={organisationsummary.totalOtherClients}/>
-      </div>
+      </div> */}
       <Tablenav dashfield="Clients" onClick={()=>(navigate('/onboarding'))} array={organisationData} dis={!(user.permissions.find(item=> item === "create:organisation"))}/>
       <OrganisationTable array={organisationData} pageNo={pageNo} handleNext={handleNext} 
       handlePrev={handlePrevious} setDataSize={setDataSize}/>

@@ -8,7 +8,6 @@ import { BiMessageAltDetail, BiCaretDown, BiCaretUp, BiCaretRight } from "react-
 import { FaRegNewspaper, FaBook, FaBuilding } from "react-icons/fa";
 import { GiMedicines } from "react-icons/gi"
 import { GoSettings } from "react-icons/go"
-import { baseurl } from "./utils/baseurl";
 import "./styles/Dashboard/sidenav.scss"
 
 const Sidenav=()=>{
@@ -28,9 +27,9 @@ const Sidenav=()=>{
             </li>
             {(user.permissions.find((item)=> item === "view:organisation")) &&           
             <li className="nav-item"
-            onClick={()=> navigate("/dashboard/Clients")}>
+            onClick={()=> navigate("/dashboard/Organisation/suborg")}>
               <FaBook />
-              Clients
+              Organisations
             </li>}
             <li className="nav-item"
             onClick={()=> navigate("/dashboard/manufacturers")}>
@@ -53,7 +52,7 @@ const Sidenav=()=>{
             
             <li className="nav-item"
             onClick={()=>navigate("/dashboard/Dispatcheddrugs") }>
-              <BiMessageAltDetail />
+              <GiMedicines />
               Dispatched Drugs
             </li>
           {(user.role ==="super_admin" || user.permissions.find((item)=> item === "view:inventory")) && 

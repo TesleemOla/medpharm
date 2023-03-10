@@ -390,7 +390,7 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
                 <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: true})}/>
                 {
                   dialog[index] && <span className='dialogbox'>
-                    <div><a href={`/dashboard/Organisation/suborg/${item.id}`} >Clients</a></div>
+                    <div><a href={`/dashboard/Clients/${item.id}`} >Clients</a></div>
                     <div><a href={`/dashboard/users/${item.id}/ORGANISATION`}>Users</a></div>
                   </span>
                 }
@@ -420,6 +420,7 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
 }
 
 export const ClientsTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
+  const [dialog, setDialog] = useState({})
   const navigate = useNavigate()
   if(array){
   return(
@@ -443,7 +444,13 @@ export const ClientsTable=({ array, pageNo, handleNext, handlePrev, setDataSize}
                 
                 <td>{item.city}</td>
                 <td>{item.state}</td>
-                <td><BiDotsVerticalRounded />
+                <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: true})}/>
+                {
+                  dialog[index] && <span className='dialogbox'>
+                    <div><a href={`/dashboard/Organisation/suborg/${item.id}`} >Clients</a></div>
+                    <div><a href={`/dashboard/users/${item.id}/ORGANISATION`}>Users</a></div>
+                  </span>
+                }
                 </td>
               </tr>
             )
@@ -470,6 +477,7 @@ export const ClientsTable=({ array, pageNo, handleNext, handlePrev, setDataSize}
 }
 
 export const UsersTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=>{
+  const [dialog, setDialog] = useState({})
   const navigate = useNavigate()
   if(array){
   return(
@@ -494,7 +502,13 @@ export const UsersTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=
                 
                 <td>{item.status}</td>
                 
-                <td><BiDotsVerticalRounded onClick={()=> navigate(`/`)}/>
+                <td>
+                  <BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: true})}/>
+                {
+                  dialog[index] && <span className='dialogbox'>
+                    <div><a href={`/dashboard/Organisation/suborg/${item.id}`} >Get All Clients</a></div>
+                    </span>
+                }
                 </td>
               </tr>
             )

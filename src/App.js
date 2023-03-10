@@ -58,10 +58,10 @@ function App() {
           <Route path="/dashboard/drugcategory" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/Clients" element={
+          <Route path="/dashboard/Clients/:id" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><Client /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/Organisation/suborg/:id" element={
+          <Route path="/dashboard/Organisation/suborg" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><SubOrganisationDash /></Suspense></ProtectRoutes>} />
           
