@@ -13,7 +13,9 @@ import { useAuth } from './ProtectDashboard/AuthDash'
 // Inventory Table 
 export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, 
   pageNo, setDataSize, handleNext, handlePrev}) => {
-  const navigate = useNavigate()
+    const [dialog, setDialog] = useState({})
+    const navigate = useNavigate()
+
   const user = useAuth()
   if(array.length > 0) {
   return (
@@ -35,8 +37,16 @@ export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, 
                 <td>{item.expired}</td>
                 <td>{item.expiryDate.substring(0,10)}</td>
                 <td>{item.status}</td>
-                <td><MdEdit  onClick={()=> navigate(`/dashboard/editInventory/${item.id}`)}
-                disabled={!(user.permissions.find((item)=> item === "update:inventory")) }/>
+                <td><BiDotsVerticalRounded  onClick={()=> setDialog({...dialog, [index]: !dialog[index]})} />
+                {
+                  dialog[index] && 
+                  <span className='dialogbox'>
+                    <div><a href={`/dashboard/editInventory/${item.id}`} >Edit Inventory</a></div>
+                    <div><a href={`/dashboard/approveInventory/${item.id}`}>Approve</a></div>
+                  </span>
+                }
+                {/* // onClick={()=> navigate(`/dashboard/editInventory/${item.id}`)}
+                // disabled={!(user.permissions.find((item)=> item === "update:inventory")) }/> */}
                 </td>
               </tr>
             )
@@ -260,7 +270,7 @@ export const DispatchedTable=({ array, pageNo, handleNext, handlePrev, setDataSi
   return(
     <div>
     <table className="dash-table">
-        <Tablehead field1="DrugName" field2="ClientName" field3="Expiry"
+        <Tablehead field1="DrugName" field2="Customer Name" field3="Expiry"
          field4="Pack size" field5="Package type"
           field6="Status" field7="Quantity dispached"
           field8="Action" />
@@ -330,7 +340,7 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
                 <td>{clientCode}</td>
                 
                 <td> 
-                <BiDotsVerticalRounded  onClick={()=> setDialog({...dialog, [index]: true})}/>
+                <BiDotsVerticalRounded  onClick={()=> setDialog({...dialog, [index]: !dialog[index]})}/>
                 {
                   dialog[index] && <span className='dialogbox'>
                     <div><a href={`/dashboard/Organisation/suborg/${id}`} >SubOrganisations</a></div>
@@ -387,7 +397,7 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
                 
                 <td>{item.city}</td>
                 <td>{item.state}</td>
-                <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: true})}/>
+                <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: !dialog[index]})}/>
                 {
                   dialog[index] && <span className='dialogbox'>
                     <div><a href={`/dashboard/Clients/${item.id}`} >Clients</a></div>
@@ -444,7 +454,7 @@ export const ClientsTable=({ array, pageNo, handleNext, handlePrev, setDataSize}
                 
                 <td>{item.city}</td>
                 <td>{item.state}</td>
-                <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: true})}/>
+                <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: !dialog[index]})}/>
                 {
                   dialog[index] && <span className='dialogbox'>
                     <div><a href={`/dashboard/Organisation/suborg/${item.id}`} >Clients</a></div>
@@ -503,7 +513,7 @@ export const UsersTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=
                 <td>{item.status}</td>
                 
                 <td>
-                  <BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: true})}/>
+                  <BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: !dialog[index]})}/>
                 {
                   dialog[index] && <span className='dialogbox'>
                     <div><a href={`/dashboard/Organisation/suborg/${item.id}`} >Get All Clients</a></div>

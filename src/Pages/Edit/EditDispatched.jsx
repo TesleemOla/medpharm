@@ -45,10 +45,10 @@ const navigate = useNavigate()
         <form className="manuf-form">
              <div  className="light-back">
                 <p>Edit Dispatched Drug</p>
-                <GrClose onClick={()=> navigate("/dashboard/dispatcheddrugs")}/>          
+                <GrClose onClick={()=> navigate(-1)}/>          
             </div>
             
-                <div className="input-grid">
+                <div className="input-flex">
                    
                         
                         <div>

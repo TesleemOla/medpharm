@@ -12,22 +12,45 @@ const ApproveInventory = () => {
   const navigate = useNavigate();
   const aLevel = ["WAITING", "APPROVED", 'REJECTED']
   const {id} = useParams()
-  const [inventoryItem, setInventoryItem] = useState( {
-  approvalLevel: "WAITING",
-  remarks: "string",
+  const [inventoryItem, setInventoryItem] = useState({})
+  const [updateItem, setUpdateItem] = useState( {
+  approvalLevel: '',
+  remarks: "",
   quantityApproved: 1
 })
+
+useEffect(()=>{
+  const config={
+    method: 'GET',
+    url: `${baseurl}/api/inventories/${id}`,
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  }
+  axios(config)
+  .then(res=> setInventoryItem(res.data.data))
+  .catch(err=> console.error(err))
+},[id, user])
   function handleApprove(e){
     e.preventDefault()
+    if(!updateItem.approvalLevel || !updateItem.remarks || !updateItem.quantityApproved){
+      toast(`All fields are required`)
+      return
+    }
     const config ={
       method: 'PUT',
       url: `${baseurl}/api/inventories/${id}/approval`,
       headers:{
         Authorization: `Bearer ${user.token}`
-      }
+      },
+      data: updateItem
     }
     axios(config)
-    .then(res=> console.log(res))
+    .then(res=> {
+      toast('Updated Successfully')
+      navigate(-1)
+    })
+    .catch(err=> toast(err.message))
   }
   return (
     <div className="center-dash">
@@ -35,15 +58,17 @@ const ApproveInventory = () => {
        <form className="manuf-form">
              <div  className="light-back">
                 <p>Edit Dispatched Drug</p>
-                <GrClose onClick={()=> navigate("/dashboard/dispatcheddrugs")}/>          
+                <GrClose onClick={()=> navigate(-1)}/>          
             </div>
             
-                <div className="input-grid">
+                <div className="input-flex">
                         
                         <div>
                             <label>Approval Level</label>
-                            <select>
-                              {aLevel.map((item,i)=>{
+                            
+                            <select onChange={(e)=> setUpdateItem({...updateItem, approvalLevel: e.target.value})}>
+                              <option value={inventoryItem.approval}>{inventoryItem.approval}</option>
+                              {aLevel.filter((item)=> item !== inventoryItem.approval ).map((item,i)=>{
                                 return <option value={item} key={i}>{item}</option>
                               })}
                             </select>
@@ -51,13 +76,13 @@ const ApproveInventory = () => {
                         <div>
                             <label>Remarks</label>
                             <input type="text" placeholder={inventoryItem.quantityReturned}
-                              onChange={(e)=> setInventoryItem({...inventoryItem, remarks: e.target.value })}/>
+                              onChange={(e)=> setUpdateItem({...updateItem, remarks: e.target.value })}/>
                         </div>              
                         
                         <div>
                             <label>Quantity Approved</label>
                             <input type="text" placeholder={inventoryItem.quantityReturned}
-                              onChange={(e)=> setInventoryItem({...inventoryItem, quantityApproved: e.target.value })}/>
+                              onChange={(e)=> setUpdateItem({...updateItem, quantityApproved: e.target.value })}/>
                         </div>
                  
                 </div>

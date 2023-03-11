@@ -66,7 +66,7 @@ const ClientDash = () => {
         <Card tile={tile2} item={item2} heading="Pharmacies" className='card-sm' value={organisationsummary.totalPharmacies}/>
         <Card tile={tile1} item={item2} heading="Other Clients" className='card-sm' value={organisationsummary.totalOtherClients}/>
       </div> */}
-      <Tablenav dashfield="Clients" onClick={()=>(navigate('/onboarding'))} array={organisationData} dis={!(user.permissions.find(item=> item === "create:organisation"))}/>
+      <Tablenav dashfield="Customer" onClick={()=>(navigate('/onboarding'))} dis={!(user.permissions.find(item=> item === "create:organisation"))}/>
       <OrganisationTable array={organisationData} pageNo={pageNo} handleNext={handleNext} 
       handlePrev={handlePrevious} setDataSize={setDataSize}/>
     </div>

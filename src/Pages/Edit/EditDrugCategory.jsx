@@ -56,7 +56,7 @@ const user = useAuth()
         <form className="manuf-form">
              <div  className="light-back">
                 <p>Edit newCategory</p>
-                <GrClose onClick={()=> navigate("/")}/>          
+                <GrClose onClick={()=> navigate(-1)}/>          
             </div>
             
                 <div className="input-grid">

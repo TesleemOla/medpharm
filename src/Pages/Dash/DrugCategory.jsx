@@ -28,7 +28,7 @@ const DrugCategory = () => {
     },[user, pageNo])
   return (
     <div className="center-dash">
-        <h1 className="dc-a">Drug Type</h1>
+        
         <Tablenav dashfield="Drug Category" array={drugCategory}
          onClick={()=> navigate("/dashboard/createDrugCategory")}/>
         <DrugCategoryTable array={drugCategory} pageNo={pageNo} 

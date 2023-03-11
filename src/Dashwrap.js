@@ -1,5 +1,6 @@
 import {lazy} from "react"
 import Dashboard from "./Components/Dashboard"
+
 const Dispatched = lazy(() => import("./Components/DispatchedDash"));
 const MainDash = lazy(()=> import('./Components/MainDash'));
 const ManufacturersDash = lazy(() => import("./Components/Manufacturers"));
@@ -13,6 +14,7 @@ const ClientDash = lazy(()=> import("./Pages/Dash/ClientDash"))
 const SubOrganisation = lazy(() => import("./Pages/Dash/SubOrganisations"))
 const Users = lazy(()=>import("./Pages/Dash/UsersDash"))
 const CreateInventory = lazy(() => import("./Pages/Create/CreateInventory"))
+const ApproveInventory = lazy(()=> import("./Pages/Edit/ApproveInventory"))
 const CreateDrug = lazy(() => import("./Pages/Create/CreateDrug"))
 const CreateDispatched = lazy(()=> import("./Pages/Create/CreateDispatched"))
 const CreateDrugCategory = lazy(() => import("./Pages/Create/CreateDrugCategory"))
@@ -36,6 +38,7 @@ export const UsersDash = Dashboard(Users)
 export const SubOrganisationDash = Dashboard(SubOrganisation)
 export const Main = Dashboard(MainDash)
 export const AddInventory = Dashboard(CreateInventory)
+export const ApproveInv = Dashboard(ApproveInventory)
 export const CreateDispatchedDrug = Dashboard(CreateDispatched)
 export const EditCategory = Dashboard(EditDrugCategory)
 export const EditDispatchedDrug = Dashboard(EditDispatched)

@@ -17,9 +17,7 @@
         border-radius: 10px 10px 0 0;
         font-size: 1.5em;
     }
-    .input-flex{
-        display: flex;
-    }
+
     .input-grid{
         display: grid;
         grid-template-columns: repeat(2,1fr);
@@ -70,6 +68,15 @@
             input{
                
                 height: 3em;
+                font-size: 1.4em;
+                padding: 0.5em 1em;
+                margin: 1em;
+                border: 1px solid black;
+                outline: 1px solid black;
+                border-radius: 5px;
+            }
+            select{
+                 height: 3em;
                 font-size: 1.4em;
                 padding: 0.5em 1em;
                 margin: 1em;
