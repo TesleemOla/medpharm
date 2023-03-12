@@ -66,7 +66,7 @@ const EditSupplier = () => {
                         
                         <div>
                             <label>Name</label>
-                            <input type="text" placeholder={supplier.name}
+                            <input type="text" defaultValue={supplier.name}
                              onChange={(e)=> setSupplier({...supplier, name: e.target.value })}/>
                         </div>
                
@@ -74,7 +74,7 @@ const EditSupplier = () => {
                         
                         <div>
                             <label>Address</label>
-                            <input type="text" placeholder={supplier.address}
+                            <input type="text" defaultValue={supplier.address}
                               onChange={(e)=> setSupplier({...supplier, address: e.target.value })}/>
                         </div>
                  
@@ -82,7 +82,7 @@ const EditSupplier = () => {
                         
                         <div>
                             <label>Phone Number</label>
-                            <input type="text" placeholder={supplier.phoneNumber}
+                            <input type="text" defaultValue={supplier.phoneNumber}
                               onChange={(e)=> setSupplier({...supplier, phoneNumber: e.target.value })}/>
                         </div>
                

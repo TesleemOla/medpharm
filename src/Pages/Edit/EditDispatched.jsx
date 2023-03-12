@@ -12,7 +12,8 @@ const EditDispatched = () => {
     const {id} = useParams()
     const [dispatchedItem, setDispatchedItem] = useState({
   remarks: "",
-  quantityReturned: 1
+  quantityReturned: 1,
+  clientId: user.clientId
 })
 
 
@@ -26,15 +27,13 @@ function handleEdit(e){
         },
         data: dispatchedItem
     }
-    if(!dispatchedItem.clientId){
-        toast("You are not authorized to edit a dispatchedItem")
-    }
-    else if(!dispatchedItem.remarks){
+  if(!dispatchedItem.remarks){
             toast("Please fill all fields")
         }else{
             
     axios(config)
-    .then(res=> toast("Dispatched drug Edited"))
+    .then(res=>{ toast("Dispatched drug Edited")
+                    navigate(-1)})
     .catch(err=> toast(err.message))
         }
 }
@@ -61,7 +60,7 @@ const navigate = useNavigate()
                         
                         <div>
                             <label>Quantity Returned</label>
-                            <input type="text" placeholder={dispatchedItem.quantityReturned}
+                            <input type="text" defaultValue={dispatchedItem.quantityReturned}
                               onChange={(e)=> setDispatchedItem({...dispatchedItem, quantityReturned: e.target.value })}/>
                         </div>
                  

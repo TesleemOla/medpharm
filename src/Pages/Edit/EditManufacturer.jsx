@@ -65,7 +65,7 @@ const navigate = useNavigate()
                         
                         <div>
                             <label>Name</label>
-                            <input type="text" placeholder={dataItem.name}
+                            <input type="text" defaultValue={dataItem.name}
                              onChange={(e)=> setManufacturer({...manufacturer, name: e.target.value })}/>
                         </div>
                
@@ -73,7 +73,7 @@ const navigate = useNavigate()
                         
                         <div>
                             <label>Address</label>
-                            <input type="text" placeholder={dataItem.address}
+                            <input type="text" defaultValue={dataItem.address}
                               onChange={(e)=> setManufacturer({...manufacturer, address: e.target.value })}/>
                         </div>
                  
@@ -81,7 +81,7 @@ const navigate = useNavigate()
                         
                         <div>
                             <label>Phone Number</label>
-                            <input type="text" placeholder={dataItem.phoneNumber}
+                            <input type="text" defaultValue={dataItem.phoneNumber}
                               onChange={(e)=> setManufacturer({...manufacturer, phoneNumber: e.target.value })}/>
                         </div>
              

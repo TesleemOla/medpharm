@@ -36,6 +36,12 @@ const Sidenav=()=>{
               <FaBuilding/>
               Manufacturers
             </li>
+            {(user.permissions.find((item)=> item === "view:organisation")) &&           
+            <li className="nav-item"
+            onClick={()=> navigate("/dashboard/Clients")}>
+              <FaBook />
+              Customers
+            </li>}
             <li className="nav-item" onClick={()=> navigate("/dashboard/Suppliers")}>
               <IoPeopleCircle />Suppliers</li>
                 

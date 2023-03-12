@@ -47,7 +47,7 @@ const MainDash = () => {
         value={drugs} />
         <Card tile={tile2} item={item3} heading="Total Inventory" className="card-bg"
         value={inventory} />
-        <Card tile={tile3} item={item1} heading="Drug Category" value={drugCategories} 
+        <Card tile={tile3} item={item1} heading="Drug Categories" value={drugCategories} 
         className="card-bg"/>
       </div>
       

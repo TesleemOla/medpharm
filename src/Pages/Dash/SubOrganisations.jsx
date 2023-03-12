@@ -41,7 +41,8 @@ const SubOrganisations = () => {
       <div className="card-flex">
      
       </div>
-      <Tablenav dashfield="Organisation"  />
+      <Tablenav dashfield="Organisation"  dis={(!(user.permissions.find(item=> item === "create:organisation")))}
+      onClick={()=> navigate("/onboarding/customer")}/>
       <SubOrganisationTable array={subOrganisation} />
       </div>
   )

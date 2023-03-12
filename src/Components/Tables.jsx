@@ -400,7 +400,6 @@ export const OrganisationTable=({ array, pageNo, handleNext, handlePrev, setData
                 <td><BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: !dialog[index]})}/>
                 {
                   dialog[index] && <span className='dialogbox'>
-                    <div><a href={`/dashboard/Clients/${item.id}`} >Clients</a></div>
                     <div><a href={`/dashboard/users/${item.id}/ORGANISATION`}>Users</a></div>
                   </span>
                 }

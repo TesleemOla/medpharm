@@ -97,7 +97,7 @@ function handleEdit(e){
                     <div className="input-div">
                         <label>Quantity Stock</label>
                         <div>
-                            <input type="number" placeholder={inventoryItem.quantityStock}
+                            <input type="number" defaultValue={inventoryItem.quantityStock}
                             onChange={(e)=> setUpdateItem({...updateItem, quantityStock: e.target.value})}
                             readOnly={!edit}/>
                         </div>
@@ -138,7 +138,7 @@ function handleEdit(e){
                     <div className="input-div">
                     <label>Batch Number</label>
                     <div>
-                        <input type="text" placeholder={inventoryItem.batchNumber}
+                        <input type="text" defaultValue={inventoryItem.batchNumber}
                         onChange={(e)=> setUpdateItem({...updateItem, batchNumber: e.target.value})}  
                         readOnly={!edit}/>
                     </div>
@@ -146,7 +146,7 @@ function handleEdit(e){
                     <div className="input-div">
                         <label>Drug I.D</label>
                         <div>
-                            <input type="text" placeholder={inventoryItem.drugId}
+                            <input type="text" defaultValue={inventoryItem.drugId}
                             onChange={(e)=> setUpdateItem({...updateItem, drugId: e.target.value})}
                             readOnly={!edit}/>
                             
@@ -155,7 +155,7 @@ function handleEdit(e){
                     <div className="input-div">
                         <label>Expiry Date</label>
                         <div>
-                            <input type="date" placeholder={inventoryItem?.expiryDate}
+                            <input type="date" defaultValue={inventoryItem?.expiryDate}
                             onChange={(e)=> setUpdateItem({...updateItem, expiryDate: toString(e.target.value)})}
                             readOnly={!edit}/>
                         </div>
@@ -163,7 +163,7 @@ function handleEdit(e){
                     <div className="input-div">
                         <label>Date Manufactured</label>
                         <div>
-                            <input type="date" placeholder={inventoryItem?.manufacturedDate} 
+                            <input type="date" defaultValue={inventoryItem?.manufacturedDate} 
                             onChange={(e)=> setUpdateItem({...updateItem, manufacturedDate: toString(e.target.value)})}
                             readOnly={!edit}/>
                         </div>

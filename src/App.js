@@ -6,7 +6,7 @@ import {
 import Login from "./Components/Login"
 import ProtectRoutes from "./Components/ProtectRoutes"
 
-import Onboarding from "./Components/Onboarding";
+import CreateCustomer from "./Pages/Create/CreateCustomer";
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "./Components/Loading"
@@ -58,7 +58,7 @@ function App() {
           <Route path="/dashboard/drugcategory" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DashDrugCategory /></Suspense></ProtectRoutes>} />
-          <Route path="/dashboard/Clients/:id" element={
+          <Route path="/dashboard/Clients" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><Client /></Suspense></ProtectRoutes>} />
           <Route path="/dashboard/Organisation/suborg" element={
@@ -74,8 +74,8 @@ function App() {
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><UsersDash /></Suspense></ProtectRoutes>} />
           <Route path="*" element={<Loading />} />
-          <Route path="/onboarding" element={<ProtectRoutes>
-            <Onboarding membership={membership} setMembership={setMembership} /></ProtectRoutes>} />
+          <Route path="/onboarding/customer" element={<ProtectRoutes>
+            <CreateCustomer /></ProtectRoutes>} />
           <Route path="/dashboard/dispatcheddrugs" element={
             <ProtectRoutes>
               <Suspense fallback={<Loading />}><DispatchedDash /></Suspense></ProtectRoutes>} />

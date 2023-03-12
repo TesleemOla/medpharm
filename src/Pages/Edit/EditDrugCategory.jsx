@@ -45,7 +45,9 @@ const user = useAuth()
         }else{
             
     axios(config)
-    .then(res=> console.log(res))
+    .then(res=> {
+        console.log(res)
+        navigate(-1)})
     .catch(err=> console.log(err))
         }
 }
@@ -64,7 +66,7 @@ const user = useAuth()
                         
                         <div>
                             <label>Name</label>
-                            <input type="text" placeholder={dataItem.name}
+                            <input type="text" defaultValue={dataItem.name}
                              onChange={(e)=> setNewCategory({...newCategory, name: e.target.value })}/>
                         </div>
                
@@ -72,7 +74,7 @@ const user = useAuth()
                         
                         <div>
                             <label>Description</label>
-                            <input type="text" placeholder={dataItem.description}
+                            <input type="text" defaultValue={dataItem.description}
                               onChange={(e)=> setNewCategory({...newCategory, description: e.target.value })}/>
                         </div>
                 

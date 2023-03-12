@@ -9,7 +9,7 @@ import { baseurl } from '../../Components/utils/baseurl'
 import tile1 from "../../Components/images/tile-icon1.png"
 import tile2 from "../../Components/images/tile-icon2.png"
 import item2 from "../../Components/images/item(2).png"
-import { OrganisationTable } from '../../Components/Tables'
+import { ClientsTable } from '../../Components/Tables'
 import Tablenav from '../../Components/Tablenav'
 
 
@@ -19,20 +19,20 @@ const ClientDash = () => {
   const navigate = useNavigate()
   const [pageNo, setPageNo] = useState(1)
   const [dataSize, setDataSize] = useState()
-  const [organisationData, setOrganisationData] = useState([])
+  const [clients, setClients] = useState([])
   const [organisationsummary, setOrganisationsummary] = useState({})
 
   useEffect(()=>{
     if(user.organisationId){
     const config ={
       method: "GET",
-      url: `${baseurl}/api/organisations/${id}/clients`,
+      url: `${baseurl}/api/organisations/${user.organisationId}/clients`,
       headers: {
         Authorization: `Bearer ${user.token}`
       }
     }
     axios(config)
-    .then(res=> console.log(res.data.data))
+    .then(res=> setClients(res.data.data))
     .catch(err=> toast(err.message))
   }
   },[user, id])
@@ -66,8 +66,8 @@ const ClientDash = () => {
         <Card tile={tile2} item={item2} heading="Pharmacies" className='card-sm' value={organisationsummary.totalPharmacies}/>
         <Card tile={tile1} item={item2} heading="Other Clients" className='card-sm' value={organisationsummary.totalOtherClients}/>
       </div> */}
-      <Tablenav dashfield="Customer" onClick={()=>(navigate('/onboarding'))} dis={!(user.permissions.find(item=> item === "create:organisation"))}/>
-      <OrganisationTable array={organisationData} pageNo={pageNo} handleNext={handleNext} 
+      <Tablenav dashfield="Customer" onClick={()=>(navigate('/onboarding/customer'))} dis={!(user.permissions.find(item=> item === "create:organisation"))}/>
+      <ClientsTable array={clients} pageNo={pageNo} handleNext={handleNext} 
       handlePrev={handlePrevious} setDataSize={setDataSize}/>
     </div>
   )
