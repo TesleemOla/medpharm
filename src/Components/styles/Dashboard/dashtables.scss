@@ -2,7 +2,7 @@
 .dash-table {
     border: 0.5px solid linear-gradient(0deg, #F7F7FA, #F7F7FA);
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
     position: relative;
     left: 8em;
@@ -53,4 +53,22 @@
             text-align: left;
             border: none;
         }
+    }
+    .inv-table{
+        border: 0.5px solid linear-gradient(0deg, #F7F7FA, #F7F7FA);
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 400;
+        position: relative;
+        left: 8em;
+        width: 35em;
+        td{
+        padding: 0.8em;
+        text-align: center;
+        height: 3.5em;
+        }
+        tr{
+            border: 1px solid black;
+        }
+
     }

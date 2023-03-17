@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useAuth } from "./ProtectDashboard/AuthDash"
-import { AiOutlineMail } from "react-icons/ai"
 import { MdEdit } from "react-icons/md"
 import { TbArrowNarrowLeft } from "react-icons/tb"
-import { useParams, useNavigate } from "react-router-dom"
-import { baseurl } from './utils/baseurl'
+import { useNavigate } from "react-router-dom"
+
 import "./styles/Dashboard/Pharmacy/editpharm.scss"
-import axios from 'axios'
+
 
 const UserSettings = () => {
     const user = useAuth()

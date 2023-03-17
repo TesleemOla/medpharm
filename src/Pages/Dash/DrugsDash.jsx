@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
-import hocard from "./hocard"
-import Carddets from './Carddets'
-import tile1 from "./images/tile-icon1.png"
-import tile2 from "./images/tile-icon2.png"
-import capsule from "./images/capsule-dark.png"
+import hocard from "../../Components/hocard"
+import Carddets from '../../Components/Carddets'
+import tile1 from "../../Components/images/tile-icon1.png"
+import tile2 from "../../Components/images/tile-icon2.png"
+import capsule from "../../Components/images/capsule-dark.png"
 import { useParams, useNavigate} from "react-router-dom"
-import { useAuth } from "./ProtectDashboard/AuthDash"
-import {DrugsTable} from "./Tables"
-import { baseurl } from './utils/baseurl'
-import Tablenav from './Tablenav'
+import { useAuth } from "../../Components/ProtectDashboard/AuthDash"
+import {DrugsTable} from "../../Components/Tables"
+import { baseurl } from '../../Components/utils/baseurl'
+import Tablenav from '../../Components/Tablenav'
 
 const DrugsDash = () => {
   const navigate = useNavigate()

@@ -10,6 +10,42 @@ import Tablehead from './Tablehead'
 import { useAuth } from './ProtectDashboard/AuthDash'
 
 
+
+// Recent inventory Table
+export const RecentInventoryTable = ({array}) => {
+   
+  const user = useAuth()
+  if(array.length > 0) {
+  return (
+    <div className="table-div">
+      
+    <table className="inv-table">
+      
+        <Tablehead field1={"Drug Name"} field2={'Batch Number'} field3={'Expired'}
+        field4={'Package'}  />
+        <tbody>
+          {array.map((item,index)=>{
+            return (
+              <tr  className={index%2? "grayback": "whiteback"}
+              key={index}>
+                
+                <td>{item.drugName}</td>
+                <td>{item.batchNumber}</td>
+                 <td>{item.expired? 'expired': "Not expired"}</td>
+                <td>{item.packageType}</td>
+               
+              </tr>
+            )
+          })}
+        </tbody>
+        
+      </table>
+        
+      </div>
+  )}else{
+    return <Loading/>
+  }
+}
 // Inventory Table 
 export const InventoryTable = ({ field1, field2, field3, field4, field5,field6, field7, field8,array, 
   pageNo, setDataSize, handleNext, handlePrev}) => {
@@ -515,7 +551,7 @@ export const UsersTable=({ array, pageNo, handleNext, handlePrev, setDataSize})=
                   <BiDotsVerticalRounded onClick={()=> setDialog({...dialog, [index]: !dialog[index]})}/>
                 {
                   dialog[index] && <span className='dialogbox'>
-                    <div><a href={`/dashboard/Organisation/suborg/${item.id}`} >Get All Clients</a></div>
+                    <div><a href={`/dashboard/Organisation/suborg/${item.assigneeId}`} >Get All Clients</a></div>
                     </span>
                 }
                 </td>

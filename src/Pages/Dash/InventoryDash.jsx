@@ -1,17 +1,17 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
-import Carddets from './Carddets'
-import hocard from './hocard'
-import {useAuth} from "./ProtectDashboard/AuthDash"
-import Tablenav from "./Tablenav"
-import tile1 from "./images/tile-icon1.png"
-import tile2 from "./images/tile-icon2.png"
-import item1 from "./images/item(1).png"
-import capsule from "./images/capsule-dark.png"
-import calendar from "./images/calendar.png"
-import {InventoryTable} from './Tables'
-import { baseurl } from './utils/baseurl'
+import Carddets from '../../Components/Carddets'
+import hocard from '../../Components/hocard'
+import {useAuth} from "../../Components/ProtectDashboard/AuthDash"
+import Tablenav from "../../Components/Tablenav"
+import tile1 from "../../Components/images/tile-icon1.png"
+import tile2 from "../../Components/images/tile-icon2.png"
+import item1 from "../../Components/images/item(1).png"
+import capsule from "../../Components/images/capsule-dark.png"
+import calendar from "../../Components/images/calendar.png"
+import {InventoryTable} from '../../Components/Tables'
+import { baseurl } from '../../Components/utils/baseurl'
 
 
 

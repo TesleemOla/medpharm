@@ -2,10 +2,10 @@ import {lazy} from "react"
 import Dashboard from "./Components/Dashboard"
 
 const Dispatched = lazy(() => import("./Components/DispatchedDash"));
-const MainDash = lazy(()=> import('./Components/MainDash'));
+const MainDash = lazy(()=> import('./Pages/Dash/MainDash'));
 const ManufacturersDash = lazy(() => import("./Components/Manufacturers"));
-const DrugsDash = lazy(() => import("./Components/DrugsDash"));
-const InventoryDash = lazy(() => import("./Components/InventoryDash"))
+const DrugsDash = lazy(() => import("./Pages/Dash/DrugsDash"));
+const InventoryDash = lazy(() => import("./Pages/Dash/InventoryDash"))
 const EditDrugCategory = lazy(()=> import("./Pages/Edit/EditDrugCategory"))
 const EditDispatched = lazy(() => import("./Pages/Edit/EditDispatched"))
 const EditManufacturer = lazy(() => import("./Pages/Edit/EditManufacturer"))

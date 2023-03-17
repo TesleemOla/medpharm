@@ -25,9 +25,7 @@ const EditInventory = lazy(() => import("./Pages/Edit/EditInventory"))
 export const EditUserDetails = lazy(()=> import('./Pages/Edit/EditUserDetails'))
 export const ChangePassword = lazy(() => import('./Pages/Edit/ChangePassword'))
 function App() {
-  const [membership, setMembership] = useState("Client")
   
-
   return (
     <div className="App">
       <Router>
